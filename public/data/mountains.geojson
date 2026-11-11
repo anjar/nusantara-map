@@ -1,0 +1,170 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "carstensz",
+        "name": "Puncak Jaya (Carstensz)",
+        "elevation_m": 4884,
+        "region": "Papua",
+        "kind": "peak",
+        "description": "Titik tertinggi di Indonesia dan Oseania, puncak bersalju abadi di Pegunungan Sudirman."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [137.18, -4.08]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kerinci",
+        "name": "Gunung Kerinci",
+        "elevation_m": 3805,
+        "region": "Sumatera",
+        "kind": "volcano",
+        "description": "Gunung berapi tertinggi di Indonesia dan puncak tertinggi di Pulau Sumatera (Bukit Barisan)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [101.26, -1.69]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "rinjani",
+        "name": "Gunung Rinjani",
+        "elevation_m": 3726,
+        "region": "Lombok",
+        "kind": "volcano",
+        "description": "Gunung berapi megah di Pulau Lombok dengan danau kawah Segara Anak."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.45, -8.41]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "semeru",
+        "name": "Gunung Semeru (Mahameru)",
+        "elevation_m": 3676,
+        "region": "Jawa",
+        "kind": "volcano",
+        "description": "Puncak tertinggi di Pulau Jawa, gunung berapi kerucut aktif di Jawa Timur."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [112.92, -8.10]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "rantemario",
+        "name": "Bulu Rantemario (Latimojong)",
+        "elevation_m": 3478,
+        "region": "Sulawesi",
+        "kind": "peak",
+        "description": "Puncak tertinggi di Pulau Sulawesi pada Pegunungan Latimojong."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [120.02, -3.38]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kinabalu",
+        "name": "Gunung Kinabalu",
+        "elevation_m": 4095,
+        "region": "Borneo",
+        "kind": "peak",
+        "description": "Puncak granit tertinggi di Pulau Kalimantan (Borneo)."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [116.55, 6.07]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "agung",
+        "name": "Gunung Agung",
+        "elevation_m": 3031,
+        "region": "Bali",
+        "kind": "volcano",
+        "description": "Titik tertinggi di Pulau Bali, disucikan sebagai stana dewa oleh masyarakat Bali."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [115.50, -8.34]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "tambora",
+        "name": "Gunung Tambora",
+        "elevation_m": 2851,
+        "region": "Sumbawa",
+        "kind": "volcano",
+        "description": "Pusat letusan super dahsyat tahun 1815 yang memicu 'Tahun Tanpa Musim Panas' di belahan bumi utara."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [117.96, -8.25]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "merapi",
+        "name": "Gunung Merapi",
+        "elevation_m": 2930,
+        "region": "Jawa",
+        "kind": "volcano",
+        "description": "Salah satu gunung berapi teraktif di dunia di perbatasan Yogyakarta dan Jawa Tengah."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.44, -7.54]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "krakatau",
+        "name": "Krakatau",
+        "elevation_m": 813,
+        "region": "Selat Sunda",
+        "kind": "volcano",
+        "description": "Kompleks gunung api kepulauan di Selat Sunda, terkenal dengan letusan global katastropik 1883."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [105.42, -6.10]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "toba",
+        "name": "Kaldera Toba",
+        "elevation_m": 905,
+        "region": "Sumatera",
+        "kind": "caldera",
+        "description": "Kaldera supervolcano terbesar di Asia Tenggara, pusat supererupsi dahsyat ~74.000 tahun lalu."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [98.83, 2.68]
+      }
+    }
+  ]
+}

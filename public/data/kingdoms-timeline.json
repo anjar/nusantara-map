@@ -1,0 +1,985 @@
+{
+  "kingdoms": [
+    {
+      "id": "tarumanagara",
+      "name": "Tarumanagara",
+      "color": "#9364a0",
+      "start_year": 367,
+      "end_year": 673,
+      "periods": [
+        {
+          "startYear": 367,
+          "endYear": 533
+        },
+        {
+          "startYear": 534,
+          "endYear": 611
+        },
+        {
+          "startYear": 612,
+          "endYear": 665
+        },
+        {
+          "startYear": 666,
+          "endYear": 673
+        }
+      ]
+    },
+    {
+      "id": "srivijaya",
+      "name": "Sriwijaya",
+      "color": "#518979",
+      "start_year": 674,
+      "end_year": 1293,
+      "periods": [
+        {
+          "startYear": 674,
+          "endYear": 681
+        },
+        {
+          "startYear": 682,
+          "endYear": 691
+        },
+        {
+          "startYear": 692,
+          "endYear": 717
+        },
+        {
+          "startYear": 718,
+          "endYear": 859
+        },
+        {
+          "startYear": 860,
+          "endYear": 1138
+        },
+        {
+          "startYear": 1139,
+          "endYear": 1201
+        },
+        {
+          "startYear": 1202,
+          "endYear": 1284
+        },
+        {
+          "startYear": 1285,
+          "endYear": 1293
+        }
+      ]
+    },
+    {
+      "id": "sunda-kingdom",
+      "name": "Sunda",
+      "color": "#ba8745",
+      "start_year": 674,
+      "end_year": 1578,
+      "periods": [
+        {
+          "startYear": 674,
+          "endYear": 723
+        },
+        {
+          "startYear": 724,
+          "endYear": 731
+        },
+        {
+          "startYear": 732,
+          "endYear": 740
+        },
+        {
+          "startYear": 741,
+          "endYear": 824
+        },
+        {
+          "startYear": 825,
+          "endYear": 895
+        },
+        {
+          "startYear": 896,
+          "endYear": 1027
+        },
+        {
+          "startYear": 1028,
+          "endYear": 1293
+        },
+        {
+          "startYear": 1294,
+          "endYear": 1474
+        },
+        {
+          "startYear": 1475,
+          "endYear": 1481
+        },
+        {
+          "startYear": 1482,
+          "endYear": 1518
+        },
+        {
+          "startYear": 1519,
+          "endYear": 1528
+        },
+        {
+          "startYear": 1529,
+          "endYear": 1571
+        },
+        {
+          "startYear": 1572,
+          "endYear": 1578
+        }
+      ]
+    },
+    {
+      "id": "mataram-kingdom",
+      "name": "Medang / Mataram Kuno",
+      "color": "#637baf",
+      "start_year": 741,
+      "end_year": 1009,
+      "periods": [
+        {
+          "startYear": 741,
+          "endYear": 1002
+        },
+        {
+          "startYear": 1003,
+          "endYear": 1009
+        }
+      ]
+    },
+    {
+      "id": "early-balinese-kingdoms",
+      "name": "Kerajaan Bali awal",
+      "color": "#779b9a",
+      "start_year": 922,
+      "end_year": 1343,
+      "periods": [
+        {
+          "startYear": 922,
+          "endYear": 1009
+        },
+        {
+          "startYear": 1046,
+          "endYear": 1235
+        },
+        {
+          "startYear": 1285,
+          "endYear": 1332
+        },
+        {
+          "startYear": 1333,
+          "endYear": 1343
+        }
+      ]
+    },
+    {
+      "id": "kediri-kingdom",
+      "name": "Kediri",
+      "color": "#a47b58",
+      "start_year": 1046,
+      "end_year": 1226,
+      "periods": [
+        {
+          "startYear": 1046,
+          "endYear": 1055
+        },
+        {
+          "startYear": 1056,
+          "endYear": 1138
+        },
+        {
+          "startYear": 1139,
+          "endYear": 1219
+        },
+        {
+          "startYear": 1220,
+          "endYear": 1226
+        }
+      ]
+    },
+    {
+      "id": "singhasari",
+      "name": "Singhasari",
+      "color": "#658b4e",
+      "start_year": 1227,
+      "end_year": 1293,
+      "periods": [
+        {
+          "startYear": 1227,
+          "endYear": 1284
+        },
+        {
+          "startYear": 1285,
+          "endYear": 1293
+        }
+      ]
+    },
+    {
+      "id": "samudera-pasai-sultanate",
+      "name": "Samudera Pasai",
+      "color": "#577995",
+      "start_year": 1272,
+      "end_year": 1520,
+      "periods": [
+        {
+          "startYear": 1272,
+          "endYear": 1351
+        },
+        {
+          "startYear": 1363,
+          "endYear": 1458
+        },
+        {
+          "startYear": 1459,
+          "endYear": 1515
+        },
+        {
+          "startYear": 1516,
+          "endYear": 1518
+        },
+        {
+          "startYear": 1519,
+          "endYear": 1520
+        }
+      ]
+    },
+    {
+      "id": "majapahit",
+      "name": "Majapahit",
+      "color": "#b85976",
+      "start_year": 1294,
+      "end_year": 1518,
+      "periods": [
+        {
+          "startYear": 1294,
+          "endYear": 1343
+        },
+        {
+          "startYear": 1344,
+          "endYear": 1351
+        },
+        {
+          "startYear": 1352,
+          "endYear": 1362
+        },
+        {
+          "startYear": 1363,
+          "endYear": 1401
+        },
+        {
+          "startYear": 1402,
+          "endYear": 1474
+        },
+        {
+          "startYear": 1475,
+          "endYear": 1481
+        },
+        {
+          "startYear": 1482,
+          "endYear": 1515
+        },
+        {
+          "startYear": 1516,
+          "endYear": 1518
+        }
+      ]
+    },
+    {
+      "id": "demak-sultanate",
+      "name": "Demak",
+      "color": "#7b69a2",
+      "start_year": 1475,
+      "end_year": 1551,
+      "periods": [
+        {
+          "startYear": 1475,
+          "endYear": 1518
+        },
+        {
+          "startYear": 1519,
+          "endYear": 1546
+        },
+        {
+          "startYear": 1547,
+          "endYear": 1551
+        }
+      ]
+    },
+    {
+      "id": "sultanate-of-bone",
+      "name": "Bone",
+      "color": "#b08d53",
+      "start_year": 1512,
+      "end_year": 1858,
+      "periods": [
+        {
+          "startYear": 1512,
+          "endYear": 1669
+        },
+        {
+          "startYear": 1670,
+          "endYear": 1856
+        },
+        {
+          "startYear": 1857,
+          "endYear": 1858
+        }
+      ]
+    },
+    {
+      "id": "sultanate-of-gowa",
+      "name": "Gowa",
+      "color": "#a782b2",
+      "start_year": 1512,
+      "end_year": 1669,
+      "periods": [
+        {
+          "startYear": 1512,
+          "endYear": 1661
+        },
+        {
+          "startYear": 1662,
+          "endYear": 1669
+        }
+      ]
+    },
+    {
+      "id": "sultanate-of-aceh",
+      "name": "Aceh",
+      "color": "#a36c3e",
+      "start_year": 1516,
+      "end_year": 1959,
+      "periods": [
+        {
+          "startYear": 1516,
+          "endYear": 1525
+        },
+        {
+          "startYear": 1526,
+          "endYear": 1528
+        },
+        {
+          "startYear": 1529,
+          "endYear": 1539
+        },
+        {
+          "startYear": 1540,
+          "endYear": 1571
+        },
+        {
+          "startYear": 1572,
+          "endYear": 1608
+        },
+        {
+          "startYear": 1609,
+          "endYear": 1611
+        },
+        {
+          "startYear": 1612,
+          "endYear": 1625
+        },
+        {
+          "startYear": 1626,
+          "endYear": 1639
+        },
+        {
+          "startYear": 1640,
+          "endYear": 1861
+        },
+        {
+          "startYear": 1862,
+          "endYear": 1872
+        },
+        {
+          "startYear": 1873,
+          "endYear": 1913
+        },
+        {
+          "startYear": 1946,
+          "endYear": 1946
+        },
+        {
+          "startYear": 1947,
+          "endYear": 1948
+        },
+        {
+          "startYear": 1949,
+          "endYear": 1949
+        },
+        {
+          "startYear": 1953,
+          "endYear": 1957
+        },
+        {
+          "startYear": 1958,
+          "endYear": 1959
+        }
+      ]
+    },
+    {
+      "id": "balinese-kingdom",
+      "name": "Kerajaan Bali",
+      "color": "#bbaa58",
+      "start_year": 1519,
+      "end_year": 1686,
+      "periods": [
+        {
+          "startYear": 1519,
+          "endYear": 1608
+        },
+        {
+          "startYear": 1609,
+          "endYear": 1682
+        },
+        {
+          "startYear": 1683,
+          "endYear": 1686
+        }
+      ]
+    },
+    {
+      "id": "sultanate-of-banten",
+      "name": "Banten",
+      "color": "#ad6d63",
+      "start_year": 1529,
+      "end_year": 1808,
+      "periods": [
+        {
+          "startYear": 1529,
+          "endYear": 1555
+        },
+        {
+          "startYear": 1556,
+          "endYear": 1571
+        },
+        {
+          "startYear": 1572,
+          "endYear": 1618
+        },
+        {
+          "startYear": 1619,
+          "endYear": 1676
+        },
+        {
+          "startYear": 1677,
+          "endYear": 1806
+        },
+        {
+          "startYear": 1807,
+          "endYear": 1808
+        }
+      ]
+    },
+    {
+      "id": "mataram-sultanate",
+      "name": "Mataram Islam",
+      "color": "#5b8a74",
+      "start_year": 1588,
+      "end_year": 1743,
+      "periods": [
+        {
+          "startYear": 1588,
+          "endYear": 1618
+        },
+        {
+          "startYear": 1619,
+          "endYear": 1621
+        },
+        {
+          "startYear": 1622,
+          "endYear": 1625
+        },
+        {
+          "startYear": 1626,
+          "endYear": 1676
+        },
+        {
+          "startYear": 1683,
+          "endYear": 1705
+        },
+        {
+          "startYear": 1706,
+          "endYear": 1740
+        },
+        {
+          "startYear": 1741,
+          "endYear": 1743
+        }
+      ]
+    },
+    {
+      "id": "voc-dutch-republic",
+      "name": "VOC / Hindia Timur Belanda",
+      "color": "#b47d3c",
+      "start_year": 1609,
+      "end_year": 1795,
+      "periods": [
+        {
+          "startYear": 1609,
+          "endYear": 1611
+        },
+        {
+          "startYear": 1612,
+          "endYear": 1618
+        },
+        {
+          "startYear": 1619,
+          "endYear": 1621
+        },
+        {
+          "startYear": 1622,
+          "endYear": 1625
+        },
+        {
+          "startYear": 1626,
+          "endYear": 1628
+        },
+        {
+          "startYear": 1629,
+          "endYear": 1631
+        },
+        {
+          "startYear": 1632,
+          "endYear": 1635
+        },
+        {
+          "startYear": 1636,
+          "endYear": 1639
+        },
+        {
+          "startYear": 1640,
+          "endYear": 1641
+        },
+        {
+          "startYear": 1642,
+          "endYear": 1644
+        },
+        {
+          "startYear": 1645,
+          "endYear": 1647
+        },
+        {
+          "startYear": 1648,
+          "endYear": 1652
+        },
+        {
+          "startYear": 1653,
+          "endYear": 1658
+        },
+        {
+          "startYear": 1659,
+          "endYear": 1661
+        },
+        {
+          "startYear": 1662,
+          "endYear": 1669
+        },
+        {
+          "startYear": 1670,
+          "endYear": 1672
+        },
+        {
+          "startYear": 1673,
+          "endYear": 1676
+        },
+        {
+          "startYear": 1677,
+          "endYear": 1682
+        },
+        {
+          "startYear": 1683,
+          "endYear": 1686
+        },
+        {
+          "startYear": 1687,
+          "endYear": 1690
+        },
+        {
+          "startYear": 1691,
+          "endYear": 1699
+        },
+        {
+          "startYear": 1700,
+          "endYear": 1701
+        },
+        {
+          "startYear": 1702,
+          "endYear": 1705
+        },
+        {
+          "startYear": 1706,
+          "endYear": 1708
+        },
+        {
+          "startYear": 1709,
+          "endYear": 1712
+        },
+        {
+          "startYear": 1713,
+          "endYear": 1720
+        },
+        {
+          "startYear": 1721,
+          "endYear": 1733
+        },
+        {
+          "startYear": 1734,
+          "endYear": 1743
+        },
+        {
+          "startYear": 1744,
+          "endYear": 1756
+        },
+        {
+          "startYear": 1757,
+          "endYear": 1761
+        },
+        {
+          "startYear": 1762,
+          "endYear": 1762
+        },
+        {
+          "startYear": 1763,
+          "endYear": 1768
+        },
+        {
+          "startYear": 1769,
+          "endYear": 1774
+        },
+        {
+          "startYear": 1775,
+          "endYear": 1779
+        },
+        {
+          "startYear": 1780,
+          "endYear": 1787
+        },
+        {
+          "startYear": 1788,
+          "endYear": 1790
+        },
+        {
+          "startYear": 1791,
+          "endYear": 1793
+        },
+        {
+          "startYear": 1794,
+          "endYear": 1795
+        }
+      ]
+    },
+    {
+      "id": "kutai-kingdom",
+      "name": "Kutai (label Cliopatria)",
+      "color": "#b64e40",
+      "start_year": 1648,
+      "end_year": 1733,
+      "periods": [
+        {
+          "startYear": 1648,
+          "endYear": 1726
+        },
+        {
+          "startYear": 1727,
+          "endYear": 1733
+        }
+      ]
+    },
+    {
+      "id": "bali",
+      "name": "Bali",
+      "color": "#8d796c",
+      "start_year": 1687,
+      "end_year": 1907,
+      "periods": [
+        {
+          "startYear": 1687,
+          "endYear": 1848
+        },
+        {
+          "startYear": 1849,
+          "endYear": 1904
+        },
+        {
+          "startYear": 1905,
+          "endYear": 1907
+        }
+      ]
+    },
+    {
+      "id": "sultanate-of-kutai-kartanegara",
+      "name": "Kutai Kartanegara",
+      "color": "#608c98",
+      "start_year": 1734,
+      "end_year": 1845,
+      "periods": [
+        {
+          "startYear": 1734,
+          "endYear": 1841
+        },
+        {
+          "startYear": 1842,
+          "endYear": 1845
+        }
+      ]
+    },
+    {
+      "id": "surakarta-sunanate",
+      "name": "Surakarta",
+      "color": "#a87b48",
+      "start_year": 1744,
+      "end_year": 1829,
+      "periods": [
+        {
+          "startYear": 1744,
+          "endYear": 1827
+        },
+        {
+          "startYear": 1828,
+          "endYear": 1829
+        }
+      ]
+    },
+    {
+      "id": "sultan-of-yogyakarta",
+      "name": "Yogyakarta",
+      "color": "#708653",
+      "start_year": 1744,
+      "end_year": 1829,
+      "periods": [
+        {
+          "startYear": 1744,
+          "endYear": 1827
+        },
+        {
+          "startYear": 1828,
+          "endYear": 1829
+        }
+      ]
+    },
+    {
+      "id": "voc-batavian-republic",
+      "name": "VOC / Republik Batavia",
+      "color": "#b47d3c",
+      "start_year": 1796,
+      "end_year": 1799,
+      "periods": [
+        {
+          "startYear": 1796,
+          "endYear": 1799
+        }
+      ]
+    },
+    {
+      "id": "dutch-east-indies",
+      "name": "Hindia Belanda (Nederlands-Indië)",
+      "color": "#c98d40",
+      "start_year": 1800,
+      "end_year": 1942,
+      "periods": [
+        {
+          "startYear": 1800,
+          "endYear": 1802
+        },
+        {
+          "startYear": 1803,
+          "endYear": 1804
+        },
+        {
+          "startYear": 1805,
+          "endYear": 1808
+        },
+        {
+          "startYear": 1809,
+          "endYear": 1813
+        },
+        {
+          "startYear": 1814,
+          "endYear": 1814
+        },
+        {
+          "startYear": 1815,
+          "endYear": 1821
+        },
+        {
+          "startYear": 1822,
+          "endYear": 1823
+        },
+        {
+          "startYear": 1824,
+          "endYear": 1827
+        },
+        {
+          "startYear": 1828,
+          "endYear": 1829
+        },
+        {
+          "startYear": 1830,
+          "endYear": 1833
+        },
+        {
+          "startYear": 1834,
+          "endYear": 1835
+        },
+        {
+          "startYear": 1836,
+          "endYear": 1845
+        },
+        {
+          "startYear": 1846,
+          "endYear": 1848
+        },
+        {
+          "startYear": 1849,
+          "endYear": 1852
+        },
+        {
+          "startYear": 1853,
+          "endYear": 1855
+        },
+        {
+          "startYear": 1856,
+          "endYear": 1856
+        },
+        {
+          "startYear": 1857,
+          "endYear": 1858
+        },
+        {
+          "startYear": 1859,
+          "endYear": 1859
+        },
+        {
+          "startYear": 1860,
+          "endYear": 1861
+        },
+        {
+          "startYear": 1862,
+          "endYear": 1865
+        },
+        {
+          "startYear": 1866,
+          "endYear": 1872
+        },
+        {
+          "startYear": 1873,
+          "endYear": 1884
+        },
+        {
+          "startYear": 1885,
+          "endYear": 1889
+        },
+        {
+          "startYear": 1890,
+          "endYear": 1894
+        },
+        {
+          "startYear": 1898,
+          "endYear": 1904
+        },
+        {
+          "startYear": 1905,
+          "endYear": 1907
+        },
+        {
+          "startYear": 1908,
+          "endYear": 1913
+        },
+        {
+          "startYear": 1914,
+          "endYear": 1914
+        },
+        {
+          "startYear": 1915,
+          "endYear": 1940
+        },
+        {
+          "startYear": 1941,
+          "endYear": 1941
+        },
+        {
+          "startYear": 1942,
+          "endYear": 1942
+        }
+      ]
+    },
+    {
+      "id": "british-interregnum",
+      "name": "Pemerintahan Inggris (Raffles)",
+      "color": "#806bad",
+      "start_year": 1811,
+      "end_year": 1816,
+      "periods": [
+        {
+          "startYear": 1811,
+          "endYear": 1811
+        },
+        {
+          "startYear": 1812,
+          "endYear": 1813
+        },
+        {
+          "startYear": 1814,
+          "endYear": 1814
+        },
+        {
+          "startYear": 1815,
+          "endYear": 1816
+        }
+      ]
+    },
+    {
+      "id": "sultanate-of-sambaliung",
+      "name": "Sambaliung",
+      "color": "#b06789",
+      "start_year": 1830,
+      "end_year": 1848,
+      "periods": [
+        {
+          "startYear": 1830,
+          "endYear": 1847
+        },
+        {
+          "startYear": 1848,
+          "endYear": 1848
+        }
+      ]
+    },
+    {
+      "id": "japanese-occupation",
+      "name": "Pendudukan Jepang (Gunseikanbu)",
+      "color": "#8b6486",
+      "start_year": 1942,
+      "end_year": 1945,
+      "periods": [
+        {
+          "startYear": 1942,
+          "endYear": 1942
+        },
+        {
+          "startYear": 1943,
+          "endYear": 1943
+        },
+        {
+          "startYear": 1944,
+          "endYear": 1944
+        },
+        {
+          "startYear": 1945,
+          "endYear": 1945
+        }
+      ]
+    },
+    {
+      "id": "republic-of-indonesia",
+      "name": "Republik Indonesia",
+      "color": "#c8102e",
+      "start_year": 1945,
+      "end_year": 2026,
+      "periods": [
+        {
+          "startYear": 1945,
+          "endYear": 2026
+        }
+      ]
+    }
+  ],
+  "currentYear": 2026
+}

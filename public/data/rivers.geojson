@@ -1,0 +1,354 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sunda-utara",
+        "name": "Sungai Sunda Utara (Molengraaff)",
+        "name_en": "North Sunda River",
+        "era": "ancient",
+        "length_km": 1500,
+        "description": "Sistem sungai purba terbesar di Paparan Sunda, mengalirkan air dari Kalimantan Barat dan Sumatera Timur menuju Laut Cina Selatan purba."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [104.5, -0.5],
+          [105.2, 0.2],
+          [106.0, 1.0],
+          [107.0, 1.8],
+          [107.8, 2.5],
+          [108.5, 3.4],
+          [109.2, 4.5],
+          [109.8, 5.5],
+          [110.2, 6.5],
+          [110.5, 7.5]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sunda-utara-kapuas-tributary",
+        "name": "Anak Sungai Sunda Utara (Cabang Kapuas)",
+        "name_en": "North Sunda - Kapuas Branch",
+        "era": "ancient",
+        "description": "Cabang sungai purba dari muara Sungai Kapuas purba menuju batang utama Sungai Sunda Utara."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [109.2, -0.1],
+          [108.5, 0.8],
+          [107.8, 1.8],
+          [107.8, 2.5]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sunda-utara-musi-tributary",
+        "name": "Anak Sungai Sunda Utara (Cabang Musi/Batanghari)",
+        "name_en": "North Sunda - Musi Branch",
+        "era": "ancient",
+        "description": "Cabang sungai purba dari muara Musi dan Batanghari purba menuju batang utama Sungai Sunda Utara."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [104.9, -2.2],
+          [105.1, -1.3],
+          [105.2, 0.2]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sunda-timur",
+        "name": "Sungai Sunda Timur",
+        "name_en": "East Sunda River",
+        "era": "ancient",
+        "length_km": 1200,
+        "description": "Mengalirkan air dari Kalimantan Selatan dan Jawa Utara melintasi dasar Laut Jawa purba menuju palung Selat Makassar / Laut Flores."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [111.5, -5.5],
+          [113.0, -5.2],
+          [114.5, -4.8],
+          [116.0, -4.5],
+          [117.5, -4.8],
+          [118.5, -5.3]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sunda-timur-solo-tributary",
+        "name": "Anak Sungai Sunda Timur (Cabang Bengawan Solo)",
+        "name_en": "East Sunda - Solo Branch",
+        "era": "ancient",
+        "description": "Perpanjangan aliran Bengawan Solo purba melintasi daratan dasar Laut Jawa purba menuju Sungai Sunda Timur."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [112.5, -6.8],
+          [112.8, -6.0],
+          [113.0, -5.2]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sunda-timur-barito-tributary",
+        "name": "Anak Sungai Sunda Timur (Cabang Barito)",
+        "name_en": "East Sunda - Barito Branch",
+        "era": "ancient",
+        "description": "Perpanjangan Sungai Barito purba ke arah tenggara menuju Sungai Sunda Timur."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [114.6, -3.5],
+          [114.5, -4.2],
+          [114.5, -4.8]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sahul-purba",
+        "name": "Sistem Sungai Sahul Purba",
+        "name_en": "Ancient Sahul River System",
+        "era": "ancient",
+        "description": "Jaringan sungai purba melintasi Paparan Sahul dan Laut Arafura yang kering, menghubungkan Papua selatan dan Teluk Carpentaria."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [139.0, -7.5],
+          [138.5, -8.3],
+          [137.8, -9.2],
+          [136.5, -10.0]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kapuas",
+        "name": "Sungai Kapuas",
+        "name_en": "Kapuas River",
+        "era": "modern",
+        "island": "Kalimantan",
+        "length_km": 1143,
+        "description": "Sungai terpanjang di Indonesia, membentang di Kalimantan Barat dari Pegunungan Müller hingga Selat Karimata."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [113.8, 0.8],
+          [113.2, 0.6],
+          [112.4, 0.5],
+          [111.7, 0.3],
+          [111.2, 0.1],
+          [110.5, 0.0],
+          [109.8, -0.05],
+          [109.3, -0.07]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "barito",
+        "name": "Sungai Barito",
+        "name_en": "Barito River",
+        "era": "modern",
+        "island": "Kalimantan",
+        "length_km": 909,
+        "description": "Sungai besar Kalimantan Selatan dan Tengah bermuara di Laut Jawa."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [114.5, -0.5],
+          [114.7, -1.2],
+          [115.0, -2.0],
+          [114.9, -2.8],
+          [114.6, -3.3],
+          [114.5, -3.5]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "mahakam",
+        "name": "Sungai Mahakam",
+        "name_en": "Mahakam River",
+        "era": "modern",
+        "island": "Kalimantan",
+        "length_km": 980,
+        "description": "Sungai utama Kalimantan Timur dengan delta luas di Selat Makassar."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [115.2, 0.7],
+          [115.8, 0.3],
+          [116.3, -0.1],
+          [116.8, -0.4],
+          [117.1, -0.5],
+          [117.5, -0.6]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "musi",
+        "name": "Sungai Musi",
+        "name_en": "Musi River",
+        "era": "modern",
+        "island": "Sumatera",
+        "length_km": 750,
+        "description": "Sungai utama Sumatera Selatan melintasi Palembang menuju Selat Bangka."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [102.5, -3.5],
+          [103.2, -3.4],
+          [103.8, -3.2],
+          [104.3, -2.9],
+          [104.7, -2.99],
+          [104.9, -2.2]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "batanghari",
+        "name": "Sungai Batanghari",
+        "name_en": "Batanghari River",
+        "era": "modern",
+        "island": "Sumatera",
+        "length_km": 800,
+        "description": "Sungai terpanjang di Pulau Sumatera, mengalir dari Bukit Barisan hingga Selat Berhala."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [101.2, -1.5],
+          [101.9, -1.4],
+          [102.7, -1.5],
+          [103.3, -1.5],
+          [103.6, -1.6],
+          [104.1, -1.0]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "solo",
+        "name": "Bengawan Solo",
+        "name_en": "Solo River",
+        "era": "modern",
+        "island": "Jawa",
+        "length_km": 548,
+        "description": "Sungai terpanjang di Pulau Jawa, mengalir dari lereng Gunung Lawu melintasi Solo, Ngawi, Bojonegoro hingga Laut Jawa di Gresik."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [110.9, -7.8],
+          [110.8, -7.56],
+          [111.2, -7.4],
+          [111.4, -7.3],
+          [111.6, -7.15],
+          [112.0, -7.1],
+          [112.5, -6.8]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "brantas",
+        "name": "Sungai Brantas",
+        "name_en": "Brantas River",
+        "era": "modern",
+        "island": "Jawa",
+        "length_km": 320,
+        "description": "Sungai peradaban Jawa Timur, melingkari Gunung Kelud dan melalui Kediri, Jombang, Mojokerto hingga Surabaya."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [112.5, -7.8],
+          [112.6, -8.1],
+          [112.2, -8.1],
+          [111.9, -7.8],
+          [112.1, -7.5],
+          [112.4, -7.45],
+          [112.7, -7.25]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "mamberamo",
+        "name": "Sungai Mamberamo",
+        "name_en": "Mamberamo River",
+        "era": "modern",
+        "island": "Papua",
+        "length_km": 1112,
+        "description": "Sungai dengan debit air terbesar di Indonesia, melintasi Pegunungan Foja menuju Samudra Pasifik."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [138.8, -3.2],
+          [138.5, -2.8],
+          [138.0, -2.4],
+          [137.8, -1.9],
+          [137.6, -1.4]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "digul",
+        "name": "Sungai Digul",
+        "name_en": "Digul River",
+        "era": "modern",
+        "island": "Papua",
+        "length_km": 853,
+        "description": "Sungai besar di Papua Selatan bermuara di Laut Arafura."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [140.5, -5.2],
+          [140.3, -6.0],
+          [139.8, -6.8],
+          [139.2, -7.2],
+          [138.8, -7.1]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+[
+  {
+    "dataset_name": "Kutai Kingdom",
+    "name": "Kutai (label Cliopatria)",
+    "wikipedia_title": "Kutai",
+    "era": "kesultanan",
+    "color": "#b64e40"
+  },
+  {
+    "dataset_name": "Tarumanagara",
+    "name": "Tarumanagara",
+    "wikipedia_title": "Tarumanagara",
+    "era": "awal-tertulis",
+    "color": "#9364a0"
+  },
+  {
+    "dataset_name": "Srivijaya",
+    "name": "Sriwijaya",
+    "wikipedia_title": "Sriwijaya",
+    "era": "hindu-buddha",
+    "color": "#518979"
+  },
+  {
+    "dataset_name": "Sunda Kingdom",
+    "name": "Sunda",
+    "wikipedia_title": "Kerajaan Sunda",
+    "era": "hindu-buddha",
+    "color": "#ba8745"
+  },
+  {
+    "dataset_name": "Mataram Kingdom",
+    "name": "Medang / Mataram Kuno",
+    "wikipedia_title": "Kerajaan Medang",
+    "era": "hindu-buddha",
+    "color": "#637baf"
+  },
+  {
+    "dataset_name": "Kediri Kingdom",
+    "name": "Kediri",
+    "wikipedia_title": "Kerajaan Kediri",
+    "era": "hindu-buddha",
+    "color": "#a47b58"
+  },
+  {
+    "dataset_name": "Singhasari",
+    "name": "Singhasari",
+    "wikipedia_title": "Kerajaan Singasari",
+    "era": "hindu-buddha",
+    "color": "#658b4e"
+  },
+  {
+    "dataset_name": "Majapahit",
+    "name": "Majapahit",
+    "wikipedia_title": "Majapahit",
+    "era": "hindu-buddha",
+    "color": "#b85976"
+  },
+  {
+    "dataset_name": "Early Balinese Kingdoms",
+    "name": "Kerajaan Bali awal",
+    "wikipedia_title": "Kerajaan Bali",
+    "era": "hindu-buddha",
+    "color": "#779b9a"
+  },
+  {
+    "dataset_name": "Balinese Kingdom",
+    "name": "Kerajaan Bali",
+    "wikipedia_title": "Kerajaan Bali",
+    "era": "hindu-buddha",
+    "color": "#bbaa58"
+  },
+  {
+    "dataset_name": "Bali",
+    "name": "Bali",
+    "wikipedia_title": "Kerajaan Bali",
+    "era": "hindu-buddha",
+    "color": "#8d796c"
+  },
+  {
+    "dataset_name": "Samudera Pasai Sultanate",
+    "name": "Samudera Pasai",
+    "wikipedia_title": "Kesultanan Samudera Pasai",
+    "era": "kesultanan",
+    "color": "#577995"
+  },
+  {
+    "dataset_name": "Sultanate of Aceh",
+    "name": "Aceh",
+    "wikipedia_title": "Kesultanan Aceh Darussalam",
+    "era": "kesultanan",
+    "color": "#a36c3e"
+  },
+  {
+    "dataset_name": "Demak Sultanate",
+    "name": "Demak",
+    "wikipedia_title": "Kesultanan Demak",
+    "era": "kesultanan",
+    "color": "#7b69a2"
+  },
+  {
+    "dataset_name": "Sultanate of Banten",
+    "name": "Banten",
+    "wikipedia_title": "Kesultanan Banten",
+    "era": "kesultanan",
+    "color": "#ad6d63"
+  },
+  {
+    "dataset_name": "Mataram Sultanate",
+    "name": "Mataram Islam",
+    "wikipedia_title": "Kesultanan Mataram",
+    "era": "kesultanan",
+    "color": "#5b8a74"
+  },
+  {
+    "dataset_name": "Sultanate of Gowa",
+    "name": "Gowa",
+    "wikipedia_title": "Kesultanan Gowa",
+    "era": "kesultanan",
+    "color": "#a782b2"
+  },
+  {
+    "dataset_name": "Sultanate of Bone",
+    "name": "Bone",
+    "wikipedia_title": "Kerajaan Bone",
+    "era": "kesultanan",
+    "color": "#b08d53"
+  },
+  {
+    "dataset_name": "Sultanate of Kutai Kartanegara",
+    "name": "Kutai Kartanegara",
+    "wikipedia_title": "Kesultanan Kutai Kartanegara",
+    "era": "kesultanan",
+    "color": "#608c98"
+  },
+  {
+    "dataset_name": "Sultanate of Sambaliung",
+    "name": "Sambaliung",
+    "wikipedia_title": "Kesultanan Sambaliung",
+    "era": "kesultanan",
+    "color": "#b06789"
+  },
+  {
+    "dataset_name": "Sultan of Yogyakarta",
+    "name": "Yogyakarta",
+    "wikipedia_title": "Kesultanan Ngayogyakarta Hadiningrat",
+    "era": "kesultanan",
+    "color": "#708653"
+  },
+  {
+    "dataset_name": "Surakarta Sunanate",
+    "name": "Surakarta",
+    "wikipedia_title": "Kasunanan Surakarta Hadiningrat",
+    "era": "kesultanan",
+    "color": "#a87b48"
+  },
+  {
+    "dataset_name": "Dutch Republic",
+    "id": "voc-dutch-republic",
+    "name": "VOC / Hindia Timur Belanda",
+    "wikipedia_title": "Perusahaan Hindia Timur Belanda",
+    "era": "kolonial",
+    "kind": "colonial",
+    "color": "#b47d3c",
+    "clip_region": [
+      94,
+      -12,
+      142,
+      7
+    ],
+    "from_year": 1602,
+    "to_year": 1795,
+    "notes": "Bagian Nusantara dari pos dagang, loji, dan pengaruh VOC (Vereenigde Oostindische Compagnie). Berpusat di Batavia (1619), kepulauan Maluku, pesisir utara Jawa, hingga Makassar."
+  },
+  {
+    "dataset_name": "Batavian Republic",
+    "id": "voc-batavian-republic",
+    "name": "VOC / Republik Batavia",
+    "wikipedia_title": "Perusahaan Hindia Timur Belanda",
+    "era": "kolonial",
+    "kind": "colonial",
+    "color": "#b47d3c",
+    "clip_region": [
+      94,
+      -12,
+      142,
+      7
+    ],
+    "from_year": 1796,
+    "to_year": 1799,
+    "notes": "Konteks akhir VOC pada masa Republik Batavia. Rentang tampilan dibatasi 1796–1799 menjelang pengambilalihan aset oleh pemerintah Belanda."
+  },
+  {
+    "dataset_name": "Dutch East Indies",
+    "id": "dutch-east-indies",
+    "name": "Hindia Belanda (Nederlands-Indië)",
+    "wikipedia_title": "Hindia Belanda",
+    "era": "kolonial",
+    "kind": "colonial",
+    "color": "#c98d40",
+    "from_year": 1800,
+    "to_year": 1942,
+    "notes": "Pemerintahan kolonial Hindia Belanda (Nederlands-Indië). Konsolidasi wilayah Pax Neerlandica secara bertahap meliputi Jawa, Sumatera, Kalimantan, Sulawesi, Bali, Maluku, hingga Papua."
+  },
+  {
+    "dataset_name": "British Colonial Empire",
+    "id": "british-interregnum",
+    "name": "Pemerintahan Inggris (Raffles)",
+    "wikipedia_title": "Pemerintahan Inggris di Jawa",
+    "era": "kolonial",
+    "kind": "colonial",
+    "color": "#806bad",
+    "clip_region": [
+      94,
+      -12,
+      142,
+      7
+    ],
+    "from_year": 1811,
+    "to_year": 1816,
+    "notes": "Masa peralihan kekuasaan kepulauan Nusantara ke tangan Imperium Britania di bawah Letnan Gubernur Thomas Stamford Raffles semasa Perang Napoleon."
+  },
+  {
+    "dataset_name": "Empire of Japan",
+    "id": "japanese-occupation",
+    "name": "Pendudukan Jepang (Gunseikanbu)",
+    "wikipedia_title": "Pendudukan Jepang di Hindia Belanda",
+    "era": "pendudukan-kemerdekaan",
+    "kind": "occupation",
+    "color": "#8b6486",
+    "clip_region": [
+      94,
+      -12,
+      142,
+      7
+    ],
+    "from_year": 1942,
+    "to_year": 1945,
+    "notes": "Pendudukan militer Kekaisaran Jepang (Dai Nippon) pada Perang Dunia II, dibagi antara wilayah administrasi Angkatan Darat (Jawa dan Sumatera) dan Angkatan Laut (Indonesia Timur)."
+  },
+  {
+    "dataset_name": "Republic of Indonesia",
+    "id": "republic-of-indonesia",
+    "name": "Republik Indonesia",
+    "wikipedia_title": "Indonesia",
+    "era": "republik",
+    "kind": "state",
+    "color": "#c8102e",
+    "from_year": 1945,
+    "to_year": 2026,
+    "notes": "Negara Kesatuan Republik Indonesia (NKRI) diproklamasikan pada 17 Agustus 1945 oleh Soekarno dan Mohammad Hatta. Seluruh kepulauan Indonesia bersatu menjadi satu negara merdeka dan berdaulat penuh dari Sabang sampai Merauke."
+  }
+]

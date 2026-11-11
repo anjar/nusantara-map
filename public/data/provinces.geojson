@@ -1,0 +1,1905 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aceh",
+        "name": "Aceh",
+        "capital": "Banda Aceh",
+        "islandGroup": "Sumatera",
+        "formedYear": 1956,
+        "historicalBackground": "Bekas wilayah Kesultanan Aceh Darussalam; Daerah Istimewa (1959) dan Otonomi Khusus Nanggroe Aceh Darussalam.",
+        "center": [
+          96.75,
+          4.25
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              95,
+              3.9000000000000004
+            ],
+            [
+              95.66,
+              5.9
+            ],
+            [
+              97.64,
+              5.9
+            ],
+            [
+              98.3,
+              3.9000000000000004
+            ],
+            [
+              97.80499999999999,
+              1.9
+            ],
+            [
+              95.825,
+              1.9
+            ],
+            [
+              95,
+              3.9000000000000004
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sumatera-utara",
+        "name": "Sumatera Utara",
+        "capital": "Medan",
+        "islandGroup": "Sumatera",
+        "formedYear": 1950,
+        "historicalBackground": "Wilayah Kesultanan Deli, Serdang, Asahan, Tanah Batak, dan Nias; pusat perkebunan tembakau dan karet Sumatera Timur.",
+        "center": [
+          99.07,
+          2.12
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              97,
+              2.3
+            ],
+            [
+              97.62,
+              4.3
+            ],
+            [
+              99.47999999999999,
+              4.3
+            ],
+            [
+              100.1,
+              2.3
+            ],
+            [
+              99.63499999999999,
+              0.3
+            ],
+            [
+              97.775,
+              0.3
+            ],
+            [
+              97,
+              2.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sumatera-barat",
+        "name": "Sumatera Barat",
+        "capital": "Padang",
+        "islandGroup": "Sumatera",
+        "formedYear": 1958,
+        "historicalBackground": "Ranah Minangkabau berfalsafah Adat Basandi Syarak, Syarak Basandi Kitabullah; basis PDRI Bukittinggi (1948).",
+        "center": [
+          100.55,
+          -0.74
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              98.5,
+              -1.2999999999999998
+            ],
+            [
+              99.18,
+              0.8
+            ],
+            [
+              101.22,
+              0.8
+            ],
+            [
+              101.9,
+              -1.2999999999999998
+            ],
+            [
+              101.39,
+              -3.4
+            ],
+            [
+              99.35,
+              -3.4
+            ],
+            [
+              98.5,
+              -1.2999999999999998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "riau",
+        "name": "Riau",
+        "capital": "Pekanbaru",
+        "islandGroup": "Sumatera",
+        "formedYear": 1958,
+        "historicalBackground": "Wilayah Kesultanan Siak Sri Indrapura, Pelalawan, dan Indragiri di sepanjang aliran Sungai Siak dan Kampar.",
+        "center": [
+          101.71,
+          0.51
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              100,
+              0.7
+            ],
+            [
+              100.7,
+              2.5
+            ],
+            [
+              102.8,
+              2.5
+            ],
+            [
+              103.5,
+              0.7
+            ],
+            [
+              102.975,
+              -1.1
+            ],
+            [
+              100.875,
+              -1.1
+            ],
+            [
+              100,
+              0.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kepulauan-riau",
+        "name": "Kepulauan Riau",
+        "capital": "Tanjungpinang",
+        "islandGroup": "Sumatera",
+        "formedYear": 2002,
+        "historicalBackground": "Jantung Kesultanan Riau-Lingga di Pulau Penyengat; pemekaran dari Provinsi Riau tahun 2002.",
+        "center": [
+          104.45,
+          1.15
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              103.5,
+              1.8
+            ],
+            [
+              104.56,
+              4.5
+            ],
+            [
+              107.74,
+              4.5
+            ],
+            [
+              108.8,
+              1.8
+            ],
+            [
+              108.005,
+              -0.9
+            ],
+            [
+              104.825,
+              -0.9
+            ],
+            [
+              103.5,
+              1.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jambi",
+        "name": "Jambi",
+        "capital": "Jambi",
+        "islandGroup": "Sumatera",
+        "formedYear": 1958,
+        "historicalBackground": "Bekas pusat Kerajaan Melayu Kuno dan Kesultanan Jambi di sepanjang Sungai Batanghari.",
+        "center": [
+          102.72,
+          -1.61
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              101.1,
+              -1.75
+            ],
+            [
+              101.78,
+              -0.7
+            ],
+            [
+              103.82,
+              -0.7
+            ],
+            [
+              104.5,
+              -1.75
+            ],
+            [
+              103.99,
+              -2.8
+            ],
+            [
+              101.94999999999999,
+              -2.8
+            ],
+            [
+              101.1,
+              -1.75
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sumatera-selatan",
+        "name": "Sumatera Selatan",
+        "capital": "Palembang",
+        "islandGroup": "Sumatera",
+        "formedYear": 1950,
+        "historicalBackground": "Episentrum Kemaharajaan Sriwijaya dan Kesultanan Palembang Darussalam di Lembah Sungai Musi.",
+        "center": [
+          104.17,
+          -3.32
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              102,
+              -3.25
+            ],
+            [
+              102.82,
+              -1.6
+            ],
+            [
+              105.28,
+              -1.6
+            ],
+            [
+              106.1,
+              -3.25
+            ],
+            [
+              105.485,
+              -4.9
+            ],
+            [
+              103.025,
+              -4.9
+            ],
+            [
+              102,
+              -3.25
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kepulauan-bangka-belitung",
+        "name": "Kepulauan Bangka Belitung",
+        "capital": "Pangkalpinang",
+        "islandGroup": "Sumatera",
+        "formedYear": 2000,
+        "historicalBackground": "Kepulauan penghasil timah terbesar Nusantara; tempat pengasingan para pemimpin Republik (Soekarno-Hatta) tahun 1948.",
+        "center": [
+          106.35,
+          -2.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              105.1,
+              -2.5999999999999996
+            ],
+            [
+              105.78,
+              -1.4
+            ],
+            [
+              107.82,
+              -1.4
+            ],
+            [
+              108.5,
+              -2.5999999999999996
+            ],
+            [
+              107.99,
+              -3.8
+            ],
+            [
+              105.94999999999999,
+              -3.8
+            ],
+            [
+              105.1,
+              -2.5999999999999996
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bengkulu",
+        "name": "Bengkulu",
+        "capital": "Bengkulu",
+        "islandGroup": "Sumatera",
+        "formedYear": 1968,
+        "historicalBackground": "Pangkalan dagang lada Inggris Fort Marlborough (1685-1824) sebelum diserahkan ke Belanda melalui Traktat London 1824.",
+        "center": [
+          102.26,
+          -3.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              101,
+              -3.85
+            ],
+            [
+              101.56,
+              -2.2
+            ],
+            [
+              103.24,
+              -2.2
+            ],
+            [
+              103.8,
+              -3.85
+            ],
+            [
+              103.38,
+              -5.5
+            ],
+            [
+              101.7,
+              -5.5
+            ],
+            [
+              101,
+              -3.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "lampung",
+        "name": "Lampung",
+        "capital": "Bandar Lampung",
+        "islandGroup": "Sumatera",
+        "formedYear": 1964,
+        "historicalBackground": "Pintu gerbang selatan Sumatera; wilayah persekutuan adat Sai Batin dan Pepadun di pesisir Selat Sunda.",
+        "center": [
+          105.15,
+          -4.95
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              103.5,
+              -4.85
+            ],
+            [
+              104,
+              -3.7
+            ],
+            [
+              105.5,
+              -3.7
+            ],
+            [
+              106,
+              -4.85
+            ],
+            [
+              105.625,
+              -6
+            ],
+            [
+              104.125,
+              -6
+            ],
+            [
+              103.5,
+              -4.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "banten",
+        "name": "Banten",
+        "capital": "Serang",
+        "islandGroup": "Jawa",
+        "formedYear": 2000,
+        "historicalBackground": "Bekas Kesultanan Banten maritim lada akbar; dimekarkan dari Jawa Barat pada era Reformasi tahun 2000.",
+        "center": [
+          106.15,
+          -6.4
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              105.1,
+              -6.425
+            ],
+            [
+              105.36,
+              -5.85
+            ],
+            [
+              106.14,
+              -5.85
+            ],
+            [
+              106.4,
+              -6.425
+            ],
+            [
+              106.205,
+              -7
+            ],
+            [
+              105.425,
+              -7
+            ],
+            [
+              105.1,
+              -6.425
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dki-jakarta",
+        "name": "DKI Jakarta",
+        "capital": "Jakarta Pusat",
+        "islandGroup": "Jawa",
+        "formedYear": 1961,
+        "historicalBackground": "Sunda Kalapa -> Jayakarta -> Batavia -> Ibukota Negara Proklamasi 17 Agustus 1945.",
+        "center": [
+          106.84,
+          -6.21
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              106.68,
+              -6.225
+            ],
+            [
+              106.74000000000001,
+              -6.08
+            ],
+            [
+              106.92,
+              -6.08
+            ],
+            [
+              106.98,
+              -6.225
+            ],
+            [
+              106.935,
+              -6.37
+            ],
+            [
+              106.75500000000001,
+              -6.37
+            ],
+            [
+              106.68,
+              -6.225
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jawa-barat",
+        "name": "Jawa Barat",
+        "capital": "Bandung",
+        "islandGroup": "Jawa",
+        "formedYear": 1945,
+        "historicalBackground": "Tanah Pasundan Kerajaan Tarumanagara, Sunda-Galuh, dan Karesidenan Priangan.",
+        "center": [
+          107.6,
+          -6.9
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              106.3,
+              -6.85
+            ],
+            [
+              106.8,
+              -5.9
+            ],
+            [
+              108.3,
+              -5.9
+            ],
+            [
+              108.8,
+              -6.85
+            ],
+            [
+              108.425,
+              -7.8
+            ],
+            [
+              106.925,
+              -7.8
+            ],
+            [
+              106.3,
+              -6.85
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jawa-tengah",
+        "name": "Jawa Tengah",
+        "capital": "Semarang",
+        "islandGroup": "Jawa",
+        "formedYear": 1945,
+        "historicalBackground": "Pusat Dinasti Kalingga, Sanjaya-Syailendra Candi Borobudur, dan Kesultanan Demak.",
+        "center": [
+          110.15,
+          -7.15
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              108.5,
+              -7.3
+            ],
+            [
+              109.12,
+              -6.4
+            ],
+            [
+              110.97999999999999,
+              -6.4
+            ],
+            [
+              111.6,
+              -7.3
+            ],
+            [
+              111.13499999999999,
+              -8.2
+            ],
+            [
+              109.275,
+              -8.2
+            ],
+            [
+              108.5,
+              -7.3
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "di-yogyakarta",
+        "name": "DI Yogyakarta",
+        "capital": "Yogyakarta",
+        "islandGroup": "Jawa",
+        "formedYear": 1950,
+        "historicalBackground": "Kasultanan Ngayogyakarta Hadiningrat dan Kadipaten Pakualaman; ibukota perjuangan RI (1946-1949).",
+        "center": [
+          110.39,
+          -7.88
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              110,
+              -7.869999999999999
+            ],
+            [
+              110.17,
+              -7.54
+            ],
+            [
+              110.67999999999999,
+              -7.54
+            ],
+            [
+              110.85,
+              -7.869999999999999
+            ],
+            [
+              110.7225,
+              -8.2
+            ],
+            [
+              110.2125,
+              -8.2
+            ],
+            [
+              110,
+              -7.869999999999999
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "jawa-timur",
+        "name": "Jawa Timur",
+        "capital": "Surabaya",
+        "islandGroup": "Jawa",
+        "formedYear": 1945,
+        "historicalBackground": "Wilayah Medang Jawa Timur, Kahuripan Airlangga, Kediri, Singhasari, dan Majapahit Trowulan.",
+        "center": [
+          112.5,
+          -7.7
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              111,
+              -7.800000000000001
+            ],
+            [
+              111.72,
+              -6.8
+            ],
+            [
+              113.88,
+              -6.8
+            ],
+            [
+              114.6,
+              -7.800000000000001
+            ],
+            [
+              114.06,
+              -8.8
+            ],
+            [
+              111.9,
+              -8.8
+            ],
+            [
+              111,
+              -7.800000000000001
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "bali",
+        "name": "Bali",
+        "capital": "Denpasar",
+        "islandGroup": "Bali & Nusa Tenggara",
+        "formedYear": 1958,
+        "historicalBackground": "Pulau Dewata berpusat pada kerajaan Dinasti Warmadewa, Gelgel, Klungkung, dan sembilan kerajaan swapraja.",
+        "center": [
+          115.18,
+          -8.45
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              114.4,
+              -8.45
+            ],
+            [
+              114.66000000000001,
+              -8.05
+            ],
+            [
+              115.44,
+              -8.05
+            ],
+            [
+              115.7,
+              -8.45
+            ],
+            [
+              115.50500000000001,
+              -8.85
+            ],
+            [
+              114.72500000000001,
+              -8.85
+            ],
+            [
+              114.4,
+              -8.45
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nusa-tenggara-barat",
+        "name": "Nusa Tenggara Barat",
+        "capital": "Mataram",
+        "islandGroup": "Bali & Nusa Tenggara",
+        "formedYear": 1958,
+        "historicalBackground": "Meliputi Pulau Lombok (Sasak & Puri Cakranegara) dan Pulau Sumbawa (Kesultanan Bima, Dompu, Sumbawa).",
+        "center": [
+          117.4,
+          -8.65
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              115.8,
+              -8.6
+            ],
+            [
+              116.5,
+              -8.1
+            ],
+            [
+              118.6,
+              -8.1
+            ],
+            [
+              119.3,
+              -8.6
+            ],
+            [
+              118.77499999999999,
+              -9.1
+            ],
+            [
+              116.675,
+              -9.1
+            ],
+            [
+              115.8,
+              -8.6
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "nusa-tenggara-timur",
+        "name": "Nusa Tenggara Timur",
+        "capital": "Kupang",
+        "islandGroup": "Bali & Nusa Tenggara",
+        "formedYear": 1958,
+        "historicalBackground": "Kepulauan Flobamora (Flores, Sumba, Timor Barat, Alor); jalur kayu cendana dan benteng VOC Concordia Kupang.",
+        "center": [
+          121.5,
+          -9
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.9,
+              -9.55
+            ],
+            [
+              120.16000000000001,
+              -8.1
+            ],
+            [
+              123.94,
+              -8.1
+            ],
+            [
+              125.2,
+              -9.55
+            ],
+            [
+              124.25500000000001,
+              -11
+            ],
+            [
+              120.47500000000001,
+              -11
+            ],
+            [
+              118.9,
+              -9.55
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kalimantan-barat",
+        "name": "Kalimantan Barat",
+        "capital": "Pontianak",
+        "islandGroup": "Kalimantan",
+        "formedYear": 1956,
+        "historicalBackground": "Lembah Sungai Kapuas terpanjang di Indonesia; Kesultanan Pontianak, Sambas, Matan, dan Republik Lanfang.",
+        "center": [
+          110.5,
+          -0.1
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              108.6,
+              -0.5
+            ],
+            [
+              109.72,
+              2.1
+            ],
+            [
+              113.08,
+              2.1
+            ],
+            [
+              114.2,
+              -0.5
+            ],
+            [
+              113.36,
+              -3.1
+            ],
+            [
+              110,
+              -3.1
+            ],
+            [
+              108.6,
+              -0.5
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kalimantan-tengah",
+        "name": "Kalimantan Tengah",
+        "capital": "Palangka Raya",
+        "islandGroup": "Kalimantan",
+        "formedYear": 1957,
+        "historicalBackground": "Tanah Dayak Kahayan dan Kapuas; dirintis Tjilik Riwut dan Presiden Soekarno mendirikan Palangka Raya.",
+        "center": [
+          113.5,
+          -1.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              110.7,
+              -1.35
+            ],
+            [
+              111.72,
+              0.8
+            ],
+            [
+              114.78,
+              0.8
+            ],
+            [
+              115.8,
+              -1.35
+            ],
+            [
+              115.035,
+              -3.5
+            ],
+            [
+              111.975,
+              -3.5
+            ],
+            [
+              110.7,
+              -1.35
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kalimantan-selatan",
+        "name": "Kalimantan Selatan",
+        "capital": "Banjarbaru",
+        "islandGroup": "Kalimantan",
+        "formedYear": 1956,
+        "historicalBackground": "Episentrum Kesultanan Banjar di Lembah Sungai Barito dan Martapura; Perang Banjar Pangeran Antasari.",
+        "center": [
+          115.3,
+          -2.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              114.2,
+              -2.75
+            ],
+            [
+              114.68,
+              -1.3
+            ],
+            [
+              116.11999999999999,
+              -1.3
+            ],
+            [
+              116.6,
+              -2.75
+            ],
+            [
+              116.24,
+              -4.2
+            ],
+            [
+              114.8,
+              -4.2
+            ],
+            [
+              114.2,
+              -2.75
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kalimantan-timur",
+        "name": "Kalimantan Timur",
+        "capital": "Samarinda",
+        "islandGroup": "Kalimantan",
+        "formedYear": 1956,
+        "historicalBackground": "Wilayah Kerajaan Kutai Martapura (Prasasti Yupa tertua), Kesultanan Kutai Kartanegara, dan lokasi Ibu Kota Nusantara (IKN).",
+        "center": [
+          116.5,
+          0.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              114.8,
+              0
+            ],
+            [
+              115.66,
+              2.5
+            ],
+            [
+              118.24,
+              2.5
+            ],
+            [
+              119.1,
+              0
+            ],
+            [
+              118.455,
+              -2.5
+            ],
+            [
+              115.875,
+              -2.5
+            ],
+            [
+              114.8,
+              0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kalimantan-utara",
+        "name": "Kalimantan Utara",
+        "capital": "Tanjung Selor",
+        "islandGroup": "Kalimantan",
+        "formedYear": 2012,
+        "historicalBackground": "Provinsi termuda di Kalimantan; bekas wilayah Kesultanan Bulungan dan pangkalan minyak strategis Tarakan.",
+        "center": [
+          116.8,
+          2.9
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              114.6,
+              2.7
+            ],
+            [
+              115.28,
+              4.4
+            ],
+            [
+              117.32,
+              4.4
+            ],
+            [
+              118,
+              2.7
+            ],
+            [
+              117.49,
+              1
+            ],
+            [
+              115.44999999999999,
+              1
+            ],
+            [
+              114.6,
+              2.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sulawesi-barat",
+        "name": "Sulawesi Barat",
+        "capital": "Mamuju",
+        "islandGroup": "Sulawesi",
+        "formedYear": 2004,
+        "historicalBackground": "Wilayah adat Mandar Pitu Ulunna Salu dan Pitu Baqbana Binanga; tradisi maritim perahu Sandeq.",
+        "center": [
+          119.25,
+          -2.4
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              118.7,
+              -2.25
+            ],
+            [
+              118.94,
+              -0.9
+            ],
+            [
+              119.66000000000001,
+              -0.9
+            ],
+            [
+              119.9,
+              -2.25
+            ],
+            [
+              119.72,
+              -3.6
+            ],
+            [
+              119,
+              -3.6
+            ],
+            [
+              118.7,
+              -2.25
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sulawesi-selatan",
+        "name": "Sulawesi Selatan",
+        "capital": "Makassar",
+        "islandGroup": "Sulawesi",
+        "formedYear": 1960,
+        "historicalBackground": "Tanah Bugis, Makassar, Toraja, dan Luwu; kemaharajaan maritim Gowa-Tallo, Bone, dan epos I La Galigo.",
+        "center": [
+          120,
+          -3.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.2,
+              -4.75
+            ],
+            [
+              119.72,
+              -1.9
+            ],
+            [
+              121.28,
+              -1.9
+            ],
+            [
+              121.8,
+              -4.75
+            ],
+            [
+              121.41,
+              -7.6
+            ],
+            [
+              119.85,
+              -7.6
+            ],
+            [
+              119.2,
+              -4.75
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sulawesi-tenggara",
+        "name": "Sulawesi Tenggara",
+        "capital": "Kendari",
+        "islandGroup": "Sulawesi",
+        "formedYear": 1964,
+        "historicalBackground": "Wilayah Kesultanan Buton (Benteng Keraton Wolio) dan suku Tolaki, Muna, Moronene.",
+        "center": [
+          122,
+          -4.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              120.9,
+              -4.55
+            ],
+            [
+              121.42,
+              -2.8
+            ],
+            [
+              122.98,
+              -2.8
+            ],
+            [
+              123.5,
+              -4.55
+            ],
+            [
+              123.11,
+              -6.3
+            ],
+            [
+              121.55000000000001,
+              -6.3
+            ],
+            [
+              120.9,
+              -4.55
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sulawesi-tengah",
+        "name": "Sulawesi Tengah",
+        "capital": "Palu",
+        "islandGroup": "Sulawesi",
+        "formedYear": 1964,
+        "historicalBackground": "Lembah Palu dan Dataran Tinggi Lore megalitikum tertua; pesisir Teluk Tomini dan Teluk Tolo.",
+        "center": [
+          121.2,
+          -1.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              119.3,
+              -1.1
+            ],
+            [
+              120.32,
+              1.4
+            ],
+            [
+              123.38000000000001,
+              1.4
+            ],
+            [
+              124.4,
+              -1.1
+            ],
+            [
+              123.635,
+              -3.6
+            ],
+            [
+              120.575,
+              -3.6
+            ],
+            [
+              119.3,
+              -1.1
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "gorontalo",
+        "name": "Gorontalo",
+        "capital": "Gorontalo",
+        "islandGroup": "Sulawesi",
+        "formedYear": 2000,
+        "historicalBackground": "Bumi Serambi Madinah; perserikatan lima persaudaraan kerajaan Hulontalo di Teluk Tomini.",
+        "center": [
+          122.5,
+          0.7
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              121.1,
+              0.8
+            ],
+            [
+              121.6,
+              1.3
+            ],
+            [
+              123.1,
+              1.3
+            ],
+            [
+              123.6,
+              0.8
+            ],
+            [
+              123.225,
+              0.3
+            ],
+            [
+              121.725,
+              0.3
+            ],
+            [
+              121.1,
+              0.8
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sulawesi-utara",
+        "name": "Sulawesi Utara",
+        "capital": "Manado",
+        "islandGroup": "Sulawesi",
+        "formedYear": 1960,
+        "historicalBackground": "Tanah Minahasa, Bolaang Mongondow, dan Kepulauan Sangihe-Talaud di perbatasan Samudra Pasifik.",
+        "center": [
+          124.5,
+          1.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              123.5,
+              2.65
+            ],
+            [
+              123.94,
+              5
+            ],
+            [
+              125.26,
+              5
+            ],
+            [
+              125.7,
+              2.65
+            ],
+            [
+              125.37,
+              0.3
+            ],
+            [
+              124.05,
+              0.3
+            ],
+            [
+              123.5,
+              2.65
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "maluku",
+        "name": "Maluku",
+        "capital": "Ambon",
+        "islandGroup": "Maluku",
+        "formedYear": 1958,
+        "historicalBackground": "Kepulauan Rempah Selatan (Kepulauan Banda pala-fuli, Ambon, Seram, Kepulauan Aru-Kei).",
+        "center": [
+          129.5,
+          -3.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              125.7,
+              -4.800000000000001
+            ],
+            [
+              127.56,
+              -1.3
+            ],
+            [
+              133.14,
+              -1.3
+            ],
+            [
+              135,
+              -4.800000000000001
+            ],
+            [
+              133.605,
+              -8.3
+            ],
+            [
+              128.025,
+              -8.3
+            ],
+            [
+              125.7,
+              -4.800000000000001
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "maluku-utara",
+        "name": "Maluku Utara",
+        "capital": "Sofifi",
+        "islandGroup": "Maluku",
+        "formedYear": 1999,
+        "historicalBackground": "Moloku Kie Raha (Empat Gunung Maluku): Kesultanan Ternate, Tidore, Jailolo, dan Bacan.",
+        "center": [
+          127.8,
+          0.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              124.2,
+              0.10000000000000009
+            ],
+            [
+              125.3,
+              2.7
+            ],
+            [
+              128.6,
+              2.7
+            ],
+            [
+              129.7,
+              0.10000000000000009
+            ],
+            [
+              128.875,
+              -2.5
+            ],
+            [
+              125.575,
+              -2.5
+            ],
+            [
+              124.2,
+              0.10000000000000009
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "papua",
+        "name": "Papua",
+        "capital": "Jayapura",
+        "islandGroup": "Papua",
+        "formedYear": 1969,
+        "historicalBackground": "Provinsi induk di pesisir utara Tanah Papua (Teluk Youtefa, Sarmi, Mamberamo, Kepulauan Yapen, Biak).",
+        "center": [
+          139.5,
+          -2.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              136,
+              -2.4
+            ],
+            [
+              137,
+              -1.3
+            ],
+            [
+              140,
+              -1.3
+            ],
+            [
+              141,
+              -2.4
+            ],
+            [
+              140.25,
+              -3.5
+            ],
+            [
+              137.25,
+              -3.5
+            ],
+            [
+              136,
+              -2.4
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "papua-barat",
+        "name": "Papua Barat",
+        "capital": "Manokwari",
+        "islandGroup": "Papua",
+        "formedYear": 1999,
+        "historicalBackground": "Kota peradaban Manokwari (misi Mansinam 1855) dan Teluk Bintuni di Semenanjung Bomberai.",
+        "center": [
+          133.5,
+          -1.8
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              131,
+              -2.35
+            ],
+            [
+              131.84,
+              -0.2
+            ],
+            [
+              134.35999999999999,
+              -0.2
+            ],
+            [
+              135.2,
+              -2.35
+            ],
+            [
+              134.57,
+              -4.5
+            ],
+            [
+              132.05,
+              -4.5
+            ],
+            [
+              131,
+              -2.35
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "papua-barat-daya",
+        "name": "Papua Barat Daya",
+        "capital": "Sorong",
+        "islandGroup": "Papua",
+        "formedYear": 2022,
+        "historicalBackground": "Pintu gerbang Kepulauan Raja Ampat dan pusat eksplorasi migas Sorong; pemekaran Papua Barat 2022.",
+        "center": [
+          131.5,
+          -1.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              129.9,
+              -0.95
+            ],
+            [
+              130.52,
+              0.4
+            ],
+            [
+              132.38,
+              0.4
+            ],
+            [
+              133,
+              -0.95
+            ],
+            [
+              132.535,
+              -2.3
+            ],
+            [
+              130.675,
+              -2.3
+            ],
+            [
+              129.9,
+              -0.95
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "papua-tengah",
+        "name": "Papua Tengah",
+        "capital": "Nabire",
+        "islandGroup": "Papua",
+        "formedYear": 2022,
+        "historicalBackground": "Membentang dari Teluk Cenderawasih hingga Pegunungan Sudirman dan tambang Grasberg Mimika.",
+        "center": [
+          136,
+          -3.5
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              134.5,
+              -3.75
+            ],
+            [
+              135.28,
+              -2.5
+            ],
+            [
+              137.62,
+              -2.5
+            ],
+            [
+              138.4,
+              -3.75
+            ],
+            [
+              137.815,
+              -5
+            ],
+            [
+              135.475,
+              -5
+            ],
+            [
+              134.5,
+              -3.75
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "papua-pegunungan",
+        "name": "Papua Pegunungan",
+        "capital": "Wamena",
+        "islandGroup": "Papua",
+        "formedYear": 2022,
+        "historicalBackground": "Satu-satunya provinsi terkurung daratan (landlocked) di Indonesia; berpusat di Lembah Baliem suku Dani.",
+        "center": [
+          139,
+          -4.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              137.8,
+              -4.25
+            ],
+            [
+              138.44,
+              -3.4
+            ],
+            [
+              140.36,
+              -3.4
+            ],
+            [
+              141,
+              -4.25
+            ],
+            [
+              140.52,
+              -5.1
+            ],
+            [
+              138.60000000000002,
+              -5.1
+            ],
+            [
+              137.8,
+              -4.25
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "papua-selatan",
+        "name": "Papua Selatan",
+        "capital": "Merauke",
+        "islandGroup": "Papua",
+        "formedYear": 2022,
+        "historicalBackground": "Dataran rendah basah rawa dan sabana Asmat, Boven Digoel, Mappi, dan Merauke di perbatasan Papua Nugini.",
+        "center": [
+          139.5,
+          -7.2
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              137.5,
+              -6.8
+            ],
+            [
+              138.2,
+              -4.5
+            ],
+            [
+              140.3,
+              -4.5
+            ],
+            [
+              141,
+              -6.8
+            ],
+            [
+              140.475,
+              -9.1
+            ],
+            [
+              138.375,
+              -9.1
+            ],
+            [
+              137.5,
+              -6.8
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
