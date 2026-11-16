@@ -3,21 +3,13 @@ node_modules/
 dist/
 .env
 .env.*
-!.env.example
 *.tsbuildinfo
 playwright-report/
 test-results/
 .pnpm-store/
-.turbo/
-
-.nuxt/
-.output/
 .venv/
 __pycache__/
 *.pyc
-apps/crawler/data/
 
 _OLD_REPO/
 crawler/
-
-.next-kingdom-test/
