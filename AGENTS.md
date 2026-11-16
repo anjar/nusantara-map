@@ -21,6 +21,9 @@ Use pnpm consistently with the checked-in lockfile:
 
 - `pnpm install --frozen-lockfile`: install reproducible dependencies.
 - `pnpm dev`: start the development server at `http://localhost:3000`.
+- `pnpm lint`: lint JavaScript/TypeScript with Oxlint.
+- `pnpm format`: format source and project config files with Oxfmt.
+- `pnpm format:check`: check formatting without writing files.
 - `pnpm typecheck`: check strict TypeScript types without emitting files.
 - `pnpm test`: run `lib/*.test.ts` through `tsx` and Node's test runner.
 - `pnpm build`: produce the production Next.js build.
@@ -28,7 +31,7 @@ Use pnpm consistently with the checked-in lockfile:
 
 ## Coding Style & Naming Conventions
 
-Follow surrounding code: two-space indentation, explicit TypeScript interfaces, and single-quoted strings. Use PascalCase for React components, kebab-case for utility filenames, and stable kebab-case event/entity IDs. Mark components requiring browser APIs or React hooks with `'use client'`; keep server-only work in route handlers. Use `@/` for root-relative imports where appropriate. No dedicated lint or formatting script is configured; avoid unrelated formatting changes.
+Follow surrounding code: two-space indentation, explicit TypeScript interfaces, and single-quoted strings. Use PascalCase for React components, kebab-case for utility filenames, and stable kebab-case event/entity IDs. Mark components requiring browser APIs or React hooks with `'use client'`; keep server-only work in route handlers. Use `@/` for root-relative imports where appropriate. Use `pnpm format` and `pnpm lint` for source files; keep generated and dataset files out of formatting runs.
 
 ## Testing Guidelines
 

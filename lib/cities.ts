@@ -34,8 +34,6 @@ export interface City {
   historicalNames?: HistoricalCityName[];
 }
 
-
-
 /**
  * Returns cities active in a given timeline year.
  * An active city has startYear <= year <= endYear.
@@ -45,11 +43,11 @@ export function getActiveCities(
   options?: {
     filterType?: CityType;
     searchQuery?: string;
-  }
+  },
 ): Array<City & { currentHistoricalName: string; currentStatus?: string }> {
   const query = options?.searchQuery?.toLowerCase().trim();
 
-  return CITIES_DATA.filter(city => {
+  return CITIES_DATA.filter((city) => {
     if (city.startYear > year || city.endYear < year) return false;
     if (options?.filterType && city.type !== options.filterType) return false;
     if (query) {
@@ -59,14 +57,12 @@ export function getActiveCities(
       if (!matchName && !matchProv && !matchDesc) return false;
     }
     return true;
-  }).map(city => {
+  }).map((city) => {
     let currentHistoricalName = city.name;
     let currentStatus: string | undefined;
 
     if (city.historicalNames?.length) {
-      const matched = city.historicalNames.find(
-        hn => year >= hn.startYear && year <= hn.endYear
-      );
+      const matched = city.historicalNames.find((hn) => year >= hn.startYear && year <= hn.endYear);
       if (matched) {
         currentHistoricalName = matched.name;
         currentStatus = matched.status;
@@ -76,7 +72,7 @@ export function getActiveCities(
     return {
       ...city,
       currentHistoricalName,
-      currentStatus
+      currentStatus,
     };
   });
 }

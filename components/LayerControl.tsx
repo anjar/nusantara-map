@@ -24,10 +24,7 @@ export default function LayerControl({ layers, onChange }: LayerControlProps) {
   // Close on click outside or Escape
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setOpen(false);
       }
     }
@@ -49,7 +46,7 @@ export default function LayerControl({ layers, onChange }: LayerControlProps) {
   const toggle = (key: keyof LayerSettings) => {
     onChange({
       ...layers,
-      [key]: !layers[key]
+      [key]: !layers[key],
     });
   };
 
@@ -83,7 +80,6 @@ export default function LayerControl({ layers, onChange }: LayerControlProps) {
                 Kerajaan
               </button>
 
-
               <button
                 type="button"
                 className={`layer-chip ${layers.cities ? 'selected' : ''}`}
@@ -93,7 +89,6 @@ export default function LayerControl({ layers, onChange }: LayerControlProps) {
                 {layers.cities && <span className="layer-check">✓ </span>}
                 Kota
               </button>
-
 
               <button
                 type="button"
@@ -112,8 +107,6 @@ export default function LayerControl({ layers, onChange }: LayerControlProps) {
           <div className="layers-section">
             <h4 className="layers-section-title">Geografi dan Referensi Modern</h4>
             <div className="layers-chips-grid">
-
-
               <button
                 type="button"
                 className={`layer-chip ${layers.provinceNames ? 'selected' : ''}`}

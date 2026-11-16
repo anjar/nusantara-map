@@ -11,7 +11,7 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: '#30463f',
     icons: [
       { src: '/icons/nusantara-192.png', sizes: '192x192', type: 'image/png' },
-      { src: '/icons/nusantara-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
-    ]
+      { src: '/icons/nusantara-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+    ],
   };
 }

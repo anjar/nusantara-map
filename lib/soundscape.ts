@@ -11,11 +11,15 @@ class SoundscapeManager {
 
   // Slendro pentatonic notes (Hz)
   // 1 (Panunggal/Bem): 262Hz, 2 (Gulu): 294Hz, 3 (Dada): 330Hz, 5 (Lima): 392Hz, 6 (Nem): 440Hz, high 1: 524Hz
-  private slendroScale = [131.0, 196.0, 261.63, 293.66, 329.63, 392.0, 440.0, 523.25, 587.33, 659.25];
+  private slendroScale = [
+    131.0, 196.0, 261.63, 293.66, 329.63, 392.0, 440.0, 523.25, 587.33, 659.25,
+  ];
 
   private getAudioContext(): AudioContext {
     if (!this.ctx) {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       this.ctx = new AudioCtx();
     }
     if (this.ctx.state === 'suspended') {
@@ -97,7 +101,8 @@ class SoundscapeManager {
         if (Math.random() > 0.5) {
           setTimeout(() => {
             if (!this._isPlaying) return;
-            const companion = this.slendroScale[Math.floor(Math.random() * (this.slendroScale.length - 2)) + 2];
+            const companion =
+              this.slendroScale[Math.floor(Math.random() * (this.slendroScale.length - 2)) + 2];
             this.playTone(companion, 2.8, 0.04);
           }, 350);
         }

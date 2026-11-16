@@ -7,6 +7,10 @@
     "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",
     "start": "next start --hostname 0.0.0.0",
+    "lint": "oxlint --react-plugin --nextjs-plugin .",
+    "lint:fix": "oxlint --react-plugin --nextjs-plugin --fix .",
+    "format": "oxfmt 'app/**/*.{js,jsx,ts,tsx}' 'components/**/*.{js,jsx,ts,tsx}' 'data/**/*.ts' 'lib/**/*.ts' 'next.config.ts' 'package.json' 'tsconfig.json'",
+    "format:check": "oxfmt --check 'app/**/*.{js,jsx,ts,tsx}' 'components/**/*.{js,jsx,ts,tsx}' 'data/**/*.ts' 'lib/**/*.ts' 'next.config.ts' 'package.json' 'tsconfig.json'",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test lib/*.test.ts"
   },
@@ -22,6 +26,8 @@
     "@types/node": "^24.19.2",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "oxfmt": "^0.78.0",
+    "oxlint": "^1.93.0",
     "tsx": "^4.19.4",
     "typescript": "^5.9.3"
   }

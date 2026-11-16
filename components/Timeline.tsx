@@ -3,7 +3,12 @@
 import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { Play, Pause, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { TIMELINE_EVENTS, TimelineEvent, findClosestEvent } from '../lib/events';
-import { getAnchors, yearToSliderPos, sliderPosToYear, SLIDER_MAX_STEPS } from '../lib/timeline-slider';
+import {
+  getAnchors,
+  yearToSliderPos,
+  sliderPosToYear,
+  SLIDER_MAX_STEPS,
+} from '../lib/timeline-slider';
 
 export interface EraSegment {
   id: string;
@@ -15,18 +20,102 @@ export interface EraSegment {
 }
 
 export const MAIN_ERAS: EraSegment[] = [
-  { id: 'ice-age', name: 'Zaman Es (LGM)', shortName: 'Zaman Es', startYear: -20000, endYear: -11500, color: '#2d4b5a' },
-  { id: 'post-glacial', name: 'Holosen & Austronesia', shortName: 'Holosen', startYear: -11500, endYear: 400, color: '#356353' },
-  { id: 'early-kingdoms', name: 'Tarumanagara & Kutai', shortName: 'Kutai & Taruma', startYear: 400, endYear: 674, color: '#7b4f87' },
-  { id: 'srivijaya', name: 'Kemaharajaan Sriwijaya', shortName: 'Sriwijaya', startYear: 674, endYear: 1000, color: '#3d7363' },
-  { id: 'medang-kediri', name: 'Medang & Panjalu Kediri', shortName: 'Medang & Kediri', startYear: 1000, endYear: 1222, color: '#4a6797' },
-  { id: 'singhasari', name: 'Kerajaan Singasari', shortName: 'Singasari', startYear: 1222, endYear: 1293, color: '#557e3f' },
-  { id: 'majapahit', name: 'Kemaharajaan Majapahit', shortName: 'Majapahit', startYear: 1293, endYear: 1500, color: '#a7455f' },
-  { id: 'sultanates', name: 'Kesultanan Demak & Islam', shortName: 'Kesultanan Islam', startYear: 1500, endYear: 1602, color: '#6d5591' },
-  { id: 'voc-era', name: 'VOC & Dinasti Mataram', shortName: 'Era VOC', startYear: 1602, endYear: 1800, color: '#a26a2e' },
-  { id: 'dutch-east-indies', name: 'Hindia Belanda (Pax Neerlandica)', shortName: 'Hindia Belanda', startYear: 1800, endYear: 1942, color: '#b57930' },
-  { id: 'japan-occupation', name: 'Pendudukan Jepang', shortName: 'Jepang', startYear: 1942, endYear: 1945, color: '#7a5175' },
-  { id: 'indonesia', name: 'Republik Indonesia', shortName: 'Indonesia 🇮🇩', startYear: 1945, endYear: 2026, color: '#c8102e' }
+  {
+    id: 'ice-age',
+    name: 'Zaman Es (LGM)',
+    shortName: 'Zaman Es',
+    startYear: -20000,
+    endYear: -11500,
+    color: '#2d4b5a',
+  },
+  {
+    id: 'post-glacial',
+    name: 'Holosen & Austronesia',
+    shortName: 'Holosen',
+    startYear: -11500,
+    endYear: 400,
+    color: '#356353',
+  },
+  {
+    id: 'early-kingdoms',
+    name: 'Tarumanagara & Kutai',
+    shortName: 'Kutai & Taruma',
+    startYear: 400,
+    endYear: 674,
+    color: '#7b4f87',
+  },
+  {
+    id: 'srivijaya',
+    name: 'Kemaharajaan Sriwijaya',
+    shortName: 'Sriwijaya',
+    startYear: 674,
+    endYear: 1000,
+    color: '#3d7363',
+  },
+  {
+    id: 'medang-kediri',
+    name: 'Medang & Panjalu Kediri',
+    shortName: 'Medang & Kediri',
+    startYear: 1000,
+    endYear: 1222,
+    color: '#4a6797',
+  },
+  {
+    id: 'singhasari',
+    name: 'Kerajaan Singasari',
+    shortName: 'Singasari',
+    startYear: 1222,
+    endYear: 1293,
+    color: '#557e3f',
+  },
+  {
+    id: 'majapahit',
+    name: 'Kemaharajaan Majapahit',
+    shortName: 'Majapahit',
+    startYear: 1293,
+    endYear: 1500,
+    color: '#a7455f',
+  },
+  {
+    id: 'sultanates',
+    name: 'Kesultanan Demak & Islam',
+    shortName: 'Kesultanan Islam',
+    startYear: 1500,
+    endYear: 1602,
+    color: '#6d5591',
+  },
+  {
+    id: 'voc-era',
+    name: 'VOC & Dinasti Mataram',
+    shortName: 'Era VOC',
+    startYear: 1602,
+    endYear: 1800,
+    color: '#a26a2e',
+  },
+  {
+    id: 'dutch-east-indies',
+    name: 'Hindia Belanda (Pax Neerlandica)',
+    shortName: 'Hindia Belanda',
+    startYear: 1800,
+    endYear: 1942,
+    color: '#b57930',
+  },
+  {
+    id: 'japan-occupation',
+    name: 'Pendudukan Jepang',
+    shortName: 'Jepang',
+    startYear: 1942,
+    endYear: 1945,
+    color: '#7a5175',
+  },
+  {
+    id: 'indonesia',
+    name: 'Republik Indonesia',
+    shortName: 'Indonesia 🇮🇩',
+    startYear: 1945,
+    endYear: 2026,
+    color: '#c8102e',
+  },
 ];
 
 export interface RegionalKingdom {
@@ -40,31 +129,164 @@ export interface RegionalKingdom {
 
 export const REGIONAL_KINGDOMS: RegionalKingdom[] = [
   // Kalimantan
-  { id: 'kutai', name: 'Kutai Martapura', region: 'Kalimantan', startYear: 400, endYear: 1635, color: '#b64e40' },
-  { id: 'kutai-kartanegara', name: 'Kutai Kartanegara', region: 'Kalimantan', startYear: 1300, endYear: 1845, color: '#608c98' },
+  {
+    id: 'kutai',
+    name: 'Kutai Martapura',
+    region: 'Kalimantan',
+    startYear: 400,
+    endYear: 1635,
+    color: '#b64e40',
+  },
+  {
+    id: 'kutai-kartanegara',
+    name: 'Kutai Kartanegara',
+    region: 'Kalimantan',
+    startYear: 1300,
+    endYear: 1845,
+    color: '#608c98',
+  },
 
   // Sumatera
-  { id: 'srivijaya-reg', name: 'Sriwijaya', region: 'Sumatera', startYear: 674, endYear: 1293, color: '#518979' },
-  { id: 'pasai-reg', name: 'Samudera Pasai', region: 'Sumatera', startYear: 1272, endYear: 1520, color: '#577995' },
-  { id: 'aceh-reg', name: 'Kesultanan Aceh', region: 'Sumatera', startYear: 1516, endYear: 1913, color: '#a36c3e' },
+  {
+    id: 'srivijaya-reg',
+    name: 'Sriwijaya',
+    region: 'Sumatera',
+    startYear: 674,
+    endYear: 1293,
+    color: '#518979',
+  },
+  {
+    id: 'pasai-reg',
+    name: 'Samudera Pasai',
+    region: 'Sumatera',
+    startYear: 1272,
+    endYear: 1520,
+    color: '#577995',
+  },
+  {
+    id: 'aceh-reg',
+    name: 'Kesultanan Aceh',
+    region: 'Sumatera',
+    startYear: 1516,
+    endYear: 1913,
+    color: '#a36c3e',
+  },
 
   // Jawa
-  { id: 'taruma-reg', name: 'Tarumanagara', region: 'Jawa', startYear: 367, endYear: 673, color: '#9364a0' },
-  { id: 'sunda-reg', name: 'Kerajaan Sunda', region: 'Jawa', startYear: 674, endYear: 1578, color: '#ba8745' },
-  { id: 'medang-reg', name: 'Medang / Mataram Kuno', region: 'Jawa', startYear: 741, endYear: 1009, color: '#637baf' },
-  { id: 'kediri-reg', name: 'Kediri', region: 'Jawa', startYear: 1046, endYear: 1226, color: '#a47b58' },
-  { id: 'singasari-reg', name: 'Singasari', region: 'Jawa', startYear: 1227, endYear: 1293, color: '#658b4e' },
-  { id: 'majapahit-reg', name: 'Majapahit', region: 'Jawa', startYear: 1294, endYear: 1518, color: '#b85976' },
-  { id: 'demak-reg', name: 'Demak', region: 'Jawa', startYear: 1475, endYear: 1551, color: '#7b69a2' },
-  { id: 'banten-reg', name: 'Banten', region: 'Jawa', startYear: 1529, endYear: 1808, color: '#ad6d63' },
-  { id: 'mataram-islam-reg', name: 'Mataram Islam', region: 'Jawa', startYear: 1588, endYear: 1743, color: '#5b8a74' },
-  { id: 'yogyakarta-reg', name: 'Yogyakarta', region: 'Jawa', startYear: 1744, endYear: 1829, color: '#708653' },
-  { id: 'surakarta-reg', name: 'Surakarta', region: 'Jawa', startYear: 1744, endYear: 1829, color: '#a87b48' },
+  {
+    id: 'taruma-reg',
+    name: 'Tarumanagara',
+    region: 'Jawa',
+    startYear: 367,
+    endYear: 673,
+    color: '#9364a0',
+  },
+  {
+    id: 'sunda-reg',
+    name: 'Kerajaan Sunda',
+    region: 'Jawa',
+    startYear: 674,
+    endYear: 1578,
+    color: '#ba8745',
+  },
+  {
+    id: 'medang-reg',
+    name: 'Medang / Mataram Kuno',
+    region: 'Jawa',
+    startYear: 741,
+    endYear: 1009,
+    color: '#637baf',
+  },
+  {
+    id: 'kediri-reg',
+    name: 'Kediri',
+    region: 'Jawa',
+    startYear: 1046,
+    endYear: 1226,
+    color: '#a47b58',
+  },
+  {
+    id: 'singasari-reg',
+    name: 'Singasari',
+    region: 'Jawa',
+    startYear: 1227,
+    endYear: 1293,
+    color: '#658b4e',
+  },
+  {
+    id: 'majapahit-reg',
+    name: 'Majapahit',
+    region: 'Jawa',
+    startYear: 1294,
+    endYear: 1518,
+    color: '#b85976',
+  },
+  {
+    id: 'demak-reg',
+    name: 'Demak',
+    region: 'Jawa',
+    startYear: 1475,
+    endYear: 1551,
+    color: '#7b69a2',
+  },
+  {
+    id: 'banten-reg',
+    name: 'Banten',
+    region: 'Jawa',
+    startYear: 1529,
+    endYear: 1808,
+    color: '#ad6d63',
+  },
+  {
+    id: 'mataram-islam-reg',
+    name: 'Mataram Islam',
+    region: 'Jawa',
+    startYear: 1588,
+    endYear: 1743,
+    color: '#5b8a74',
+  },
+  {
+    id: 'yogyakarta-reg',
+    name: 'Yogyakarta',
+    region: 'Jawa',
+    startYear: 1744,
+    endYear: 1829,
+    color: '#708653',
+  },
+  {
+    id: 'surakarta-reg',
+    name: 'Surakarta',
+    region: 'Jawa',
+    startYear: 1744,
+    endYear: 1829,
+    color: '#a87b48',
+  },
 
   // Bali & Sulawesi
-  { id: 'bali-reg', name: 'Kerajaan Bali', region: 'Bali', startYear: 922, endYear: 1907, color: '#8d796c' },
-  { id: 'gowa-reg', name: 'Kesultanan Gowa', region: 'Sulawesi', startYear: 1512, endYear: 1669, color: '#a782b2' },
-  { id: 'bone-reg', name: 'Kerajaan Bone', region: 'Sulawesi', startYear: 1512, endYear: 1858, color: '#b08d53' }
+  {
+    id: 'bali-reg',
+    name: 'Kerajaan Bali',
+    region: 'Bali',
+    startYear: 922,
+    endYear: 1907,
+    color: '#8d796c',
+  },
+  {
+    id: 'gowa-reg',
+    name: 'Kesultanan Gowa',
+    region: 'Sulawesi',
+    startYear: 1512,
+    endYear: 1669,
+    color: '#a782b2',
+  },
+  {
+    id: 'bone-reg',
+    name: 'Kerajaan Bone',
+    region: 'Sulawesi',
+    startYear: 1512,
+    endYear: 1858,
+    color: '#b08d53',
+  },
 ];
 
 interface TimelineProps {
@@ -80,7 +302,7 @@ export default function Timeline({
   onYearChange,
   isPlaying,
   onTogglePlay,
-  maxYear = 2026
+  maxYear = 2026,
 }: TimelineProps) {
   const anchors = useMemo(() => getAnchors(maxYear), [maxYear]);
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -98,24 +320,31 @@ export default function Timeline({
   const activePercent = (yearToSliderPos(currentYear, anchors) / SLIDER_MAX_STEPS) * 100;
 
   // Active Main Era
-  const currentMainEra = MAIN_ERAS.find(e => currentYear >= e.startYear && currentYear <= e.endYear) || MAIN_ERAS[MAIN_ERAS.length - 1];
+  const currentMainEra =
+    MAIN_ERAS.find((e) => currentYear >= e.startYear && currentYear <= e.endYear) ||
+    MAIN_ERAS[MAIN_ERAS.length - 1];
 
   // Active Closest Event
   const closestEvent = findClosestEvent(currentYear);
 
   // Active Concurrent Kingdoms in this year
-  const activeKingdoms = REGIONAL_KINGDOMS.filter(k => currentYear >= k.startYear && currentYear <= k.endYear);
+  const activeKingdoms = REGIONAL_KINGDOMS.filter(
+    (k) => currentYear >= k.startYear && currentYear <= k.endYear,
+  );
 
   // Calculate year from mouse position
-  const getYearFromEvent = useCallback((e: React.MouseEvent | MouseEvent | TouchEvent): number => {
-    if (!trackRef.current) return currentYearRef.current;
-    const rect = trackRef.current.getBoundingClientRect();
-    const clientX = 'touches' in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
-    const clampedX = Math.max(0, Math.min(rect.width, clientX - rect.left));
-    const ratio = clampedX / rect.width;
-    const pos = Math.round(ratio * SLIDER_MAX_STEPS);
-    return sliderPosToYear(pos, anchors);
-  }, [anchors]);
+  const getYearFromEvent = useCallback(
+    (e: React.MouseEvent | MouseEvent | TouchEvent): number => {
+      if (!trackRef.current) return currentYearRef.current;
+      const rect = trackRef.current.getBoundingClientRect();
+      const clientX = 'touches' in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
+      const clampedX = Math.max(0, Math.min(rect.width, clientX - rect.left));
+      const ratio = clampedX / rect.width;
+      const pos = Math.round(ratio * SLIDER_MAX_STEPS);
+      return sliderPosToYear(pos, anchors);
+    },
+    [anchors],
+  );
 
   const dispatchPointerYear = useCallback((year: number) => {
     if (lastPointerYearRef.current === year) return;
@@ -168,7 +397,7 @@ export default function Timeline({
 
   // Stepper controls
   const handlePrevEvent = () => {
-    const prevEvents = TIMELINE_EVENTS.filter(e => e.year < currentYear);
+    const prevEvents = TIMELINE_EVENTS.filter((e) => e.year < currentYear);
     if (prevEvents.length > 0) {
       const target = prevEvents[prevEvents.length - 1];
       onYearChange(target.year);
@@ -178,7 +407,7 @@ export default function Timeline({
   };
 
   const handleNextEvent = () => {
-    const nextEvents = TIMELINE_EVENTS.filter(e => e.year > currentYear);
+    const nextEvents = TIMELINE_EVENTS.filter((e) => e.year > currentYear);
     if (nextEvents.length > 0) {
       const target = nextEvents[0];
       onYearChange(target.year);
@@ -188,7 +417,7 @@ export default function Timeline({
   };
 
   const cycleSpeed = () => {
-    setSpeed(s => (s === 1 ? 2 : s === 2 ? 5 : 1));
+    setSpeed((s) => (s === 1 ? 2 : s === 2 ? 5 : 1));
   };
 
   const formatYearLabel = (y: number) => {
@@ -209,33 +438,23 @@ export default function Timeline({
           {isPlaying ? <Pause size={15} /> : <Play size={15} className="ml-0.5" />}
         </button>
 
-        <button
-          className="js-btn-speed"
-          onClick={cycleSpeed}
-          title="Kecepatan putar linimasa"
-        >
+        <button className="js-btn-speed" onClick={cycleSpeed} title="Kecepatan putar linimasa">
           {speed}x
         </button>
-
       </div>
 
       {/* 2. Center Timeline: Colored Ribbon, Multi-Lanes, Event Ticks, Draggable Playhead */}
       <div className="js-track-wrapper">
         {/* Floating Tooltip Pill right above active thumb */}
-        <div
-          className="js-floating-pill"
-          style={{ left: `${activePercent}%` }}
-        >
+        <div className="js-floating-pill" style={{ left: `${activePercent}%` }}>
           <div className="js-pill-header">
             <strong>{formatYearLabel(currentYear)}</strong>
             <span className="js-pill-era">· {currentMainEra.shortName}</span>
           </div>
-          <div className="js-pill-event">
-            {closestEvent.title}
-          </div>
+          <div className="js-pill-event">{closestEvent.title}</div>
           {activeKingdoms.length > 0 && (
             <div className="js-pill-kingdoms">
-              {activeKingdoms.map(k => (
+              {activeKingdoms.map((k) => (
                 <span key={k.id} className="js-pill-badge" style={{ borderColor: k.color }}>
                   <i style={{ background: k.color }} />
                   {k.name} ({k.region})
@@ -255,7 +474,7 @@ export default function Timeline({
         >
           {/* Layer C: White Event Tick Marks (Dashes) */}
           <div className="js-event-ticks-row">
-            {TIMELINE_EVENTS.map(event => {
+            {TIMELINE_EVENTS.map((event) => {
               const pos = (yearToSliderPos(event.year, anchors) / SLIDER_MAX_STEPS) * 100;
               const isClosest = closestEvent.id === event.id;
 
@@ -275,10 +494,7 @@ export default function Timeline({
           </div>
 
           {/* Layer D: Draggable Playhead Needle */}
-          <div
-            className="js-playhead-cursor"
-            style={{ left: `${activePercent}%` }}
-          >
+          <div className="js-playhead-cursor" style={{ left: `${activePercent}%` }}>
             <div className="js-playhead-handle" />
           </div>
         </div>
@@ -290,7 +506,16 @@ export default function Timeline({
             const isFirst = idx === 0;
             const isLast = idx === anchors.length - 1;
             const pct = (yearToSliderPos(y, anchors) / SLIDER_MAX_STEPS) * 100;
-            const formatStr = y === maxYear ? 'Kini' : y === 1945 ? '1945 🇮🇩' : y <= -1000 ? `${(Math.abs(y)/1000).toLocaleString('id-ID', { maximumFractionDigits: 1 })}rb SM` : y < 0 ? `${Math.abs(y)} SM` : String(y);
+            const formatStr =
+              y === maxYear
+                ? 'Kini'
+                : y === 1945
+                  ? '1945 🇮🇩'
+                  : y <= -1000
+                    ? `${(Math.abs(y) / 1000).toLocaleString('id-ID', { maximumFractionDigits: 1 })}rb SM`
+                    : y < 0
+                      ? `${Math.abs(y)} SM`
+                      : String(y);
 
             return (
               <button
@@ -298,7 +523,11 @@ export default function Timeline({
                 className="js-anchor-btn"
                 style={{
                   left: `${pct}%`,
-                  transform: isFirst ? 'translateX(0)' : isLast ? 'translateX(-100%)' : 'translateX(-50%)'
+                  transform: isFirst
+                    ? 'translateX(0)'
+                    : isLast
+                      ? 'translateX(-100%)'
+                      : 'translateX(-50%)',
                 }}
                 onClick={() => onYearChange(y)}
                 title={`Lompat ke tahun ${formatYearLabel(y)}`}

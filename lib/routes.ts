@@ -26,16 +26,10 @@ export interface HistoricFortification {
   description: string;
 }
 
-
-
-
-
 export function getActiveRoutes(year: number): TradeRoute[] {
-  return HISTORIC_TRADE_ROUTES.filter(
-    r => year >= r.startYear && year <= r.endYear
-  );
+  return HISTORIC_TRADE_ROUTES.filter((r) => year >= r.startYear && year <= r.endYear);
 }
 
 export function getActiveFortifications(year: number): HistoricFortification[] {
-  return HISTORIC_FORTIFICATIONS.filter(f => year >= f.builtYear);
+  return HISTORIC_FORTIFICATIONS.filter((f) => year >= f.builtYear);
 }

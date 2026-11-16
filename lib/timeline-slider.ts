@@ -10,7 +10,7 @@ export const SLIDER_MAX_STEPS = 10000;
 function anchorPosition(index: number, count: number): number {
   const earlyPositions = [0, 250, 500, 750, 1200];
   if (index < earlyPositions.length) return earlyPositions[index];
-  return Math.round(1200 + (index - 4) * 8800 / (count - 5));
+  return Math.round(1200 + ((index - 4) * 8800) / (count - 5));
 }
 
 export function getAnchors(currentYear: number = 2026): number[] {
@@ -18,20 +18,20 @@ export function getAnchors(currentYear: number = 2026): number[] {
     -20000, // Puncak Zaman Es Maksimum (LGM)
     -14600, // Meltwater Pulse 1A
     -11500, // Akhir Pleistosen / Awal Holosen
-    -8000,  // Pemisahan Sahul & Karimata
-    400,    // Prasasti Yupa Kutai & Tarumanagara
-    700,    // Kedatuan Sriwijaya
-    1000,   // Kerajaan Medang / Mataram Kuno
-    1294,   // Berdirinya Majapahit
-    1350,   // Puncak Kejayaan Majapahit (Hayam Wuruk & Gajah Mada)
-    1500,   // Era Kesultanan Demak & Masuknya Islam
-    1602,   // Pembentukan VOC
-    1755,   // Perjanjian Giyanti (Surakarta & Yogyakarta)
-    1825,   // Perang Diponegoro (Perang Jawa)
-    1900,   // Pax Neerlandica Hindia Belanda
-    1942,   // Pendudukan Jepang (Gunseikanbu)
-    1945,   // Proklamasi Kemerdekaan RI 🇮🇩
-    currentYear // Masa Kini
+    -8000, // Pemisahan Sahul & Karimata
+    400, // Prasasti Yupa Kutai & Tarumanagara
+    700, // Kedatuan Sriwijaya
+    1000, // Kerajaan Medang / Mataram Kuno
+    1294, // Berdirinya Majapahit
+    1350, // Puncak Kejayaan Majapahit (Hayam Wuruk & Gajah Mada)
+    1500, // Era Kesultanan Demak & Masuknya Islam
+    1602, // Pembentukan VOC
+    1755, // Perjanjian Giyanti (Surakarta & Yogyakarta)
+    1825, // Perang Diponegoro (Perang Jawa)
+    1900, // Pax Neerlandica Hindia Belanda
+    1942, // Pendudukan Jepang (Gunseikanbu)
+    1945, // Proklamasi Kemerdekaan RI 🇮🇩
+    currentYear, // Masa Kini
   ];
 }
 
