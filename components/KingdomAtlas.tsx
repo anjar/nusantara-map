@@ -1,5 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { BookOpen, Calendar, ChevronRight, ExternalLink, Info, Search, X } from 'lucide-react';
 import type { KingdomCollection, KingdomTimeline, PaleoshorelineCollection } from './types';
@@ -7,8 +8,8 @@ import { getSeaLevel, getThreshold, getEraLabel, paleoshorelinePath, Threshold }
 import Timeline from './Timeline';
 import EventDrawer from './EventDrawer';
 import LayerControl, { type LayerSettings } from './LayerControl';
-import { soundscape } from '../lib/soundscape';
 import { TIMELINE_EVENTS, type TimelineEvent } from '../lib/events';
+import { resolveEventLocation } from '../lib/event-locations';
 
 const TerritoryMap = dynamic(() => import('./Map'), {
   ssr: false,
@@ -43,6 +44,7 @@ export default function KingdomAtlas() {
   const [focusKey, setFocusKey] = useState(0);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [eventFocusKey, setEventFocusKey] = useState(0);
+  const [urlInitialized, setUrlInitialized] = useState(false);
   const [showSources, setShowSources] = useState(false);
   const [paleoshoreline, setPaleoshoreline] = useState<PaleoshorelineCollection | null>(null);
 
@@ -57,18 +59,9 @@ export default function KingdomAtlas() {
     provinceNames: true
   });
 
-  // Soundscape audio and interface language
-  const [musicPlaying, setMusicPlaying] = useState(false);
-  const [lang, setLang] = useState<'id' | 'zh' | 'en'>('zh');
-
   const seaLevel = getSeaLevel(year);
   const threshold = getThreshold(seaLevel);
   const eraLabel = getEraLabel(year);
-
-  const toggleMusic = () => {
-    const next = soundscape.toggle();
-    setMusicPlaying(next);
-  };
 
   const handleLayerChange = (next: LayerSettings) => {
     setLayers(next);
@@ -198,11 +191,65 @@ export default function KingdomAtlas() {
     return [...new Map([...sameYear, selectedEvent].map(event => [event.id, event])).values()];
   }, [eventsOpen, selectedEvent]);
 
+  useEffect(() => {
+    const applySharedState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const eventId = params.get('event');
+      const sharedEvent = eventId
+        ? TIMELINE_EVENTS.find(event => event.id === eventId) ?? null
+        : null;
+      const yearParam = params.get('year');
+      const parsedYear = yearParam ? Number(yearParam) : Number.NaN;
+      const requestedYear = sharedEvent?.year ?? (
+        Number.isInteger(parsedYear) ? parsedYear : 1350
+      );
+      const nextYear = requestedYear === 0
+        ? 1
+        : Math.max(SLIDER_MIN, Math.min(currentYear, requestedYear));
+
+      setYear(nextYear);
+      setSelectedEventId(sharedEvent?.id ?? null);
+      setPlaying(false);
+      if (sharedEvent) setEventFocusKey(key => key + 1);
+    };
+
+    applySharedState();
+    window.addEventListener('popstate', applySharedState);
+    setUrlInitialized(true);
+    return () => window.removeEventListener('popstate', applySharedState);
+  }, [currentYear]);
+
+  useEffect(() => {
+    if (!urlInitialized) return;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('year', String(year));
+    if (selectedEvent) {
+      url.searchParams.set('event', selectedEvent.id);
+      const location = resolveEventLocation(selectedEvent);
+      if (location) {
+        url.searchParams.set(
+          'trace',
+          `${location.coordinates[0].toFixed(3)},${location.coordinates[1].toFixed(3)}`
+        );
+      }
+    } else {
+      url.searchParams.delete('event');
+      url.searchParams.delete('trace');
+    }
+
+    const nextUrl = `${url.pathname}${url.search}${url.hash}`;
+    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if (nextUrl !== currentUrl) {
+      window.history.replaceState(window.history.state, '', nextUrl);
+    }
+  }, [year, selectedEvent, urlInitialized]);
+
   return (
     <main className="atlas kingdom-atlas">
       <header className="header">
         <a href="/" className="brand" aria-label="Nusantara beranda">
-          <span className="brand-icon">✳︎</span>
+          <Image src="/brand/nusantara-symbol.svg" alt="" aria-hidden="true" width={44} height={44} className="brand-icon" />
           <span>
             Nusantara
             <span className="brand-sub">ATLAS KERAJAAN INDONESIA</span>
@@ -228,28 +275,8 @@ export default function KingdomAtlas() {
         <div className="header-end">
           <LayerControl layers={layers} onChange={handleLayerChange} />
 
-          <button
-            type="button"
-            className={`header-pill-btn music-btn ${musicPlaying ? 'active' : ''}`}
-            onClick={toggleMusic}
-            title={musicPlaying ? 'Heningkan musik' : 'Putar alunan pentatonik (Guqin / Gamelan)'}
-          >
-            <span className="btn-icon">🎵</span>
-            <span>{musicPlaying ? 'Gamelan' : 'Guqin'}</span>
-          </button>
-
-          <button
-            type="button"
-            className="header-pill-btn lang-btn"
-            onClick={() => setLang(l => (l === 'zh' ? 'id' : l === 'id' ? 'en' : 'zh'))}
-            title="Ganti preferensi bahasa"
-          >
-            <span className="btn-icon">🌐</span>
-            <span>{lang === 'zh' ? '简 繁' : lang === 'id' ? 'ID' : 'EN'}</span>
-          </button>
-
           <a
-            href="https://github.com/Seshat-Global-History-Databank/cliopatria"
+            href="https://github.com/anjar/nusantara-map"
             target="_blank"
             rel="noreferrer"
             className="header-pill-btn star-btn"
@@ -551,7 +578,11 @@ export default function KingdomAtlas() {
               currentYear={year}
               onYearChange={changeYear}
               isPlaying={playing}
-              onTogglePlay={() => setPlaying(!playing)}
+              onTogglePlay={() => {
+                const nextPlaying = !playing;
+                setPlaying(nextPlaying);
+                if (nextPlaying) setSelectedEventId(null);
+              }}
               maxYear={currentYear}
             />
             <div className="timeline-sub-bar">

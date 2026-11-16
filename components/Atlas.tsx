@@ -1,5 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowRight, BookOpen, Check, ChevronDown, ChevronRight, ExternalLink, Flag, Globe2, Info, Layers3, MapPin, Pause, Play, Search, X } from 'lucide-react';
 import type { Site } from './types';
@@ -58,7 +59,7 @@ export default function Atlas() {
   function go(region: 'java' | 'indonesia') { setFocus(region); setFocusKey(k => k + 1); }
   return <main className="atlas">
     <header className="header">
-      <a href="/" className="brand" aria-label="Nusantara beranda"><span className="brand-icon">✳︎</span><span>Nusantara<span className="brand-sub">ATLAS SEJARAH INDONESIA</span></span></a>
+      <a href="/" className="brand" aria-label="Nusantara beranda"><Image src="/brand/nusantara-symbol.svg" alt="" aria-hidden="true" width={44} height={44} className="brand-icon"/><span>Nusantara<span className="brand-sub">ATLAS SEJARAH INDONESIA</span></span></a>
       <nav aria-label="Navigasi utama"><button className="nav-active" onClick={() => setAboutOpen(false)}>Jelajahi peta</button><button onClick={() => { setTab('sources'); setSidebarOpen(true); }}>Sumber & catatan <ExternalLink size={12}/></button></nav>
       <div className="header-end"><span className="edition">EDISI PERDANA</span><button className="about-button" onClick={() => setAboutOpen(true)}><Info size={15}/> Tentang atlas</button></div>
     </header>
@@ -94,6 +95,6 @@ export default function Atlas() {
         </div>
       </section>
     </div>
-    {aboutOpen && <div className="modal-backdrop" onClick={()=>setAboutOpen(false)}><section role="dialog" aria-modal="true" aria-labelledby="about-title" className="about-modal" onClick={e=>e.stopPropagation()}><button autoFocus className="icon-button" aria-label="Tutup tentang atlas" onClick={()=>setAboutOpen(false)}><X size={20}/></button><span className="brand-icon">✳︎</span><span className="eyebrow">ATLAS SEJARAH INDONESIA</span><h2 id="about-title">Mengenal masa lalu,<br/>melalui tempat.</h2><p>Nusantara adalah atlas eksplorasi sejarah Indonesia. Edisi perdana dimulai dari situs-situs di Jawa, dengan peta yang bisa digeser ke seluruh Indonesia.</p><p>Delapan situs awal adalah dataset demonstrasi yang masih memerlukan kurasi. Atlas ini belum menampilkan batas kerajaan atau kondisi geografis historis.</p><button className="primary-button" onClick={()=>setAboutOpen(false)}>Mulai menjelajah <ArrowRight size={16}/></button></section></div>}
+    {aboutOpen && <div className="modal-backdrop" onClick={()=>setAboutOpen(false)}><section role="dialog" aria-modal="true" aria-labelledby="about-title" className="about-modal" onClick={e=>e.stopPropagation()}><button autoFocus className="icon-button" aria-label="Tutup tentang atlas" onClick={()=>setAboutOpen(false)}><X size={20}/></button><Image src="/brand/nusantara-symbol.svg" alt="" aria-hidden="true" width={52} height={52} className="brand-icon"/><span className="eyebrow">ATLAS SEJARAH INDONESIA</span><h2 id="about-title">Mengenal masa lalu,<br/>melalui tempat.</h2><p>Nusantara adalah atlas eksplorasi sejarah Indonesia. Edisi perdana dimulai dari situs-situs di Jawa, dengan peta yang bisa digeser ke seluruh Indonesia.</p><p>Delapan situs awal adalah dataset demonstrasi yang masih memerlukan kurasi. Atlas ini belum menampilkan batas kerajaan atau kondisi geografis historis.</p><button className="primary-button" onClick={()=>setAboutOpen(false)}>Mulai menjelajah <ArrowRight size={16}/></button></section></div>}
   </main>;
 }

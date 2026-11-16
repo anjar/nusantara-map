@@ -79,9 +79,22 @@ export default function EventDrawer({
   const [query, setQuery] = useState('');
   const activeCardRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
+  const lastSelectedEventIdRef = useRef<string | null>(null);
 
   const count = (value: EventFilter) => TIMELINE_EVENTS.filter(event => matchesEventFilter(event, value)).length;
   const filteredEvents = searchEvents(TIMELINE_EVENTS, filter, query);
+
+  useEffect(() => {
+    if (lastSelectedEventIdRef.current === selectedEventId) return;
+    lastSelectedEventIdRef.current = selectedEventId ?? null;
+    if (!selectedEventId) return;
+
+    const selectedEvent = TIMELINE_EVENTS.find(event => event.id === selectedEventId);
+    if (selectedEvent && !searchEvents([selectedEvent], filter, query).length) {
+      setFilter('all');
+      setQuery('');
+    }
+  }, [selectedEventId, filter, query]);
 
   // Find active event closest to current year
   const activeEvent = filteredEvents.find(event => event.id === selectedEventId) ?? filteredEvents.reduce<TimelineEvent | null>((closest, event) => {
