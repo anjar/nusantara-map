@@ -15,14 +15,14 @@ const CURVE: [year: number, meters: number][] = [
   [-14000, -100],
   [-12000, -60],
   [-10000, -50],
-  [-8000,  -25],
-  [-6000,   -5],
-  [-4000,    0],
+  [-8000, -25],
+  [-6000, -5],
+  [-4000, 0],
 ];
 
 /** Available GeoJSON depth thresholds (meters below present). */
 export const THRESHOLDS = [120, 75, 50, 25] as const;
-export type Threshold = typeof THRESHOLDS[number];
+export type Threshold = (typeof THRESHOLDS)[number];
 
 /**
  * Returns approximate global mean sea level (meters relative to present)

@@ -20,13 +20,13 @@ export async function GET(request: NextRequest) {
     const year = yearParam ? parseInt(yearParam, 10) : 1350;
 
     const sites = await getSites();
-    const filtered = sites.filter(s => s.startYear <= year && s.endYear >= year);
+    const filtered = sites.filter((s) => s.startYear <= year && s.endYear >= year);
 
     return NextResponse.json({
       year,
       sites: filtered,
       coverage: 'Jawa',
-      curationStatus: 'preliminary'
+      curationStatus: 'preliminary',
     });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to load sites' }, { status: 500 });

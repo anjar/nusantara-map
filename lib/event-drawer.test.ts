@@ -5,12 +5,14 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import EventDrawer from '../components/EventDrawer';
 
 function render(isOpen = true) {
-  return renderToStaticMarkup(createElement(EventDrawer, {
-    currentYear: 1965,
-    onSelectYear: () => {},
-    isOpen,
-    onClose: () => {},
-  }));
+  return renderToStaticMarkup(
+    createElement(EventDrawer, {
+      currentYear: 1965,
+      onSelectYear: () => {},
+      isOpen,
+      onClose: () => {},
+    }),
+  );
 }
 
 test('drawer defaults to recorded history and displays full source titles and dates', () => {

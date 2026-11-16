@@ -22,7 +22,7 @@ async function readSnapshot<T>(path: string): Promise<T> {
   const version = `${info.ino}:${info.size}:${info.mtimeNs}:${info.ctimeNs}`;
   let snapshot = snapshots.get(path);
   if (!snapshot || snapshot.version !== version) {
-    const value = readFile(path, 'utf8').then(content => JSON.parse(content) as T);
+    const value = readFile(path, 'utf8').then((content) => JSON.parse(content) as T);
     snapshot = { version, value };
     snapshots.set(path, snapshot);
     value.catch(() => {
@@ -40,6 +40,8 @@ export async function getKingdomData(root = process.cwd()) {
   ]);
   return {
     territories,
-    kingdomsMap: new Map(kingdoms.filter(kingdom => kingdom.id).map(kingdom => [kingdom.id!, kingdom])),
+    kingdomsMap: new Map(
+      kingdoms.filter((kingdom) => kingdom.id).map((kingdom) => [kingdom.id!, kingdom]),
+    ),
   };
 }

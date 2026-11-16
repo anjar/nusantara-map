@@ -3,11 +3,14 @@ import assert from 'node:assert/strict';
 import { TIMELINE_EVENTS, findClosestEvent } from './events';
 
 test('TIMELINE_EVENTS is ordered chronologically', () => {
-  assert(TIMELINE_EVENTS.length >= 40, `Expected at least 40 events, got ${TIMELINE_EVENTS.length}`);
+  assert(
+    TIMELINE_EVENTS.length >= 40,
+    `Expected at least 40 events, got ${TIMELINE_EVENTS.length}`,
+  );
   for (let i = 1; i < TIMELINE_EVENTS.length; i++) {
     assert(
       TIMELINE_EVENTS[i].year >= TIMELINE_EVENTS[i - 1].year,
-      `Event ${TIMELINE_EVENTS[i].id} (${TIMELINE_EVENTS[i].year}) must be >= ${TIMELINE_EVENTS[i - 1].id} (${TIMELINE_EVENTS[i - 1].year})`
+      `Event ${TIMELINE_EVENTS[i].id} (${TIMELINE_EVENTS[i].year}) must be >= ${TIMELINE_EVENTS[i - 1].id} (${TIMELINE_EVENTS[i - 1].year})`,
     );
   }
 });
@@ -31,7 +34,10 @@ test('all events have non-empty metadata, tags, and valid IDs', () => {
     ids.add(event.id);
 
     assert(event.title && event.title.trim().length > 0, `Event ${event.id} missing title`);
-    assert(event.summary && event.summary.trim().length > 10, `Event ${event.id} summary too short`);
+    assert(
+      event.summary && event.summary.trim().length > 10,
+      `Event ${event.id} summary too short`,
+    );
     assert(event.impact && event.impact.trim().length > 10, `Event ${event.id} impact too short`);
     assert(Array.isArray(event.tags) && event.tags.length > 0, `Event ${event.id} missing tags`);
   }
@@ -39,19 +45,25 @@ test('all events have non-empty metadata, tags, and valid IDs', () => {
 
 test('all events have source links with valid HTTP/HTTPS URL format', () => {
   for (const event of TIMELINE_EVENTS) {
-    assert(event.sources && event.sources.length > 0, `Event ${event.id} must have at least one source link`);
+    assert(
+      event.sources && event.sources.length > 0,
+      `Event ${event.id} must have at least one source link`,
+    );
     for (const source of event.sources) {
-      assert(source.title && source.title.length > 0, `Event ${event.id} source link missing title`);
+      assert(
+        source.title && source.title.length > 0,
+        `Event ${event.id} source link missing title`,
+      );
       assert(
         source.url.startsWith('https://') || source.url.startsWith('http://'),
-        `Event ${event.id} source url must start with http/https: ${source.url}`
+        `Event ${event.id} source url must start with http/https: ${source.url}`,
       );
     }
   }
 });
 
 test('includes key historical milestones requested by user', () => {
-  const eventIds = new Set(TIMELINE_EVENTS.map(e => e.id));
+  const eventIds = new Set(TIMELINE_EVENTS.map((e) => e.id));
 
   // 1. Natural disasters
   assert(eventIds.has('toba-supervolcano'), 'Toba supervolcano event missing');

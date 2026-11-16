@@ -4,6 +4,6 @@ export async function GET() {
   return NextResponse.json({
     status: 'ok',
     mode: 'static-open-source',
-    engine: 'Next.js App Router'
+    engine: 'Next.js App Router',
   });
 }

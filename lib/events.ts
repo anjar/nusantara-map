@@ -57,7 +57,18 @@ export interface TimelineEvent {
   year: number; // Astronomical convention: negative = SM / BCE
   period: EventPeriod;
   category: EventCategory;
-  region?: 'Sunda' | 'Sahul' | 'Jawa' | 'Sumatera' | 'Kalimantan' | 'Sulawesi' | 'Bali' | 'Maluku' | 'Papua' | 'Nusa Tenggara' | 'Nasional';
+  region?:
+    | 'Sunda'
+    | 'Sahul'
+    | 'Jawa'
+    | 'Sumatera'
+    | 'Kalimantan'
+    | 'Sulawesi'
+    | 'Bali'
+    | 'Maluku'
+    | 'Papua'
+    | 'Nusa Tenggara'
+    | 'Nasional';
   /** Set when the source identifies a specific event location. */
   location?: EventLocation;
   title: string;
@@ -75,14 +86,13 @@ export interface TimelineEvent {
   researchedAt?: string;
 }
 
-
-
 // Stable year sorting preserves established selection behavior for events in the same year.
-export const TIMELINE_EVENTS: TimelineEvent[] = [...BASE_EVENTS, ...RESEARCHED_EVENTS]
-  .sort((a, b) => a.year - b.year);
+export const TIMELINE_EVENTS: TimelineEvent[] = [...BASE_EVENTS, ...RESEARCHED_EVENTS].sort(
+  (a, b) => a.year - b.year,
+);
 
 const eventColorById = new Map(
-  TIMELINE_EVENTS.map((event, index) => [event.id, `hsl(${(index * 137.508) % 360} 66% 42%)`])
+  TIMELINE_EVENTS.map((event, index) => [event.id, `hsl(${(index * 137.508) % 360} 66% 42%)`]),
 );
 
 /** Stable, distinct color shared by an event's card and map marker. */

@@ -32,7 +32,12 @@ export interface ModernProvince {
 export interface HistoricalAdminDivision {
   id: string;
   name: string;
-  category: 'mancanagara' | 'gouvernement' | 'provinsi-1945' | 'prehistoric-zone' | 'province-modern';
+  category:
+    | 'mancanagara'
+    | 'gouvernement'
+    | 'provinsi-1945'
+    | 'prehistoric-zone'
+    | 'province-modern';
   startYear: number;
   endYear: number;
   coordinates: [number, number];
@@ -40,20 +45,14 @@ export interface HistoricalAdminDivision {
   context: string;
 }
 
-
-
-
-
 /**
  * Returns active administrative divisions or provinces based on timeline year.
  */
 export function getActiveProvinces(year: number) {
   if (year >= 1950) {
     // Return modern provinces formed on or before this year
-    return MODERN_PROVINCES.filter(p => year >= p.formedYear);
+    return MODERN_PROVINCES.filter((p) => year >= p.formedYear);
   }
   // Return historical administrative divisions for earlier periods
-  return HISTORICAL_ADMIN_DIVISIONS.filter(
-    h => year >= h.startYear && year <= h.endYear
-  );
+  return HISTORICAL_ADMIN_DIVISIONS.filter((h) => year >= h.startYear && year <= h.endYear);
 }

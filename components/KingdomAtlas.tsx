@@ -1,18 +1,26 @@
 'use client';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { BookOpen, Calendar, ChevronRight, ExternalLink, Info, Search, X } from 'lucide-react';
+import { BookOpen, Calendar, ChevronRight, ExternalLink, Search, X } from 'lucide-react';
 import type { KingdomCollection, KingdomTimeline, PaleoshorelineCollection } from './types';
-import { getSeaLevel, getThreshold, getEraLabel, paleoshorelinePath, Threshold } from '../lib/sea-level';
+import {
+  getSeaLevel,
+  getThreshold,
+  getEraLabel,
+  paleoshorelinePath,
+  Threshold,
+} from '../lib/sea-level';
 import Timeline from './Timeline';
 import EventDrawer from './EventDrawer';
 import LayerControl, { type LayerSettings } from './LayerControl';
-import { soundscape } from '../lib/soundscape';
 import { TIMELINE_EVENTS, type TimelineEvent } from '../lib/events';
+import { resolveEventLocation } from '../lib/event-locations';
 
 const TerritoryMap = dynamic(() => import('./Map'), {
   ssr: false,
-  loading: () => <div className="map-loading">Membuka peta kerajaan…</div>
+  loading: () => <div className="map-loading">Membuka peta kerajaan…</div>,
 });
 
 const EMPTY: KingdomCollection = { type: 'FeatureCollection', features: [] };
@@ -21,7 +29,7 @@ const relationships: Record<string, string> = {
   unspecified: 'belum dibedakan',
   control: 'kekuasaan langsung',
   influence: 'pengaruh',
-  tributary: 'upeti'
+  tributary: 'upeti',
 };
 const yearLabel = (year: number) =>
   year < 0 ? `${Math.abs(year).toLocaleString('id-ID')} SM` : `${year} M`;
@@ -43,7 +51,7 @@ export default function KingdomAtlas() {
   const [focusKey, setFocusKey] = useState(0);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [eventFocusKey, setEventFocusKey] = useState(0);
-  const [showSources, setShowSources] = useState(false);
+  const [urlInitialized, setUrlInitialized] = useState(false);
   const [paleoshoreline, setPaleoshoreline] = useState<PaleoshorelineCollection | null>(null);
 
   // Geological feature toggles
@@ -54,21 +62,12 @@ export default function KingdomAtlas() {
     realms: true,
     cities: true,
     events: true,
-    provinceNames: true
+    provinceNames: true,
   });
-
-  // Soundscape audio and interface language
-  const [musicPlaying, setMusicPlaying] = useState(false);
-  const [lang, setLang] = useState<'id' | 'zh' | 'en'>('zh');
 
   const seaLevel = getSeaLevel(year);
   const threshold = getThreshold(seaLevel);
   const eraLabel = getEraLabel(year);
-
-  const toggleMusic = () => {
-    const next = soundscape.toggle();
-    setMusicPlaying(next);
-  };
 
   const handleLayerChange = (next: LayerSettings) => {
     setLayers(next);
@@ -91,7 +90,7 @@ export default function KingdomAtlas() {
     }
     const path = paleoshorelinePath(threshold);
     fetch(path)
-      .then(async r => {
+      .then(async (r) => {
         if (!r.ok) throw new Error();
         const json = await r.json();
         paleoCache.set(threshold, json);
@@ -103,13 +102,13 @@ export default function KingdomAtlas() {
   useEffect(() => {
     const controller = new AbortController();
     fetch('/api/kingdoms/timeline', { signal: controller.signal })
-      .then(async r => {
+      .then(async (r) => {
         if (!r.ok) throw Error();
         const result = await r.json();
         setTimeline(result.kingdoms);
         setCurrentYear(result.currentYear);
       })
-      .catch(e => {
+      .catch((e) => {
         if (e.name !== 'AbortError')
           setError('Linimasa belum tersedia. Periksa API dan impor data kerajaan.');
       });
@@ -127,13 +126,13 @@ export default function KingdomAtlas() {
     }
     const timer = setTimeout(() => {
       fetch(`/api/kingdoms?year=${year}`, { signal: controller.signal })
-        .then(async r => {
+        .then(async (r) => {
           if (!r.ok) throw Error();
           const next = await r.json();
           setData(next);
           setLoading(false);
         })
-        .catch(e => {
+        .catch((e) => {
           if (e.name !== 'AbortError') {
             setError('Data wilayah gagal dimuat. Periksa layanan API dan impor poligon.');
             setData(EMPTY);
@@ -150,7 +149,7 @@ export default function KingdomAtlas() {
   useEffect(() => {
     if (!playing) return;
     const timer = setInterval(() => {
-      setYear(y => {
+      setYear((y) => {
         if (y >= currentYear) {
           setPlaying(false);
           return currentYear;
@@ -162,94 +161,129 @@ export default function KingdomAtlas() {
     return () => clearInterval(timer);
   }, [playing, currentYear]);
 
-  const kingdoms = [...new Map(data.features.map(f => [f.properties.id, f.properties])).values()];
-  const filtered = kingdoms.filter(k =>
-    k.name.toLocaleLowerCase('id').includes(search.toLocaleLowerCase('id'))
+  const kingdoms = [...new Map(data.features.map((f) => [f.properties.id, f.properties])).values()];
+  const filtered = kingdoms.filter((k) =>
+    k.name.toLocaleLowerCase('id').includes(search.toLocaleLowerCase('id')),
   );
-  const active = kingdoms.find(k => k.id === selected);
-  const extentEnd = timeline.length ? Math.max(...timeline.map(k => k.end_year)) : null;
+  const active = kingdoms.find((k) => k.id === selected);
+  const extentEnd = timeline.length ? Math.max(...timeline.map((k) => k.end_year)) : null;
 
   function choose(id: string) {
     setSelected(id);
     setSidebarOpen(true);
   }
 
-  const changeYear = useCallback((y: number) => {
-    const nextYear = y === 0 ? 1 : Math.max(SLIDER_MIN, Math.min(currentYear, y));
-    setSelectedEventId(null);
-    setYear(previousYear => previousYear === nextYear ? previousYear : nextYear);
-    setPlaying(false);
-  }, [currentYear]);
+  const changeYear = useCallback(
+    (y: number) => {
+      const nextYear = y === 0 ? 1 : Math.max(SLIDER_MIN, Math.min(currentYear, y));
+      setSelectedEventId(null);
+      setYear((previousYear) => (previousYear === nextYear ? previousYear : nextYear));
+      setPlaying(false);
+    },
+    [currentYear],
+  );
 
-  const selectEvent = useCallback((event: TimelineEvent) => {
-    const nextYear = event.year === 0 ? 1 : Math.max(SLIDER_MIN, Math.min(currentYear, event.year));
-    setSelectedEventId(event.id);
-    setYear(previousYear => previousYear === nextYear ? previousYear : nextYear);
-    setEventFocusKey(key => key + 1);
-    setPlaying(false);
-  }, [currentYear]);
+  const selectEvent = useCallback(
+    (event: TimelineEvent) => {
+      const nextYear =
+        event.year === 0 ? 1 : Math.max(SLIDER_MIN, Math.min(currentYear, event.year));
+      setSelectedEventId(event.id);
+      setYear((previousYear) => (previousYear === nextYear ? previousYear : nextYear));
+      setEventFocusKey((key) => key + 1);
+      setPlaying(false);
+    },
+    [currentYear],
+  );
 
   const selectedEvent = selectedEventId
-    ? TIMELINE_EVENTS.find(event => event.id === selectedEventId) ?? null
+    ? (TIMELINE_EVENTS.find((event) => event.id === selectedEventId) ?? null)
     : null;
   const eventMarkers = useMemo(() => {
     if (!eventsOpen || !selectedEvent) return [];
-    const sameYear = TIMELINE_EVENTS.filter(event => event.year === selectedEvent.year);
-    return [...new Map([...sameYear, selectedEvent].map(event => [event.id, event])).values()];
+    const sameYear = TIMELINE_EVENTS.filter((event) => event.year === selectedEvent.year);
+    return [...new Map([...sameYear, selectedEvent].map((event) => [event.id, event])).values()];
   }, [eventsOpen, selectedEvent]);
+
+  useEffect(() => {
+    const applySharedState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const eventId = params.get('event');
+      const sharedEvent = eventId
+        ? (TIMELINE_EVENTS.find((event) => event.id === eventId) ?? null)
+        : null;
+      const yearParam = params.get('year');
+      const parsedYear = yearParam ? Number(yearParam) : Number.NaN;
+      const requestedYear = sharedEvent?.year ?? (Number.isInteger(parsedYear) ? parsedYear : 1350);
+      const nextYear =
+        requestedYear === 0 ? 1 : Math.max(SLIDER_MIN, Math.min(currentYear, requestedYear));
+
+      setYear(nextYear);
+      setSelectedEventId(sharedEvent?.id ?? null);
+      setPlaying(false);
+      if (sharedEvent) setEventFocusKey((key) => key + 1);
+    };
+
+    applySharedState();
+    window.addEventListener('popstate', applySharedState);
+    setUrlInitialized(true);
+    return () => window.removeEventListener('popstate', applySharedState);
+  }, [currentYear]);
+
+  useEffect(() => {
+    if (!urlInitialized) return;
+
+    const url = new URL(window.location.href);
+    url.searchParams.set('year', String(year));
+    if (selectedEvent) {
+      url.searchParams.set('event', selectedEvent.id);
+      const location = resolveEventLocation(selectedEvent);
+      if (location) {
+        url.searchParams.set(
+          'trace',
+          `${location.coordinates[0].toFixed(3)},${location.coordinates[1].toFixed(3)}`,
+        );
+      }
+    } else {
+      url.searchParams.delete('event');
+      url.searchParams.delete('trace');
+    }
+
+    const nextUrl = `${url.pathname}${url.search}${url.hash}`;
+    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    if (nextUrl !== currentUrl) {
+      window.history.replaceState(window.history.state, '', nextUrl);
+    }
+  }, [year, selectedEvent, urlInitialized]);
 
   return (
     <main className="atlas kingdom-atlas">
       <header className="header">
-        <a href="/" className="brand" aria-label="Nusantara beranda">
-          <span className="brand-icon">✳︎</span>
+        <Link href="/" className="brand" aria-label="Nusantara beranda">
+          <Image
+            src="/brand/nusantara-symbol.svg"
+            alt=""
+            aria-hidden="true"
+            width={44}
+            height={44}
+            className="brand-icon"
+          />
           <span>
             Nusantara
             <span className="brand-sub">ATLAS KERAJAAN INDONESIA</span>
           </span>
-        </a>
+        </Link>
         <nav aria-label="Navigasi utama">
-          <button
-            className={!showSources ? 'nav-active' : ''}
-            onClick={() => setShowSources(false)}
-          >
+          <Link href="/" className="nav-active" aria-current="page">
             Peta kerajaan
-          </button>
-          <button
-            onClick={() => {
-              setShowSources(true);
-              setSidebarOpen(true);
-            }}
-          >
-            Sumber &amp; metode <ExternalLink size={12} />
-          </button>
+          </Link>
+          <Link href="/sources">Sumber &amp; kredit</Link>
         </nav>
 
         <div className="header-end">
           <LayerControl layers={layers} onChange={handleLayerChange} />
 
-          <button
-            type="button"
-            className={`header-pill-btn music-btn ${musicPlaying ? 'active' : ''}`}
-            onClick={toggleMusic}
-            title={musicPlaying ? 'Heningkan musik' : 'Putar alunan pentatonik (Guqin / Gamelan)'}
-          >
-            <span className="btn-icon">🎵</span>
-            <span>{musicPlaying ? 'Gamelan' : 'Guqin'}</span>
-          </button>
-
-          <button
-            type="button"
-            className="header-pill-btn lang-btn"
-            onClick={() => setLang(l => (l === 'zh' ? 'id' : l === 'id' ? 'en' : 'zh'))}
-            title="Ganti preferensi bahasa"
-          >
-            <span className="btn-icon">🌐</span>
-            <span>{lang === 'zh' ? '简 繁' : lang === 'id' ? 'ID' : 'EN'}</span>
-          </button>
-
           <a
-            href="https://github.com/Seshat-Global-History-Databank/cliopatria"
+            href="https://github.com/anjar/nusantara-map"
             target="_blank"
             rel="noreferrer"
             className="header-pill-btn star-btn"
@@ -283,155 +317,90 @@ export default function KingdomAtlas() {
                 aria-label="Cari kerajaan"
                 placeholder="Cari kerajaan pada tahun ini…"
                 value={search}
-                onChange={e => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </label>
           </div>
 
-          <div className="side-tabs" role="tablist" aria-label="Informasi kerajaan">
-            <button
-              role="tab"
-              aria-selected={!showSources}
-              className={!showSources ? 'active' : ''}
-              onClick={() => setShowSources(false)}
-            >
-              Kerajaan · {yearLabel(year)}
-            </button>
-            <button
-              role="tab"
-              aria-selected={showSources}
-              className={showSources ? 'active' : ''}
-              onClick={() => setShowSources(true)}
-            >
-              Sumber &amp; catatan
-            </button>
+          <div className="side-tabs">
+            <span className="side-tab-label">Kerajaan · {yearLabel(year)}</span>
           </div>
 
           <div className="side-scroll">
             {error && (
               <div role="alert" className="data-error">
                 {error}
-                <button onClick={() => setRetry(r => r + 1)}>Coba lagi</button>
+                <button onClick={() => setRetry((r) => r + 1)}>Coba lagi</button>
               </div>
             )}
-            {showSources ? (
-              <div className="sources">
-                <h2>Wilayah punya sumber.</h2>
+            <div className="section-heading">
+              <span>WILAYAH PADA TAHUN INI</span>
+              <span className="count">{loading ? '…' : filtered.length}</span>
+            </div>
+            {!loading && !error && !filtered.length && (
+              <div className="kingdom-empty">
+                <h2>
+                  {year <= -4000 ? 'Era Prasejarah & Geologis' : 'Belum ada wilayah tercatat.'}
+                </h2>
                 <p>
-                  Poligon berasal dari Cliopatria, Seshat Global History Databank, CC BY 4.0. Data dipilih untuk kerajaan Nusantara tanpa menggambar ulang atau memotongnya mengikuti batas Indonesia modern.
+                  {year <= -4000
+                    ? `Pada ${yearLabel(year)}, peradaban kerajaan terorganisir belum tercatat di Nusantara. Peta menampilkan rekonstruksi geologis daratan Paparan Sunda dan Sahul pada Zaman Es ketika permukaan laut lebih rendah.`
+                    : extentEnd && year > extentEnd
+                      ? `Subset poligon kerajaan saat ini berakhir pada ${yearLabel(extentEnd)}. Ini tidak membuktikan kerajaan atau institusinya berhenti pada tahun itu.`
+                      : 'Belum ada poligon bersumber yang cocok dengan tahun atau pencarian ini.'}
                 </p>
-                <a
-                  href="https://doi.org/10.1038/s41597-025-04516-9"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Bennett et al. (2025) ↗
-                </a>
-                <p>
-                  Garis pada peta adalah salah satu rekonstruksi historis, bukan batas survei. Hubungan kekuasaan langsung, upeti, dan pengaruh belum dibedakan pada impor awal.
-                </p>
-                <p>
-                  Rentang poligon mengikuti snapshot sumber dan dapat berbeda dari penanggalan berdiri/runtuh kerajaan. Belum ada wilayah bersumber untuk semua kerajaan atau semua tahun. Kekosongan peta berarti tidak ada snapshot, bukan tidak ada kerajaan.
-                </p>
-                <p>
-                  Dataset global berhenti pada 2024; subset kerajaan di atlas dapat berakhir lebih awal. Kami tidak meneruskan wilayah otomatis hingga tahun berjalan.
-                </p>
-                <h3>Rekonstruksi Geologis: Paparan Sunda &amp; Sahul</h3>
-                <p>
-                  Pada era prasejarah dan Zaman Es terakhir (~20.000–8.000 SM), permukaan laut global turun hingga ~120 meter di bawah tingkat saat ini. Paparan Sunda menghubungkan Sumatera, Jawa, dan Kalimantan ke daratan Asia Tenggara, sementara Paparan Sahul menghubungkan Papua ke benua Australia. Wilayah Wallacea (Sulawesi, Nusa Tenggara, Maluku) tetap terpisah oleh palung laut dalam.
-                </p>
-                <p>
-                  Data garis pantai purba dihitung dari kurva permukaan laut eustatik (Lambeck et al., 2014) dan data paleoshoreline batimetri.
-                </p>
-                <h3>Toponim &amp; Permukiman dari Sebelum Masehi s/d Modern</h3>
-                <p>
-                  Fitur toponim kota dan permukiman kuno merentang dari era Sebelum Masehi (Batujaya-Buni, Plawangan, Gilimanuk, Pasemah, Kalumpang, Liang Bua) hingga metropolis modern dan Ibu Kota Nusantara (IKN). Nama kota berganti secara kontekstual mengikuti tarikh tahun (misal: Sunda Kalapa → Jayakarta → Batavia → Jakarta).
-                </p>
-                <h3>Peta dasar, Provinsi &amp; Relief</h3>
-                <p>
-                  Natural Earth, domain publik; batas 38 provinsi modern Republik Indonesia; Shaded Relief dari Esri / USGS; sistem sungai purba Sundaland menurut rekonstruksi geologis Molengraaff &amp; Voris; serta jaringan Jalur Rempah maritim dan benteng-benteng bersejarah Nusantara.
-                </p>
-                <a
-                  href="https://github.com/Seshat-Global-History-Databank/cliopatria"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Dataset dan ketidakpastian ↗
-                </a>
+                <button onClick={() => changeYear(1350)}>Lihat era Majapahit (1350 M)</button>
               </div>
-            ) : (
-              <>
-                <div className="section-heading">
-                  <span>WILAYAH PADA TAHUN INI</span>
-                  <span className="count">{loading ? '…' : filtered.length}</span>
-                </div>
-                {!loading && !error && !filtered.length && (
-                  <div className="kingdom-empty">
-                    <h2>
-                      {year <= -4000
-                        ? 'Era Prasejarah & Geologis'
-                        : 'Belum ada wilayah tercatat.'}
-                    </h2>
-                    <p>
-                      {year <= -4000
-                        ? `Pada ${yearLabel(year)}, peradaban kerajaan terorganisir belum tercatat di Nusantara. Peta menampilkan rekonstruksi geologis daratan Paparan Sunda dan Sahul pada Zaman Es ketika permukaan laut lebih rendah.`
-                        : extentEnd && year > extentEnd
-                        ? `Subset poligon kerajaan saat ini berakhir pada ${yearLabel(extentEnd)}. Ini tidak membuktikan kerajaan atau institusinya berhenti pada tahun itu.`
-                        : 'Belum ada poligon bersumber yang cocok dengan tahun atau pencarian ini.'}
-                    </p>
-                    <button onClick={() => changeYear(1350)}>Lihat era Majapahit (1350 M)</button>
-                  </div>
-                )}
-                <div className="site-list" aria-busy={loading}>
-                  {filtered.map(k => (
-                    <button
-                      key={k.id}
-                      onClick={() => choose(k.id)}
-                      className={`site-row ${selected === k.id ? 'active' : ''}`}
+            )}
+            <div className="site-list" aria-busy={loading}>
+              {filtered.map((k) => (
+                <button
+                  key={k.id}
+                  onClick={() => choose(k.id)}
+                  className={`site-row ${selected === k.id ? 'active' : ''}`}
+                >
+                  <span className="kingdom-swatch" style={{ background: k.color }} />
+                  <span>
+                    <strong>{k.name}</strong>
+                    <small>
+                      Snapshot {yearLabel(k.startYear)}–{yearLabel(k.endYear)}
+                    </small>
+                  </span>
+                  <ChevronRight size={15} />
+                </button>
+              ))}
+            </div>
+            {active && (
+              <article className="site-detail">
+                <span className="eyebrow">REKONSTRUKSI WILAYAH</span>
+                <h2>{active.name}</h2>
+                {active.description && <p>{active.description}</p>}
+                <p>
+                  Poligon berlaku pada rentang snapshot {yearLabel(active.startYear)}–
+                  {yearLabel(active.endYear)} menurut sumber, bukan tanggal pasti berdiri/runtuh.
+                </p>
+                <p className="kingdom-caveat">{active.notes}</p>
+                <div className="source-card">
+                  <a href={active.sourceUrl} target="_blank" rel="noreferrer">
+                    Sumber geometri <ExternalLink size={13} />
+                  </a>
+                  <small>{active.attribution}</small>
+                  <small>
+                    Hubungan wilayah: {relationships[active.relationship] || active.relationship}
+                  </small>
+                  {active.wikipediaTitle && (
+                    <a
+                      href={`https://id.wikipedia.org/wiki/${encodeURIComponent(
+                        active.wikipediaTitle.replaceAll(' ', '_'),
+                      )}`}
+                      target="_blank"
+                      rel="noreferrer"
                     >
-                      <span className="kingdom-swatch" style={{ background: k.color }} />
-                      <span>
-                        <strong>{k.name}</strong>
-                        <small>
-                          Snapshot {yearLabel(k.startYear)}–{yearLabel(k.endYear)}
-                        </small>
-                      </span>
-                      <ChevronRight size={15} />
-                    </button>
-                  ))}
+                      Profil &amp; sejarah <ExternalLink size={13} />
+                    </a>
+                  )}
                 </div>
-                {active && (
-                  <article className="site-detail">
-                    <span className="eyebrow">REKONSTRUKSI WILAYAH</span>
-                    <h2>{active.name}</h2>
-                    {active.description && <p>{active.description}</p>}
-                    <p>
-                      Poligon berlaku pada rentang snapshot {yearLabel(active.startYear)}–{yearLabel(active.endYear)} menurut sumber, bukan tanggal pasti berdiri/runtuh.
-                    </p>
-                    <p className="kingdom-caveat">{active.notes}</p>
-                    <div className="source-card">
-                      <a href={active.sourceUrl} target="_blank" rel="noreferrer">
-                        Sumber geometri <ExternalLink size={13} />
-                      </a>
-                      <small>{active.attribution}</small>
-                      <small>
-                        Hubungan wilayah: {relationships[active.relationship] || active.relationship}
-                      </small>
-                      {active.wikipediaTitle && (
-                        <a
-                          href={`https://id.wikipedia.org/wiki/${encodeURIComponent(
-                            active.wikipediaTitle.replaceAll(' ', '_')
-                          )}`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Profil &amp; sejarah <ExternalLink size={13} />
-                        </a>
-                      )}
-                    </div>
-                  </article>
-                )}
-              </>
+              </article>
             )}
           </div>
           <div className="sidebar-foot">
@@ -439,7 +408,9 @@ export default function KingdomAtlas() {
             <span>
               Batas adalah rekonstruksi.
               <br />
-              <strong>Baca sumber dan ketidakpastiannya.</strong>
+              <Link href="/sources" className="sidebar-source-link">
+                Sumber, kredit &amp; metode →
+              </Link>
             </span>
           </div>
         </aside>
@@ -456,8 +427,8 @@ export default function KingdomAtlas() {
             eventMarkers={eventMarkers}
             selectedEventId={selectedEventId}
             eventFocusKey={eventFocusKey}
-            onEventSelect={id => {
-              const event = TIMELINE_EVENTS.find(candidate => candidate.id === id);
+            onEventSelect={(id) => {
+              const event = TIMELINE_EVENTS.find((candidate) => candidate.id === id);
               if (event) selectEvent(event);
             }}
             kingdoms={layers.realms ? (showBorders ? data : EMPTY) : EMPTY}
@@ -478,7 +449,7 @@ export default function KingdomAtlas() {
 
           <div className="map-top">
             <div className="breadcrumbs">
-              <button onClick={() => setFocusKey(v => v + 1)}>Nusantara</button>
+              <button onClick={() => setFocusKey((v) => v + 1)}>Nusantara</button>
               <ChevronRight size={13} />
               <span>{yearLabel(year)}</span>
             </div>
@@ -491,7 +462,7 @@ export default function KingdomAtlas() {
                 onClick={() => {
                   const next = !eventsOpen;
                   setEventsOpen(next);
-                  setLayers(prev => ({ ...prev, events: next }));
+                  setLayers((prev) => ({ ...prev, events: next }));
                 }}
                 title="Buka daftar kronologi peristiwa"
               >
@@ -510,7 +481,7 @@ export default function KingdomAtlas() {
               className="open-events-btn"
               onClick={() => {
                 setEventsOpen(true);
-                setLayers(prev => ({ ...prev, events: true }));
+                setLayers((prev) => ({ ...prev, events: true }));
               }}
             >
               <Calendar size={14} /> Linimasa Peristiwa
@@ -531,12 +502,8 @@ export default function KingdomAtlas() {
               </div>
             )}
             {layers.realms &&
-              kingdoms.map(k => (
-                <button
-                  key={k.id}
-                  onClick={() => choose(k.id)}
-                  aria-pressed={selected === k.id}
-                >
+              kingdoms.map((k) => (
+                <button key={k.id} onClick={() => choose(k.id)} aria-pressed={selected === k.id}>
                   <i style={{ background: k.color }} />
                   {k.name}
                 </button>
@@ -551,14 +518,18 @@ export default function KingdomAtlas() {
               currentYear={year}
               onYearChange={changeYear}
               isPlaying={playing}
-              onTogglePlay={() => setPlaying(!playing)}
+              onTogglePlay={() => {
+                const nextPlaying = !playing;
+                setPlaying(nextPlaying);
+                if (nextPlaying) setSelectedEventId(null);
+              }}
               maxYear={currentYear}
             />
             <div className="timeline-sub-bar">
               <details className="kingdom-periods">
                 <summary>Cakupan poligon tiap kerajaan ({timeline.length})</summary>
                 <div>
-                  {timeline.map(k => (
+                  {timeline.map((k) => (
                     <button
                       key={k.id}
                       onClick={() => {
@@ -575,12 +546,6 @@ export default function KingdomAtlas() {
                   ))}
                 </div>
               </details>
-              <div className="timeline-meta-note">
-                <Info size={11} />
-                <span>
-                  Cliopatria / Lambeck et al. (2014) · Rekonstruksi wilayah &amp; paleoshoreline, bukan batas survei modern.
-                </span>
-              </div>
             </div>
           </div>
         </section>
@@ -594,7 +559,7 @@ export default function KingdomAtlas() {
           onClose={() => {
             setSelectedEventId(null);
             setEventsOpen(false);
-            setLayers(prev => ({ ...prev, events: false }));
+            setLayers((prev) => ({ ...prev, events: false }));
           }}
         />
       </div>

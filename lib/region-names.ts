@@ -23,13 +23,11 @@ export interface DynamicRegionLabel {
   };
 }
 
-
-
 /**
  * Returns active labels for the given year.
  */
 export function getActiveRegionLabels(year: number) {
-  return DYNAMIC_REGION_LABELS.map(r => {
+  return DYNAMIC_REGION_LABELS.map((r) => {
     const { primary, historicalContext } = r.getName(year);
     return {
       id: r.id,
@@ -37,7 +35,7 @@ export function getActiveRegionLabels(year: number) {
       latitude: r.latitude,
       kind: r.kind,
       text: primary,
-      context: historicalContext
+      context: historicalContext,
     };
   });
 }

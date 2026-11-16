@@ -66,7 +66,7 @@ export default function Map({
   eventMarkers = NO_EVENT_MARKERS,
   selectedEventId = null,
   eventFocusKey = 0,
-  onEventSelect
+  onEventSelect,
 }: Props) {
   const el = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
@@ -81,7 +81,9 @@ export default function Map({
   const fortMarkers = useRef<maplibregl.Marker[]>([]);
   const eventMapMarkers = useRef<maplibregl.Marker[]>([]);
 
-  const [activeCity, setActiveCity] = useState<(City & { currentHistoricalName: string; currentStatus?: string }) | null>(null);
+  const [activeCity, setActiveCity] = useState<
+    (City & { currentHistoricalName: string; currentStatus?: string }) | null
+  >(null);
 
   const kingdomCallback = useRef(onKingdomSelect);
   kingdomCallback.current = onKingdomSelect;
@@ -105,7 +107,12 @@ export default function Map({
         zoom: historical ? 3.4 : 6.35,
         minZoom: historical ? 1.8 : 3.4,
         maxZoom: 12,
-        maxBounds: historical ? undefined : [[92, -16], [144, 12]],
+        maxBounds: historical
+          ? undefined
+          : [
+              [92, -16],
+              [144, 12],
+            ],
         renderWorldCopies: false,
         attributionControl: false,
         style: {
@@ -113,44 +120,44 @@ export default function Map({
           sources: {
             territories: {
               type: 'geojson',
-              data: { type: 'FeatureCollection', features: [] }
+              data: { type: 'FeatureCollection', features: [] },
             },
             indonesia: {
               type: 'geojson',
-              data: '/data/indonesia.geojson'
+              data: '/data/indonesia.geojson',
             },
             neighbors: {
               type: 'geojson',
-              data: '/data/neighbors.geojson'
+              data: '/data/neighbors.geojson',
             },
             paleoshoreline: {
               type: 'geojson',
-              data: { type: 'FeatureCollection', features: [] }
+              data: { type: 'FeatureCollection', features: [] },
             },
             rivers: {
               type: 'geojson',
-              data: '/data/rivers.geojson'
+              data: '/data/rivers.geojson',
             },
             provinces: {
               type: 'geojson',
-              data: '/data/provinces.geojson'
+              data: '/data/provinces.geojson',
             },
             routes: {
               type: 'geojson',
-              data: '/data/routes-and-walls.geojson'
-            }
+              data: '/data/routes-and-walls.geojson',
+            },
           },
           layers: [
             {
               id: 'sea',
               type: 'background',
-              paint: { 'background-color': historical ? '#d8dfd7' : '#213d40' }
+              paint: { 'background-color': historical ? '#d8dfd7' : '#213d40' },
             },
             {
               id: 'paleo-land',
               type: 'fill',
               source: 'paleoshoreline',
-              paint: { 'fill-color': '#d4cbb8', 'fill-opacity': 0.58 }
+              paint: { 'fill-color': '#d4cbb8', 'fill-opacity': 0.58 },
             },
             {
               id: 'paleo-coast',
@@ -160,8 +167,8 @@ export default function Map({
                 'line-color': '#a09880',
                 'line-width': 1.2,
                 'line-dasharray': [4, 3],
-                'line-opacity': 0.7
-              }
+                'line-opacity': 0.7,
+              },
             },
             {
               id: 'coast-glow',
@@ -170,8 +177,8 @@ export default function Map({
               paint: {
                 'line-color': '#718b7e',
                 'line-width': 10,
-                'line-opacity': 0.12
-              }
+                'line-opacity': 0.12,
+              },
             },
             // Base lands: Indonesia (warm parchment)
             {
@@ -180,8 +187,8 @@ export default function Map({
               source: 'indonesia',
               paint: {
                 'fill-color': historical ? '#ebe4d3' : '#b8b69a',
-                'fill-opacity': 0.88
-              }
+                'fill-opacity': 0.88,
+              },
             },
             {
               id: 'coast',
@@ -189,8 +196,8 @@ export default function Map({
               source: 'indonesia',
               paint: {
                 'line-color': historical ? '#afb49d' : '#d0c9aa',
-                'line-width': 1
-              }
+                'line-width': 1,
+              },
             },
             // Neighbor lands: Malaysia, Brunei, Singapore, Timor-Leste, PNG
             {
@@ -199,8 +206,8 @@ export default function Map({
               source: 'neighbors',
               paint: {
                 'fill-color': ['get', 'color'],
-                'fill-opacity': historical ? 0.88 : 0.85
-              }
+                'fill-opacity': historical ? 0.88 : 0.85,
+              },
             },
             {
               id: 'neighbor-coast',
@@ -208,8 +215,8 @@ export default function Map({
               source: 'neighbors',
               paint: {
                 'line-color': ['get', 'stroke'],
-                'line-width': 1
-              }
+                'line-width': 1,
+              },
             },
             // Rivers: ancient & modern
             {
@@ -221,8 +228,8 @@ export default function Map({
                 'line-color': '#426972',
                 'line-width': 1.5,
                 'line-dasharray': [3, 2],
-                'line-opacity': 0.75
-              }
+                'line-opacity': 0.75,
+              },
             },
             {
               id: 'rivers-modern',
@@ -232,8 +239,8 @@ export default function Map({
               paint: {
                 'line-color': '#3a626a',
                 'line-width': 1.3,
-                'line-opacity': 0.82
-              }
+                'line-opacity': 0.82,
+              },
             },
             // Provinces Layer: modern borders & fills
             {
@@ -242,8 +249,8 @@ export default function Map({
               source: 'provinces',
               paint: {
                 'fill-color': '#bba891',
-                'fill-opacity': 0.04
-              }
+                'fill-opacity': 0.04,
+              },
             },
             {
               id: 'provinces-line',
@@ -253,8 +260,8 @@ export default function Map({
                 'line-color': '#9e8c78',
                 'line-width': 1.1,
                 'line-dasharray': [4, 3],
-                'line-opacity': 0.65
-              }
+                'line-opacity': 0.65,
+              },
             },
             // Trade Routes & Spice Highways
             {
@@ -265,8 +272,8 @@ export default function Map({
               paint: {
                 'line-color': '#c45b41',
                 'line-width': 4.5,
-                'line-opacity': 0.22
-              }
+                'line-opacity': 0.22,
+              },
             },
             {
               id: 'routes-line',
@@ -277,8 +284,8 @@ export default function Map({
                 'line-color': '#a8462b',
                 'line-width': 1.8,
                 'line-dasharray': [4, 3],
-                'line-opacity': 0.85
-              }
+                'line-opacity': 0.85,
+              },
             },
             // Kingdoms on top of regional basemap
             {
@@ -287,8 +294,8 @@ export default function Map({
               source: 'territories',
               paint: {
                 'fill-color': ['get', 'color'],
-                'fill-opacity': 0.16
-              }
+                'fill-opacity': 0.16,
+              },
             },
             {
               id: 'kingdom-outline',
@@ -297,24 +304,24 @@ export default function Map({
               paint: {
                 'line-color': ['get', 'color'],
                 'line-width': 1,
-                'line-opacity': 0.8
-              }
-            }
-          ]
-        }
+                'line-opacity': 0.8,
+              },
+            },
+          ],
+        },
       });
 
       instance.addControl(
         new maplibregl.ScaleControl({ maxWidth: 100, unit: 'metric' }),
-        'bottom-right'
+        'bottom-right',
       );
       instance.on('load', () => {
         setReady(true);
         // Load mountain peaks
         fetch('/data/mountains.geojson')
-          .then(r => r.json())
+          .then((r) => r.json())
           .then((fc: GeoJSON.FeatureCollection) => {
-            fc.features.forEach(f => {
+            fc.features.forEach((f) => {
               const geom = f.geometry as GeoJSON.Point;
               const p = f.properties as {
                 id: string;
@@ -341,7 +348,7 @@ export default function Map({
           .catch(() => {});
       });
 
-      instance.on('click', 'kingdom-fill', event => {
+      instance.on('click', 'kingdom-fill', (event) => {
         const id = event.features?.[0]?.properties?.id;
         if (typeof id === 'string') kingdomCallback.current?.(id);
       });
@@ -362,10 +369,16 @@ export default function Map({
       if (historical) {
         resizeObserver = new ResizeObserver(() => {
           instance.resize();
-          instance.fitBounds([[94, -11], [141, 6]], {
-            padding: { top: 150, bottom: 240, left: 24, right: 24 },
-            duration: 0
-          });
+          instance.fitBounds(
+            [
+              [94, -11],
+              [141, 6],
+            ],
+            {
+              padding: { top: 150, bottom: 240, left: 24, right: 24 },
+              duration: 0,
+            },
+          );
         });
         resizeObserver.observe(el.current);
       }
@@ -375,19 +388,19 @@ export default function Map({
 
     return () => {
       resizeObserver?.disconnect();
-      mountainMarkers.current.forEach(m => m.remove());
+      mountainMarkers.current.forEach((m) => m.remove());
       mountainMarkers.current = [];
-      geoLabels.current.forEach(m => m.remove());
+      geoLabels.current.forEach((m) => m.remove());
       geoLabels.current = [];
-      cityMarkers.current.forEach(m => m.remove());
+      cityMarkers.current.forEach((m) => m.remove());
       cityMarkers.current = [];
-      provinceLabelMarkers.current.forEach(m => m.remove());
+      provinceLabelMarkers.current.forEach((m) => m.remove());
       provinceLabelMarkers.current = [];
-      adminDivisionMarkers.current.forEach(m => m.remove());
+      adminDivisionMarkers.current.forEach((m) => m.remove());
       adminDivisionMarkers.current = [];
-      fortMarkers.current.forEach(m => m.remove());
+      fortMarkers.current.forEach((m) => m.remove());
       fortMarkers.current = [];
-      eventMapMarkers.current.forEach(m => m.remove());
+      eventMapMarkers.current.forEach((m) => m.remove());
       eventMapMarkers.current = [];
       map.current?.remove();
       map.current = null;
@@ -397,7 +410,7 @@ export default function Map({
   // Dynamic regional labels according to the timeline year
   useEffect(() => {
     if (!map.current || !ready) return;
-    geoLabels.current.forEach(m => m.remove());
+    geoLabels.current.forEach((m) => m.remove());
     geoLabels.current = [];
 
     const labels = getActiveRegionLabels(year);
@@ -417,7 +430,7 @@ export default function Map({
     }
 
     return () => {
-      geoLabels.current.forEach(m => m.remove());
+      geoLabels.current.forEach((m) => m.remove());
     };
   }, [year, ready]);
 
@@ -425,34 +438,58 @@ export default function Map({
   useEffect(() => {
     if (!map.current || !ready) return;
     (map.current.getSource('territories') as maplibregl.GeoJSONSource).setData(
-      kingdoms || { type: 'FeatureCollection', features: [] }
+      kingdoms || { type: 'FeatureCollection', features: [] },
     );
-    map.current.setPaintProperty('kingdom-outline', 'line-width', year >= 1945 ? 0 : [
-      'case',
-      ['==', ['get', 'id'], kingdomSelected || ''],
-      1.8,
-      ['==', ['get', 'id'], 'republic-of-indonesia'],
-      1.2,
-      0.8
-    ]);
-    map.current.setPaintProperty('kingdom-fill', 'fill-opacity', year >= 1945 ? 0 : [
-      'case',
-      ['==', ['get', 'id'], kingdomSelected || ''],
-      0.24,
-      ['==', ['get', 'id'], 'republic-of-indonesia'],
-      0.20,
-      0.16
-    ]);
-    map.current.setPaintProperty('neighbor-land', 'fill-color', year >= 1945
-      ? ['match', ['get', 'id'],
-          'malaysia', '#b6c8aa',
-          'singapore', '#dfb9a7',
-          'brunei', '#d9c38d',
-          'timor-leste', '#d5b38e',
-          'papua-new-guinea', '#b8becd',
-          ['get', 'color']]
-      : ['get', 'color']);
-    kingdomLabels.current.forEach(m => m.remove());
+    map.current.setPaintProperty(
+      'kingdom-outline',
+      'line-width',
+      year >= 1945
+        ? 0
+        : [
+            'case',
+            ['==', ['get', 'id'], kingdomSelected || ''],
+            1.8,
+            ['==', ['get', 'id'], 'republic-of-indonesia'],
+            1.2,
+            0.8,
+          ],
+    );
+    map.current.setPaintProperty(
+      'kingdom-fill',
+      'fill-opacity',
+      year >= 1945
+        ? 0
+        : [
+            'case',
+            ['==', ['get', 'id'], kingdomSelected || ''],
+            0.24,
+            ['==', ['get', 'id'], 'republic-of-indonesia'],
+            0.2,
+            0.16,
+          ],
+    );
+    map.current.setPaintProperty(
+      'neighbor-land',
+      'fill-color',
+      year >= 1945
+        ? [
+            'match',
+            ['get', 'id'],
+            'malaysia',
+            '#b6c8aa',
+            'singapore',
+            '#dfb9a7',
+            'brunei',
+            '#d9c38d',
+            'timor-leste',
+            '#d5b38e',
+            'papua-new-guinea',
+            '#b8becd',
+            ['get', 'color'],
+          ]
+        : ['get', 'color'],
+    );
+    kingdomLabels.current.forEach((m) => m.remove());
     kingdomLabels.current = [];
     if (!showRealms) return;
 
@@ -465,23 +502,20 @@ export default function Map({
         feature.geometry.type === 'Polygon'
           ? [feature.geometry.coordinates]
           : feature.geometry.coordinates;
-      const rings = polygons.map(poly => poly[0]);
+      const rings = polygons.map((poly) => poly[0]);
       const ring = rings.sort((a, b) => {
         const area = (r: number[][]) =>
           Math.abs(
-            r.reduce(
-              (sum, c, i) => {
-                const n = r[(i + 1) % r.length];
-                return sum + c[0] * n[1] - n[0] * c[1];
-              },
-              0
-            )
+            r.reduce((sum, c, i) => {
+              const n = r[(i + 1) % r.length];
+              return sum + c[0] * n[1] - n[0] * c[1];
+            }, 0),
           );
         return area(b) - area(a);
       })[0];
       if (!ring?.length) continue;
-      const xs = ring.map(c => c[0]),
-        ys = ring.map(c => c[1]);
+      const xs = ring.map((c) => c[0]),
+        ys = ring.map((c) => c[1]);
       const minX = Math.min(...xs),
         maxX = Math.max(...xs),
         minY = Math.min(...ys),
@@ -493,13 +527,11 @@ export default function Map({
       button.setAttribute('aria-label', `Pilih ${p.name}`);
       button.onclick = () => kingdomCallback.current?.(p.id);
       kingdomLabels.current.push(
-        new maplibregl.Marker({ element: button })
-          .setLngLat(lngLat)
-          .addTo(map.current)
+        new maplibregl.Marker({ element: button }).setLngLat(lngLat).addTo(map.current),
       );
     }
     return () => {
-      kingdomLabels.current.forEach(m => m.remove());
+      kingdomLabels.current.forEach((m) => m.remove());
     };
   }, [kingdoms, kingdomSelected, ready, showRealms, year]);
 
@@ -508,7 +540,7 @@ export default function Map({
     if (!map.current || !ready) return;
     const source = map.current.getSource('paleoshoreline') as maplibregl.GeoJSONSource | undefined;
     source?.setData(paleoshoreline || { type: 'FeatureCollection', features: [] });
-    paleoLabels.current.forEach(m => m.remove());
+    paleoLabels.current.forEach((m) => m.remove());
     paleoLabels.current = [];
     if (!paleoshoreline?.features?.length || !showTerrainAndRivers) return;
     for (const feature of paleoshoreline.features) {
@@ -517,23 +549,20 @@ export default function Map({
         feature.geometry.type === 'Polygon'
           ? [feature.geometry.coordinates]
           : feature.geometry.coordinates;
-      const rings = polygons.map(poly => poly[0]);
+      const rings = polygons.map((poly) => poly[0]);
       const ring = rings.sort((a, b) => {
         const area = (r: number[][]) =>
           Math.abs(
-            r.reduce(
-              (sum, c, i) => {
-                const n = r[(i + 1) % r.length];
-                return sum + c[0] * n[1] - n[0] * c[1];
-              },
-              0
-            )
+            r.reduce((sum, c, i) => {
+              const n = r[(i + 1) % r.length];
+              return sum + c[0] * n[1] - n[0] * c[1];
+            }, 0),
           );
         return area(b) - area(a);
       })[0];
       if (!ring?.length) continue;
-      const xs = ring.map(c => c[0]),
-        ys = ring.map(c => c[1]);
+      const xs = ring.map((c) => c[0]),
+        ys = ring.map((c) => c[1]);
       const centerLng = (Math.min(...xs) + Math.max(...xs)) / 2;
       const centerLat = (Math.min(...ys) + Math.max(...ys)) / 2;
       const label = document.createElement('div');
@@ -545,7 +574,7 @@ export default function Map({
       paleoLabels.current.push(marker);
     }
     return () => {
-      paleoLabels.current.forEach(m => m.remove());
+      paleoLabels.current.forEach((m) => m.remove());
     };
   }, [paleoshoreline, ready, showTerrainAndRivers]);
 
@@ -555,17 +584,13 @@ export default function Map({
 
     // Realms
     if (map.current.getLayer('kingdom-fill')) {
-      map.current.setLayoutProperty(
-        'kingdom-fill',
-        'visibility',
-        showRealms ? 'visible' : 'none'
-      );
+      map.current.setLayoutProperty('kingdom-fill', 'visibility', showRealms ? 'visible' : 'none');
     }
     if (map.current.getLayer('kingdom-outline')) {
       map.current.setLayoutProperty(
         'kingdom-outline',
         'visibility',
-        showRealms ? 'visible' : 'none'
+        showRealms ? 'visible' : 'none',
       );
     }
 
@@ -574,14 +599,14 @@ export default function Map({
       map.current.setLayoutProperty(
         'provinces-fill',
         'visibility',
-        showProvinces ? 'visible' : 'none'
+        showProvinces ? 'visible' : 'none',
       );
     }
     if (map.current.getLayer('provinces-line')) {
       map.current.setLayoutProperty(
         'provinces-line',
         'visibility',
-        showProvinces ? 'visible' : 'none'
+        showProvinces ? 'visible' : 'none',
       );
     }
     // Routes & Walls
@@ -589,14 +614,14 @@ export default function Map({
       map.current.setLayoutProperty(
         'routes-line',
         'visibility',
-        showRoutesAndWalls ? 'visible' : 'none'
+        showRoutesAndWalls ? 'visible' : 'none',
       );
     }
     if (map.current.getLayer('routes-glow')) {
       map.current.setLayoutProperty(
         'routes-glow',
         'visibility',
-        showRoutesAndWalls ? 'visible' : 'none'
+        showRoutesAndWalls ? 'visible' : 'none',
       );
     }
 
@@ -605,7 +630,7 @@ export default function Map({
       map.current.setLayoutProperty(
         'rivers-modern',
         'visibility',
-        showRivers && showTerrainAndRivers ? 'visible' : 'none'
+        showRivers && showTerrainAndRivers ? 'visible' : 'none',
       );
     }
     if (map.current.getLayer('rivers-ancient')) {
@@ -613,26 +638,26 @@ export default function Map({
       map.current.setLayoutProperty(
         'rivers-ancient',
         'visibility',
-        showAncient ? 'visible' : 'none'
+        showAncient ? 'visible' : 'none',
       );
     }
     if (map.current.getLayer('paleo-land')) {
       map.current.setLayoutProperty(
         'paleo-land',
         'visibility',
-        showTerrainAndRivers ? 'visible' : 'none'
+        showTerrainAndRivers ? 'visible' : 'none',
       );
     }
     if (map.current.getLayer('paleo-coast')) {
       map.current.setLayoutProperty(
         'paleo-coast',
         'visibility',
-        showTerrainAndRivers ? 'visible' : 'none'
+        showTerrainAndRivers ? 'visible' : 'none',
       );
     }
 
-    mountainMarkers.current.forEach(m => {
-      m.getElement().style.display = (showMountains && showTerrainAndRivers) ? 'flex' : 'none';
+    mountainMarkers.current.forEach((m) => {
+      m.getElement().style.display = showMountains && showTerrainAndRivers ? 'flex' : 'none';
     });
   }, [
     showRealms,
@@ -642,13 +667,13 @@ export default function Map({
     showRivers,
     showMountains,
     paleoshoreline,
-    ready
+    ready,
   ]);
 
   // Cities Markers (Sebelum Masehi s/d Modern)
   useEffect(() => {
     if (!map.current || !ready) return;
-    cityMarkers.current.forEach(m => m.remove());
+    cityMarkers.current.forEach((m) => m.remove());
     cityMarkers.current = [];
     if (!showCities) return;
 
@@ -657,7 +682,10 @@ export default function Map({
       const btn = document.createElement('button');
       btn.className = `city-marker-pin ${c.type} ${c.type === 'capital' ? 'is-capital' : ''}`;
       btn.setAttribute('aria-label', `${c.currentHistoricalName} (${c.province})`);
-      btn.setAttribute('title', `${c.currentHistoricalName} · ${c.province} (${c.currentStatus || c.type})`);
+      btn.setAttribute(
+        'title',
+        `${c.currentHistoricalName} · ${c.province} (${c.currentStatus || c.type})`,
+      );
 
       const dot = document.createElement('span');
       dot.className = 'city-dot';
@@ -678,7 +706,7 @@ export default function Map({
     }
 
     return () => {
-      cityMarkers.current.forEach(m => m.remove());
+      cityMarkers.current.forEach((m) => m.remove());
       cityMarkers.current = [];
     };
   }, [year, showCities, ready]);
@@ -686,12 +714,12 @@ export default function Map({
   // Keep province names anchored to their map coordinates, inside their regions.
   useEffect(() => {
     if (!map.current || !ready) return;
-    provinceLabelMarkers.current.forEach(marker => marker.remove());
+    provinceLabelMarkers.current.forEach((marker) => marker.remove());
     provinceLabelMarkers.current = [];
     if (!showProvinceNames) return;
 
-    const activeProvinces = getActiveProvinces(year).filter(province =>
-      !('category' in province) || province.category === 'provinsi-1945'
+    const activeProvinces = getActiveProvinces(year).filter(
+      (province) => !('category' in province) || province.category === 'provinsi-1945',
     );
     for (const province of activeProvinces) {
       const label = document.createElement('div');
@@ -702,12 +730,12 @@ export default function Map({
       provinceLabelMarkers.current.push(
         new maplibregl.Marker({ element: label, anchor: 'center' })
           .setLngLat(province.coordinates)
-          .addTo(map.current)
+          .addTo(map.current),
       );
     }
 
     return () => {
-      provinceLabelMarkers.current.forEach(marker => marker.remove());
+      provinceLabelMarkers.current.forEach((marker) => marker.remove());
       provinceLabelMarkers.current = [];
     };
   }, [year, showProvinceNames, ready]);
@@ -715,7 +743,7 @@ export default function Map({
   // Historical Admin Divisions Markers (Mancanagara, Gouvernements, PPKI 1945)
   useEffect(() => {
     if (!map.current || !ready) return;
-    adminDivisionMarkers.current.forEach(m => m.remove());
+    adminDivisionMarkers.current.forEach((m) => m.remove());
     adminDivisionMarkers.current = [];
     if (!showAdminDivisions) return;
 
@@ -734,7 +762,7 @@ export default function Map({
     }
 
     return () => {
-      adminDivisionMarkers.current.forEach(m => m.remove());
+      adminDivisionMarkers.current.forEach((m) => m.remove());
       adminDivisionMarkers.current = [];
     };
   }, [year, showAdminDivisions, ready]);
@@ -742,7 +770,7 @@ export default function Map({
   // Historic Fortifications Markers (Under Routes & Walls)
   useEffect(() => {
     if (!map.current || !ready) return;
-    fortMarkers.current.forEach(m => m.remove());
+    fortMarkers.current.forEach((m) => m.remove());
     fortMarkers.current = [];
     if (!showRoutesAndWalls) return;
 
@@ -750,7 +778,10 @@ export default function Map({
     for (const f of forts) {
       const el = document.createElement('div');
       el.className = 'fort-marker';
-      el.setAttribute('title', `${f.name} (Didirikan ${f.builtYear} M oleh ${f.builder}) - ${f.description}`);
+      el.setAttribute(
+        'title',
+        `${f.name} (Didirikan ${f.builtYear} M oleh ${f.builder}) - ${f.description}`,
+      );
       el.innerHTML = `<span class="fort-icon">🛡</span><span class="fort-name">${f.name} <small>${f.builtYear} M</small></span>`;
 
       const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
@@ -760,7 +791,7 @@ export default function Map({
     }
 
     return () => {
-      fortMarkers.current.forEach(m => m.remove());
+      fortMarkers.current.forEach((m) => m.remove());
       fortMarkers.current = [];
     };
   }, [year, showRoutesAndWalls, ready]);
@@ -768,16 +799,19 @@ export default function Map({
   // Sites markers for /sites atlas
   useEffect(() => {
     if (!map.current || !ready) return;
-    markers.current.forEach(marker => marker.remove());
+    markers.current.forEach((marker) => marker.remove());
     markers.current = [];
     if (!showSites) return;
     const visible: Site[] = [];
-    const ordered = [...sites].sort((a, b) => Number(b.id === selected) - Number(a.id === selected));
+    const ordered = [...sites].sort(
+      (a, b) => Number(b.id === selected) - Number(a.id === selected),
+    );
     for (const site of ordered) {
       if (
         zoom < 9 &&
         visible.some(
-          other => Math.hypot(site.longitude - other.longitude, site.latitude - other.latitude) < 0.18
+          (other) =>
+            Math.hypot(site.longitude - other.longitude, site.latitude - other.latitude) < 0.18,
         )
       )
         continue;
@@ -794,18 +828,18 @@ export default function Map({
       markers.current.push(
         new maplibregl.Marker({ element: button, anchor: 'left' })
           .setLngLat([site.longitude, site.latitude])
-          .addTo(map.current)
+          .addTo(map.current),
       );
     }
     return () => {
-      markers.current.forEach(marker => marker.remove());
+      markers.current.forEach((marker) => marker.remove());
     };
   }, [sites, selected, showSites, ready, zoom]);
 
   // Show the selected event and same-year events with stable, event-specific colors.
   useEffect(() => {
     if (!map.current || !ready) return;
-    eventMapMarkers.current.forEach(marker => marker.remove());
+    eventMapMarkers.current.forEach((marker) => marker.remove());
     eventMapMarkers.current = [];
 
     for (const event of eventMarkers) {
@@ -816,7 +850,10 @@ export default function Map({
       button.type = 'button';
       button.className = `event-map-marker ${isSelected ? 'selected' : ''} ${location.precision === 'place' ? '' : 'approximate'}`;
       button.style.setProperty('--event-color', getEventColor(event.id));
-      button.setAttribute('aria-label', `${event.title}; lokasi ${location.name}${location.precision === 'place' ? '' : ', perkiraan wilayah'}`);
+      button.setAttribute(
+        'aria-label',
+        `${event.title}; lokasi ${location.name}${location.precision === 'place' ? '' : ', perkiraan wilayah'}`,
+      );
       button.title = `${event.title} · ${location.name}${location.precision === 'place' ? '' : ' (perkiraan)'}`;
 
       if (isSelected) {
@@ -831,7 +868,7 @@ export default function Map({
       pin.textContent = String(eventMarkers.indexOf(event) + 1);
       button.append(pin);
 
-      button.onclick = click => {
+      button.onclick = (click) => {
         click.stopPropagation();
         eventCallback.current?.(event.id);
       };
@@ -841,15 +878,15 @@ export default function Map({
         new maplibregl.Marker({
           element: button,
           anchor: 'bottom',
-          offset: isSelected ? [0, 0] : [14 * (markerIndex + 1), 0]
+          offset: isSelected ? [0, 0] : [14 * (markerIndex + 1), 0],
         })
           .setLngLat(location.coordinates)
-          .addTo(map.current)
+          .addTo(map.current),
       );
     }
 
     return () => {
-      eventMapMarkers.current.forEach(marker => marker.remove());
+      eventMapMarkers.current.forEach((marker) => marker.remove());
       eventMapMarkers.current = [];
     };
   }, [eventMarkers, selectedEventId, ready]);
@@ -857,29 +894,39 @@ export default function Map({
   useEffect(() => {
     if (!ready) return;
     if (focus === 'java')
-      map.current?.fitBounds([[104.8, -9.4], [115.3, -5.3]], { padding: 60, duration: 1000 });
+      map.current?.fitBounds(
+        [
+          [104.8, -9.4],
+          [115.3, -5.3],
+        ],
+        { padding: 60, duration: 1000 },
+      );
     else
       map.current?.fitBounds(
-        [[94, -11], [141, 6]],
+        [
+          [94, -11],
+          [141, 6],
+        ],
         historical
           ? { padding: { top: 150, bottom: 240, left: 24, right: 24 }, duration: 0 }
-          : { padding: 45, duration: 1000 }
+          : { padding: 45, duration: 1000 },
       );
   }, [focus, focusKey, ready]);
 
   useEffect(() => {
-    const site = sites.find(s => s.id === selected);
-    if (site && ready) map.current?.easeTo({ center: [site.longitude, site.latitude], duration: 650 });
+    const site = sites.find((s) => s.id === selected);
+    if (site && ready)
+      map.current?.easeTo({ center: [site.longitude, site.latitude], duration: 650 });
   }, [selected, ready]);
 
   useEffect(() => {
-    const event = eventMarkers.find(candidate => candidate.id === selectedEventId);
+    const event = eventMarkers.find((candidate) => candidate.id === selectedEventId);
     const location = event ? resolveEventLocation(event) : undefined;
     if (!location || !ready) return;
     map.current?.easeTo({
       center: location.coordinates,
       zoom: location.precision === 'place' ? 7.2 : 5.1,
-      duration: 850
+      duration: 850,
     });
   }, [selectedEventId, eventFocusKey, eventMarkers, ready]);
 
@@ -900,11 +947,22 @@ export default function Map({
       </div>
 
       {activeCity && (
-        <div className="city-popup-card" role="dialog" aria-label={`Detail kota ${activeCity.name}`}>
+        <div
+          className="city-popup-card"
+          role="dialog"
+          aria-label={`Detail kota ${activeCity.name}`}
+        >
           <div className="city-popup-head">
             <div>
               <span className="city-popup-badge">
-                {activeCity.currentStatus || (activeCity.type === 'capital' ? 'Pusat Pemerintahan' : activeCity.type === 'ancient-settlement' ? 'Permukiman Purba' : activeCity.type === 'trading-port' ? 'Bandar Niaga' : 'Kota')}
+                {activeCity.currentStatus ||
+                  (activeCity.type === 'capital'
+                    ? 'Pusat Pemerintahan'
+                    : activeCity.type === 'ancient-settlement'
+                      ? 'Permukiman Purba'
+                      : activeCity.type === 'trading-port'
+                        ? 'Bandar Niaga'
+                        : 'Kota')}
               </span>
               <h3 className="city-popup-title">{activeCity.currentHistoricalName}</h3>
               {activeCity.currentHistoricalName !== activeCity.name && (
@@ -922,8 +980,18 @@ export default function Map({
           </div>
           <div className="city-popup-content">
             <div className="city-popup-meta">
-              <span>Provinsi: <strong>{activeCity.province}</strong></span>
-              <span>Rentang: <strong>{activeCity.startYear < 0 ? `${Math.abs(activeCity.startYear)} SM` : `${activeCity.startYear} M`} – {activeCity.endYear >= 2026 ? 'Sekarang' : `${activeCity.endYear} M`}</strong></span>
+              <span>
+                Provinsi: <strong>{activeCity.province}</strong>
+              </span>
+              <span>
+                Rentang:{' '}
+                <strong>
+                  {activeCity.startYear < 0
+                    ? `${Math.abs(activeCity.startYear)} SM`
+                    : `${activeCity.startYear} M`}{' '}
+                  – {activeCity.endYear >= 2026 ? 'Sekarang' : `${activeCity.endYear} M`}
+                </strong>
+              </span>
             </div>
             <p className="city-popup-desc">{activeCity.description}</p>
             <div className="city-popup-foot">
@@ -939,11 +1007,6 @@ export default function Map({
           Peta gagal dimuat. Pastikan browser mendukung WebGL, lalu muat ulang.
         </div>
       )}
-      <div className="map-credit">
-        {historical
-          ? 'Poligon: Cliopatria · CC BY 4.0 | Geografi: Natural Earth'
-          : 'Geografi modern · © Natural Earth · Domain publik'}
-      </div>
     </div>
   );
 }

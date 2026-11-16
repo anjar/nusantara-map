@@ -1,7 +1,20 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
-import { Activity, BookOpen, Calendar, Search, ChevronRight, ExternalLink, Flag, Landmark, MapPin, ShieldAlert, Waves, X } from 'lucide-react';
+import {
+  Activity,
+  BookOpen,
+  Calendar,
+  Search,
+  ChevronRight,
+  ExternalLink,
+  Flag,
+  Landmark,
+  MapPin,
+  ShieldAlert,
+  Waves,
+  X,
+} from 'lucide-react';
 import { getEventColor, TIMELINE_EVENTS, TimelineEvent } from '../lib/events';
 import { matchesEventFilter, searchEvents, type EventFilter } from '../lib/event-filters';
 import { resolveEventLocation } from '../lib/event-locations';
@@ -15,10 +28,20 @@ interface EventDrawerProps {
   onClose: () => void;
 }
 
-const evidenceLabels = { documented: 'Terdokumentasi', approximate: 'Tanggal perkiraan', contested: 'Diperdebatkan', reconstruction: 'Rekonstruksi ilmiah' };
+const evidenceLabels = {
+  documented: 'Terdokumentasi',
+  approximate: 'Tanggal perkiraan',
+  contested: 'Diperdebatkan',
+  reconstruction: 'Rekonstruksi ilmiah',
+};
 
 function formatExactDate(date: string): string {
-  return new Intl.DateTimeFormat('id-ID', {day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(`${date}T00:00:00Z`));
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${date}T00:00:00Z`));
 }
 
 function formatEventYear(year: number): string {
@@ -73,21 +96,39 @@ export default function EventDrawer({
   selectedEventId,
   onSelectEvent,
   isOpen,
-  onClose
+  onClose,
 }: EventDrawerProps) {
   const [filter, setFilter] = useState<EventFilter>('recorded');
   const [query, setQuery] = useState('');
   const activeCardRef = useRef<HTMLDivElement | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
+  const lastSelectedEventIdRef = useRef<string | null>(null);
 
-  const count = (value: EventFilter) => TIMELINE_EVENTS.filter(event => matchesEventFilter(event, value)).length;
+  const count = (value: EventFilter) =>
+    TIMELINE_EVENTS.filter((event) => matchesEventFilter(event, value)).length;
   const filteredEvents = searchEvents(TIMELINE_EVENTS, filter, query);
 
+  useEffect(() => {
+    if (lastSelectedEventIdRef.current === selectedEventId) return;
+    lastSelectedEventIdRef.current = selectedEventId ?? null;
+    if (!selectedEventId) return;
+
+    const selectedEvent = TIMELINE_EVENTS.find((event) => event.id === selectedEventId);
+    if (selectedEvent && !searchEvents([selectedEvent], filter, query).length) {
+      setFilter('all');
+      setQuery('');
+    }
+  }, [selectedEventId, filter, query]);
+
   // Find active event closest to current year
-  const activeEvent = filteredEvents.find(event => event.id === selectedEventId) ?? filteredEvents.reduce<TimelineEvent | null>((closest, event) => {
-    if (!closest) return event;
-    return Math.abs(currentYear - event.year) < Math.abs(currentYear - closest.year) ? event : closest;
-  }, null);
+  const activeEvent =
+    filteredEvents.find((event) => event.id === selectedEventId) ??
+    filteredEvents.reduce<TimelineEvent | null>((closest, event) => {
+      if (!closest) return event;
+      return Math.abs(currentYear - event.year) < Math.abs(currentYear - closest.year)
+        ? event
+        : closest;
+    }, null);
   const activeId = activeEvent?.id;
 
   // Smooth scroll active card into view
@@ -95,7 +136,7 @@ export default function EventDrawer({
     if (isOpen && activeCardRef.current) {
       activeCardRef.current.scrollIntoView({
         behavior: 'smooth',
-        block: 'nearest'
+        block: 'nearest',
       });
     }
   }, [activeId, isOpen]);
@@ -123,14 +164,30 @@ export default function EventDrawer({
 
       <label className="event-search">
         <Search size={14} aria-hidden="true" />
-        <input type="search" aria-label="Cari peristiwa" placeholder="Cari kejadian, tokoh, wilayah, atau sumber…" value={query} onChange={event => setQuery(event.target.value)} />
+        <input
+          type="search"
+          aria-label="Cari peristiwa"
+          placeholder="Cari kejadian, tokoh, wilayah, atau sumber…"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+        />
       </label>
 
       <div className="event-filters" role="tablist" aria-label="Kategori peristiwa">
-        <button role="tab" aria-selected={filter === 'recorded'} className={filter === 'recorded' ? 'active' : ''} onClick={() => setFilter('recorded')}>
+        <button
+          role="tab"
+          aria-selected={filter === 'recorded'}
+          className={filter === 'recorded' ? 'active' : ''}
+          onClick={() => setFilter('recorded')}
+        >
           <BookOpen size={12} /> Rekaman sejarah ({count('recorded')})
         </button>
-        <button role="tab" aria-selected={filter === 'disease'} className={filter === 'disease' ? 'active' : ''} onClick={() => setFilter('disease')}>
+        <button
+          role="tab"
+          aria-selected={filter === 'disease'}
+          className={filter === 'disease' ? 'active' : ''}
+          onClick={() => setFilter('disease')}
+        >
           <Activity size={12} /> Wabah ({count('disease')})
         </button>
         <button
@@ -175,14 +232,22 @@ export default function EventDrawer({
         </button>
       </div>
 
-      <p className="event-result-count" role="status">{filteredEvents.length} peristiwa cocok · rekonstruksi prasejarah tersedia di tab Semua/Geologi.</p>
+      <p className="event-result-count" role="status">
+        {filteredEvents.length} peristiwa cocok · rekonstruksi prasejarah tersedia di tab
+        Semua/Geologi.
+      </p>
       <div className="event-list" ref={listRef} role="feed">
-        {filteredEvents.length === 0 && <p className="event-empty">Tidak ada peristiwa yang cocok. Ubah kata pencarian atau kategori.</p>}
-        {filteredEvents.map(event => {
+        {filteredEvents.length === 0 && (
+          <p className="event-empty">
+            Tidak ada peristiwa yang cocok. Ubah kata pencarian atau kategori.
+          </p>
+        )}
+        {filteredEvents.map((event) => {
           const isActive = activeId === event.id;
           const badge = getCategoryBadge(event.category);
           const location = resolveEventLocation(event);
-          const selectEvent = () => onSelectEvent ? onSelectEvent(event) : onSelectYear(event.year);
+          const selectEvent = () =>
+            onSelectEvent ? onSelectEvent(event) : onSelectYear(event.year);
 
           return (
             <div
@@ -194,7 +259,7 @@ export default function EventDrawer({
               role="article"
               aria-label={`Pilih peristiwa ${event.title}${location ? `, lokasi ${location.name}` : ''}`}
               tabIndex={0}
-              onKeyDown={e => {
+              onKeyDown={(e) => {
                 if (e.target !== e.currentTarget) return;
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
@@ -205,19 +270,18 @@ export default function EventDrawer({
               <div className="event-card-left">
                 <span className="event-year-badge">
                   <i className="event-marker-swatch" aria-hidden="true" />
-                  {formatEventYear(event.year)}{event.endYear && event.endYear !== event.year ? `–${formatEventYear(event.endYear)}` : ''}
+                  {formatEventYear(event.year)}
+                  {event.endYear && event.endYear !== event.year
+                    ? `–${formatEventYear(event.endYear)}`
+                    : ''}
                 </span>
-                <span className={`event-category-badge ${badge.className}`}>
-                  {badge.label}
-                </span>
-                {event.region && (
-                  <span className="event-region-badge">
-                    {event.region}
-                  </span>
-                )}
+                <span className={`event-category-badge ${badge.className}`}>{badge.label}</span>
+                {event.region && <span className="event-region-badge">{event.region}</span>}
                 {event.seaLevelMeters !== undefined && (
                   <span className="event-sea-tag">
-                    {event.seaLevelMeters > 0 ? `+${event.seaLevelMeters}m` : `${event.seaLevelMeters}m`}
+                    {event.seaLevelMeters > 0
+                      ? `+${event.seaLevelMeters}m`
+                      : `${event.seaLevelMeters}m`}
                   </span>
                 )}
               </div>
@@ -227,18 +291,31 @@ export default function EventDrawer({
                   <h3 className="event-title">{event.title}</h3>
                   <ChevronRight size={14} className="event-arrow" />
                 </div>
-                {event.subtitle && (
-                  <div className="event-sub">{event.subtitle}</div>
+                {event.subtitle && <div className="event-sub">{event.subtitle}</div>}
+                {event.date && (
+                  <time className="event-exact-date" dateTime={event.date}>
+                    {formatExactDate(event.date)}
+                  </time>
                 )}
-                {event.date && <time className="event-exact-date" dateTime={event.date}>{formatExactDate(event.date)}</time>}
                 {location && (
-                  <div className="event-location-line" title={location.precision === 'place' ? 'Lokasi peristiwa yang disebut sumber' : 'Lokasi perkiraan berdasarkan wilayah peristiwa'}>
+                  <div
+                    className="event-location-line"
+                    title={
+                      location.precision === 'place'
+                        ? 'Lokasi peristiwa yang disebut sumber'
+                        : 'Lokasi perkiraan berdasarkan wilayah peristiwa'
+                    }
+                  >
                     <MapPin size={10} />
                     <span>{location.name}</span>
                     {location.precision !== 'place' && <small>perkiraan</small>}
                   </div>
                 )}
-                {event.evidence && <span className={`event-evidence evidence-${event.evidence}`}>{evidenceLabels[event.evidence]}</span>}
+                {event.evidence && (
+                  <span className={`event-evidence evidence-${event.evidence}`}>
+                    {evidenceLabels[event.evidence]}
+                  </span>
+                )}
                 {event.dateNote && <p className="event-date-note">{event.dateNote}</p>}
                 <p className="event-summary">{event.summary}</p>
                 <div className="event-impact">
@@ -258,10 +335,13 @@ export default function EventDrawer({
                           target="_blank"
                           rel="noopener noreferrer"
                           className="event-source-link"
-                          onClick={e => e.stopPropagation()}
+                          onClick={(e) => e.stopPropagation()}
                           title={`${s.title} (${s.sourceName || 'Rujukan'})`}
                         >
-                          <span>{s.title}{s.sourceName ? <small>{s.sourceName}</small> : null}</span>
+                          <span>
+                            {s.title}
+                            {s.sourceName ? <small>{s.sourceName}</small> : null}
+                          </span>
                           <ExternalLink size={10} />
                         </a>
                       ))}
@@ -270,7 +350,7 @@ export default function EventDrawer({
                 )}
 
                 <div className="event-tags">
-                  {event.tags.map(t => (
+                  {event.tags.map((t) => (
                     <span key={t} className="event-tag">
                       {t}
                     </span>
@@ -283,7 +363,10 @@ export default function EventDrawer({
       </div>
 
       <div className="event-drawer-footer">
-        <small>Klik peristiwa untuk memilih tahun. Link sumber membuka bacaan detail; tanggal perkiraan dan perdebatan ditandai.</small>
+        <small>
+          Klik peristiwa untuk memilih tahun. Link sumber membuka bacaan detail; tanggal perkiraan
+          dan perdebatan ditandai.
+        </small>
       </div>
     </aside>
   );

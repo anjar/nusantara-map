@@ -17,7 +17,7 @@ Tabel ini mendokumentasikan rujukan yang **tercantum dalam dataset**, bukan hasi
 
 ## Geografi dan Garis Pantai Purba (Paleoshoreline)
 
-Berkas `apps/web/public/data/indonesia.geojson` adalah geometri Indonesia modern yang diekstrak dari [Natural Earth Admin 0 1:10m](https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_10m_admin_0_countries.geojson). Atribusi yang sudah ada: [ketentuan Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/) menyatakan domain publik. Lihat juga `apps/web/public/data/README.md`.
+Berkas `public/data/indonesia.geojson` adalah geometri Indonesia modern yang diekstrak dari [Natural Earth Admin 0 1:10m](https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_10m_admin_0_countries.geojson). Atribusi yang sudah ada: [ketentuan Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/) menyatakan domain publik. Lihat juga `public/data/README.md`.
 
 ### Rekonstruksi Paparan Sunda & Sahul (Zaman Es)
 Pada era prasejarah (khususnya 20.000 SM s/d 8.000 SM), penurunan permukaan laut global membuka daratan paparan benua (continental shelf):
@@ -25,7 +25,7 @@ Pada era prasejarah (khususnya 20.000 SM s/d 8.000 SM), penurunan permukaan laut
 - **Paparan Sahul**: Menghubungkan daratan Papua / New Guinea dengan benua Australia.
 - **Wallacea**: Kepulauan antara kedua paparan (Sulawesi, Nusa Tenggara, Maluku) tetap terpisah oleh palung laut dalam.
 
-Berkas data tersimpan di `apps/web/public/data/`:
+Berkas data tersimpan di `public/data/`:
 - `paleoshoreline-120m.geojson`: Puncak Zaman Es (LGM, ~18.000–20.000 SM)
 - `paleoshoreline-75m.geojson`: Deglasiasi awal (~14.000–12.000 SM)
 - `paleoshoreline-50m.geojson`: Pasca-glasial (~10.000 SM)
@@ -39,7 +39,7 @@ Rujukan & dataset:
 5. Voris, H. K. (2000). *Maps of Pleistocene sea levels in Southeast Asia: shorelines, river systems and time durations*. Journal of Biogeography.
 
 ### Geografi Kawasan Nusantara & Negara Tetangga
-Berkas `apps/web/public/data/neighbors.geojson` melengkapi peta dasar dengan negara-negara di lingkar budaya Nusantara:
+Berkas `public/data/neighbors.geojson` melengkapi peta dasar dengan negara-negara di lingkar budaya Nusantara:
 - **Malaysia** (Semenanjung & Sabah/Sarawak di Borneo utara)
 - **Brunei Darussalam** (pesisir utara Borneo)
 - **Singapura**, **Timor Leste**, dan **Papua Nugini**
