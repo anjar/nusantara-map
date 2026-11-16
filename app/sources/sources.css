@@ -1,0 +1,382 @@
+.sources-page {
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+.sources-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+}
+
+.sources-header nav a {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.sources-repo-link {
+  border: 1px solid #cdd1c1;
+  border-radius: 4px;
+  padding: 9px 12px;
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.sources-repo-link:hover,
+.sources-header nav a:hover {
+  color: var(--rust);
+}
+
+.sources-shell {
+  width: min(1120px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+.sources-intro {
+  max-width: 820px;
+  padding: 76px 0 48px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sources-kicker,
+.source-section-kicker {
+  margin: 0;
+  color: var(--rust);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.sources-intro h1 {
+  margin: 22px 0 18px;
+  font: 54px/1.08 Georgia, 'Times New Roman', serif;
+  letter-spacing: -1.5px;
+}
+
+.sources-lead {
+  max-width: 690px;
+  margin: 0;
+  color: #6f766a;
+  font: 16px/1.8 Georgia, 'Times New Roman', serif;
+}
+
+.sources-layout {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 720px);
+  justify-content: space-between;
+  gap: 64px;
+  padding: 46px 0 100px;
+}
+
+.sources-toc {
+  position: sticky;
+  top: 118px;
+  align-self: start;
+  padding-left: 15px;
+  border-left: 1px solid #d8d9cc;
+}
+
+.sources-toc h2 {
+  margin: 0 0 13px;
+  color: #878b7c;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.sources-toc nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sources-toc a {
+  display: flex;
+  gap: 10px;
+  padding: 8px 0;
+  color: #919383;
+  font-size: 10px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.sources-toc a span {
+  color: var(--ink);
+}
+
+.sources-toc a:hover,
+.sources-toc a:hover span {
+  color: var(--rust);
+}
+
+.sources-content {
+  min-width: 0;
+}
+
+.source-section {
+  padding: 0 0 43px;
+  margin: 0 0 39px;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 112px;
+}
+
+.source-section:last-of-type {
+  margin-bottom: 26px;
+}
+
+.source-section h2 {
+  margin: 11px 0 16px;
+  font: 31px/1.2 Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.4px;
+}
+
+.source-section p {
+  margin: 0 0 13px;
+  color: #73796c;
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.source-section a {
+  color: #9e4f34;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.source-entry {
+  padding-top: 9px;
+}
+
+.source-entry-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.source-entry-heading h3 {
+  margin: 0;
+  font: 19px/1.35 Georgia, 'Times New Roman', serif;
+}
+
+.source-license {
+  flex: 0 0 auto;
+  padding: 4px 7px;
+  border: 1px solid #d9ddcd;
+  border-radius: 2px;
+  color: #69745f;
+  font-size: 8px;
+  letter-spacing: 0.4px;
+}
+
+.source-credit-line,
+.source-note {
+  padding-left: 13px;
+  border-left: 2px solid #c5b793;
+}
+
+.source-links,
+.source-list,
+.method-list {
+  display: grid;
+  gap: 9px;
+  margin: 16px 0 0;
+  padding-left: 18px;
+  color: #73796c;
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+.source-links {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  padding: 0;
+}
+
+.source-list li span {
+  color: #929585;
+  font-size: 10px;
+}
+
+.software-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 28px;
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.software-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.software-list a {
+  width: fit-content;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.software-list span {
+  color: #8b8e80;
+  font-size: 10px;
+}
+
+.sources-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 5px 0 0;
+  color: #929585;
+  font-size: 10px;
+}
+
+.sources-footer a {
+  color: var(--rust);
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .sources-layout {
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 34px;
+  }
+
+  .sources-header {
+    gap: 28px;
+  }
+
+  .sources-header .brand {
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 760px) {
+  .sources-header {
+    gap: 10px;
+  }
+
+  .sources-header .brand {
+    min-width: 0;
+  }
+
+  .sources-header nav {
+    display: flex;
+    gap: 12px;
+  }
+
+  .sources-header nav a {
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  .sources-header .header-end {
+    display: none;
+  }
+
+  .sources-shell {
+    width: min(100% - 36px, 640px);
+  }
+
+  .sources-intro {
+    padding: 49px 0 31px;
+  }
+
+  .sources-intro h1 {
+    margin: 16px 0 13px;
+    font-size: clamp(37px, 10vw, 50px);
+    letter-spacing: -1px;
+  }
+
+  .sources-lead {
+    font-size: 14px;
+  }
+
+  .sources-layout {
+    display: block;
+    padding: 27px 0 64px;
+  }
+
+  .sources-toc {
+    position: static;
+    padding: 0 0 14px;
+    margin-bottom: 35px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .sources-toc nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px 17px;
+  }
+
+  .sources-toc a {
+    padding: 5px 0;
+  }
+
+  .source-section {
+    padding-bottom: 32px;
+    margin-bottom: 31px;
+  }
+
+  .source-section h2 {
+    font-size: 28px;
+  }
+
+  .source-entry-heading {
+    align-items: flex-start;
+  }
+
+  .source-entry-heading h3 {
+    font-size: 17px;
+  }
+
+  .source-links,
+  .software-list {
+    grid-template-columns: 1fr;
+  }
+
+  .sources-footer {
+    flex-direction: column;
+    gap: 9px;
+  }
+}
+
+@media (max-width: 390px) {
+  .sources-header {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .sources-header .brand {
+    gap: 7px;
+    font-size: 21px;
+  }
+
+  .sources-header .brand-icon {
+    width: 34px;
+  }
+
+  .sources-header .brand-sub {
+    font-size: 5px;
+  }
+
+  .sources-header nav {
+    gap: 8px;
+  }
+
+  .sources-header nav a {
+    font-size: 8px;
+  }
+}

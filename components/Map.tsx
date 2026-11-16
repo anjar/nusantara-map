@@ -1007,11 +1007,6 @@ export default function Map({
           Peta gagal dimuat. Pastikan browser mendukung WebGL, lalu muat ulang.
         </div>
       )}
-      <div className="map-credit">
-        {historical
-          ? 'Poligon: Cliopatria · CC BY 4.0 | Geografi: Natural Earth'
-          : 'Geografi modern · © Natural Earth · Domain publik'}
-      </div>
     </div>
   );
 }

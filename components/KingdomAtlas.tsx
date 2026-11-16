@@ -1,8 +1,9 @@
 'use client';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { BookOpen, Calendar, ChevronRight, ExternalLink, Info, Search, X } from 'lucide-react';
+import { BookOpen, Calendar, ChevronRight, ExternalLink, Search, X } from 'lucide-react';
 import type { KingdomCollection, KingdomTimeline, PaleoshorelineCollection } from './types';
 import {
   getSeaLevel,
@@ -51,7 +52,6 @@ export default function KingdomAtlas() {
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [eventFocusKey, setEventFocusKey] = useState(0);
   const [urlInitialized, setUrlInitialized] = useState(false);
-  const [showSources, setShowSources] = useState(false);
   const [paleoshoreline, setPaleoshoreline] = useState<PaleoshorelineCollection | null>(null);
 
   // Geological feature toggles
@@ -258,7 +258,7 @@ export default function KingdomAtlas() {
   return (
     <main className="atlas kingdom-atlas">
       <header className="header">
-        <a href="/" className="brand" aria-label="Nusantara beranda">
+        <Link href="/" className="brand" aria-label="Nusantara beranda">
           <Image
             src="/brand/nusantara-symbol.svg"
             alt=""
@@ -271,22 +271,12 @@ export default function KingdomAtlas() {
             Nusantara
             <span className="brand-sub">ATLAS KERAJAAN INDONESIA</span>
           </span>
-        </a>
+        </Link>
         <nav aria-label="Navigasi utama">
-          <button
-            className={!showSources ? 'nav-active' : ''}
-            onClick={() => setShowSources(false)}
-          >
+          <Link href="/" className="nav-active" aria-current="page">
             Peta kerajaan
-          </button>
-          <button
-            onClick={() => {
-              setShowSources(true);
-              setSidebarOpen(true);
-            }}
-          >
-            Sumber &amp; metode <ExternalLink size={12} />
-          </button>
+          </Link>
+          <Link href="/sources">Sumber &amp; kredit</Link>
         </nav>
 
         <div className="header-end">
@@ -332,23 +322,8 @@ export default function KingdomAtlas() {
             </label>
           </div>
 
-          <div className="side-tabs" role="tablist" aria-label="Informasi kerajaan">
-            <button
-              role="tab"
-              aria-selected={!showSources}
-              className={!showSources ? 'active' : ''}
-              onClick={() => setShowSources(false)}
-            >
-              Kerajaan · {yearLabel(year)}
-            </button>
-            <button
-              role="tab"
-              aria-selected={showSources}
-              className={showSources ? 'active' : ''}
-              onClick={() => setShowSources(true)}
-            >
-              Sumber &amp; catatan
-            </button>
+          <div className="side-tabs">
+            <span className="side-tab-label">Kerajaan · {yearLabel(year)}</span>
           </div>
 
           <div className="side-scroll">
@@ -358,143 +333,74 @@ export default function KingdomAtlas() {
                 <button onClick={() => setRetry((r) => r + 1)}>Coba lagi</button>
               </div>
             )}
-            {showSources ? (
-              <div className="sources">
-                <h2>Wilayah punya sumber.</h2>
+            <div className="section-heading">
+              <span>WILAYAH PADA TAHUN INI</span>
+              <span className="count">{loading ? '…' : filtered.length}</span>
+            </div>
+            {!loading && !error && !filtered.length && (
+              <div className="kingdom-empty">
+                <h2>
+                  {year <= -4000 ? 'Era Prasejarah & Geologis' : 'Belum ada wilayah tercatat.'}
+                </h2>
                 <p>
-                  Poligon berasal dari Cliopatria, Seshat Global History Databank, CC BY 4.0. Data
-                  dipilih untuk kerajaan Nusantara tanpa menggambar ulang atau memotongnya mengikuti
-                  batas Indonesia modern.
+                  {year <= -4000
+                    ? `Pada ${yearLabel(year)}, peradaban kerajaan terorganisir belum tercatat di Nusantara. Peta menampilkan rekonstruksi geologis daratan Paparan Sunda dan Sahul pada Zaman Es ketika permukaan laut lebih rendah.`
+                    : extentEnd && year > extentEnd
+                      ? `Subset poligon kerajaan saat ini berakhir pada ${yearLabel(extentEnd)}. Ini tidak membuktikan kerajaan atau institusinya berhenti pada tahun itu.`
+                      : 'Belum ada poligon bersumber yang cocok dengan tahun atau pencarian ini.'}
                 </p>
-                <a
-                  href="https://doi.org/10.1038/s41597-025-04516-9"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Bennett et al. (2025) ↗
-                </a>
-                <p>
-                  Garis pada peta adalah salah satu rekonstruksi historis, bukan batas survei.
-                  Hubungan kekuasaan langsung, upeti, dan pengaruh belum dibedakan pada impor awal.
-                </p>
-                <p>
-                  Rentang poligon mengikuti snapshot sumber dan dapat berbeda dari penanggalan
-                  berdiri/runtuh kerajaan. Belum ada wilayah bersumber untuk semua kerajaan atau
-                  semua tahun. Kekosongan peta berarti tidak ada snapshot, bukan tidak ada kerajaan.
-                </p>
-                <p>
-                  Dataset global berhenti pada 2024; subset kerajaan di atlas dapat berakhir lebih
-                  awal. Kami tidak meneruskan wilayah otomatis hingga tahun berjalan.
-                </p>
-                <h3>Rekonstruksi Geologis: Paparan Sunda &amp; Sahul</h3>
-                <p>
-                  Pada era prasejarah dan Zaman Es terakhir (~20.000–8.000 SM), permukaan laut
-                  global turun hingga ~120 meter di bawah tingkat saat ini. Paparan Sunda
-                  menghubungkan Sumatera, Jawa, dan Kalimantan ke daratan Asia Tenggara, sementara
-                  Paparan Sahul menghubungkan Papua ke benua Australia. Wilayah Wallacea (Sulawesi,
-                  Nusa Tenggara, Maluku) tetap terpisah oleh palung laut dalam.
-                </p>
-                <p>
-                  Data garis pantai purba dihitung dari kurva permukaan laut eustatik (Lambeck et
-                  al., 2014) dan data paleoshoreline batimetri.
-                </p>
-                <h3>Toponim &amp; Permukiman dari Sebelum Masehi s/d Modern</h3>
-                <p>
-                  Fitur toponim kota dan permukiman kuno merentang dari era Sebelum Masehi
-                  (Batujaya-Buni, Plawangan, Gilimanuk, Pasemah, Kalumpang, Liang Bua) hingga
-                  metropolis modern dan Ibu Kota Nusantara (IKN). Nama kota berganti secara
-                  kontekstual mengikuti tarikh tahun (misal: Sunda Kalapa → Jayakarta → Batavia →
-                  Jakarta).
-                </p>
-                <h3>Peta dasar, Provinsi &amp; Relief</h3>
-                <p>
-                  Natural Earth, domain publik; batas 38 provinsi modern Republik Indonesia; Shaded
-                  Relief dari Esri / USGS; sistem sungai purba Sundaland menurut rekonstruksi
-                  geologis Molengraaff &amp; Voris; serta jaringan Jalur Rempah maritim dan
-                  benteng-benteng bersejarah Nusantara.
-                </p>
-                <a
-                  href="https://github.com/Seshat-Global-History-Databank/cliopatria"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Dataset dan ketidakpastian ↗
-                </a>
+                <button onClick={() => changeYear(1350)}>Lihat era Majapahit (1350 M)</button>
               </div>
-            ) : (
-              <>
-                <div className="section-heading">
-                  <span>WILAYAH PADA TAHUN INI</span>
-                  <span className="count">{loading ? '…' : filtered.length}</span>
-                </div>
-                {!loading && !error && !filtered.length && (
-                  <div className="kingdom-empty">
-                    <h2>
-                      {year <= -4000 ? 'Era Prasejarah & Geologis' : 'Belum ada wilayah tercatat.'}
-                    </h2>
-                    <p>
-                      {year <= -4000
-                        ? `Pada ${yearLabel(year)}, peradaban kerajaan terorganisir belum tercatat di Nusantara. Peta menampilkan rekonstruksi geologis daratan Paparan Sunda dan Sahul pada Zaman Es ketika permukaan laut lebih rendah.`
-                        : extentEnd && year > extentEnd
-                          ? `Subset poligon kerajaan saat ini berakhir pada ${yearLabel(extentEnd)}. Ini tidak membuktikan kerajaan atau institusinya berhenti pada tahun itu.`
-                          : 'Belum ada poligon bersumber yang cocok dengan tahun atau pencarian ini.'}
-                    </p>
-                    <button onClick={() => changeYear(1350)}>Lihat era Majapahit (1350 M)</button>
-                  </div>
-                )}
-                <div className="site-list" aria-busy={loading}>
-                  {filtered.map((k) => (
-                    <button
-                      key={k.id}
-                      onClick={() => choose(k.id)}
-                      className={`site-row ${selected === k.id ? 'active' : ''}`}
+            )}
+            <div className="site-list" aria-busy={loading}>
+              {filtered.map((k) => (
+                <button
+                  key={k.id}
+                  onClick={() => choose(k.id)}
+                  className={`site-row ${selected === k.id ? 'active' : ''}`}
+                >
+                  <span className="kingdom-swatch" style={{ background: k.color }} />
+                  <span>
+                    <strong>{k.name}</strong>
+                    <small>
+                      Snapshot {yearLabel(k.startYear)}–{yearLabel(k.endYear)}
+                    </small>
+                  </span>
+                  <ChevronRight size={15} />
+                </button>
+              ))}
+            </div>
+            {active && (
+              <article className="site-detail">
+                <span className="eyebrow">REKONSTRUKSI WILAYAH</span>
+                <h2>{active.name}</h2>
+                {active.description && <p>{active.description}</p>}
+                <p>
+                  Poligon berlaku pada rentang snapshot {yearLabel(active.startYear)}–
+                  {yearLabel(active.endYear)} menurut sumber, bukan tanggal pasti berdiri/runtuh.
+                </p>
+                <p className="kingdom-caveat">{active.notes}</p>
+                <div className="source-card">
+                  <a href={active.sourceUrl} target="_blank" rel="noreferrer">
+                    Sumber geometri <ExternalLink size={13} />
+                  </a>
+                  <small>{active.attribution}</small>
+                  <small>
+                    Hubungan wilayah: {relationships[active.relationship] || active.relationship}
+                  </small>
+                  {active.wikipediaTitle && (
+                    <a
+                      href={`https://id.wikipedia.org/wiki/${encodeURIComponent(
+                        active.wikipediaTitle.replaceAll(' ', '_'),
+                      )}`}
+                      target="_blank"
+                      rel="noreferrer"
                     >
-                      <span className="kingdom-swatch" style={{ background: k.color }} />
-                      <span>
-                        <strong>{k.name}</strong>
-                        <small>
-                          Snapshot {yearLabel(k.startYear)}–{yearLabel(k.endYear)}
-                        </small>
-                      </span>
-                      <ChevronRight size={15} />
-                    </button>
-                  ))}
+                      Profil &amp; sejarah <ExternalLink size={13} />
+                    </a>
+                  )}
                 </div>
-                {active && (
-                  <article className="site-detail">
-                    <span className="eyebrow">REKONSTRUKSI WILAYAH</span>
-                    <h2>{active.name}</h2>
-                    {active.description && <p>{active.description}</p>}
-                    <p>
-                      Poligon berlaku pada rentang snapshot {yearLabel(active.startYear)}–
-                      {yearLabel(active.endYear)} menurut sumber, bukan tanggal pasti
-                      berdiri/runtuh.
-                    </p>
-                    <p className="kingdom-caveat">{active.notes}</p>
-                    <div className="source-card">
-                      <a href={active.sourceUrl} target="_blank" rel="noreferrer">
-                        Sumber geometri <ExternalLink size={13} />
-                      </a>
-                      <small>{active.attribution}</small>
-                      <small>
-                        Hubungan wilayah:{' '}
-                        {relationships[active.relationship] || active.relationship}
-                      </small>
-                      {active.wikipediaTitle && (
-                        <a
-                          href={`https://id.wikipedia.org/wiki/${encodeURIComponent(
-                            active.wikipediaTitle.replaceAll(' ', '_'),
-                          )}`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Profil &amp; sejarah <ExternalLink size={13} />
-                        </a>
-                      )}
-                    </div>
-                  </article>
-                )}
-              </>
+              </article>
             )}
           </div>
           <div className="sidebar-foot">
@@ -502,7 +408,9 @@ export default function KingdomAtlas() {
             <span>
               Batas adalah rekonstruksi.
               <br />
-              <strong>Baca sumber dan ketidakpastiannya.</strong>
+              <Link href="/sources" className="sidebar-source-link">
+                Sumber, kredit &amp; metode →
+              </Link>
             </span>
           </div>
         </aside>
@@ -638,13 +546,6 @@ export default function KingdomAtlas() {
                   ))}
                 </div>
               </details>
-              <div className="timeline-meta-note">
-                <Info size={11} />
-                <span>
-                  Cliopatria / Lambeck et al. (2014) · Rekonstruksi wilayah &amp; paleoshoreline,
-                  bukan batas survei modern.
-                </span>
-              </div>
             </div>
           </div>
         </section>
