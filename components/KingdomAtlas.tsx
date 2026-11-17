@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { BookOpen, Calendar, ChevronRight, ExternalLink, Search, X } from 'lucide-react';
+import { BookOpen, Calendar, ChevronRight, ExternalLink, Moon, Search, Sun, X } from 'lucide-react';
 import type { KingdomCollection, KingdomTimeline, PaleoshorelineCollection } from './types';
 import {
   getSeaLevel,
@@ -53,6 +53,10 @@ export default function KingdomAtlas() {
   const [eventFocusKey, setEventFocusKey] = useState(0);
   const [urlInitialized, setUrlInitialized] = useState(false);
   const [paleoshoreline, setPaleoshoreline] = useState<PaleoshorelineCollection | null>(null);
+  const [darkMode, setDarkMode] = useState(
+    () =>
+      typeof window !== 'undefined' && window.localStorage.getItem('nusantara-theme') === 'dark',
+  );
 
   // Geological feature toggles
   const [eventsOpen, setEventsOpen] = useState(true);
@@ -64,6 +68,19 @@ export default function KingdomAtlas() {
     events: true,
     provinceNames: true,
   });
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = darkMode ? 'dark' : 'light';
+  }, [darkMode]);
+
+  function toggleDarkMode() {
+    setDarkMode((enabled) => {
+      const next = !enabled;
+      document.documentElement.dataset.theme = next ? 'dark' : 'light';
+      window.localStorage.setItem('nusantara-theme', next ? 'dark' : 'light');
+      return next;
+    });
+  }
 
   const seaLevel = getSeaLevel(year);
   const threshold = getThreshold(seaLevel);
@@ -280,8 +297,6 @@ export default function KingdomAtlas() {
         </nav>
 
         <div className="header-end">
-          <LayerControl layers={layers} onChange={handleLayerChange} />
-
           <a
             href="https://github.com/anjar/nusantara-map"
             target="_blank"
@@ -291,6 +306,15 @@ export default function KingdomAtlas() {
           >
             <span>⭐ Star</span>
           </a>
+          <button
+            type="button"
+            className="header-pill-btn theme-toggle"
+            onClick={toggleDarkMode}
+            aria-label={darkMode ? 'Aktifkan mode terang' : 'Aktifkan mode gelap'}
+            title={darkMode ? 'Mode terang' : 'Mode gelap'}
+          >
+            {darkMode ? <Sun size={14} /> : <Moon size={14} />}
+          </button>
         </div>
       </header>
 

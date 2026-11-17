@@ -602,3 +602,126 @@
 .sidebar-source-link{color:#6f7963;font-size:9px;text-decoration:none}
 .sidebar-source-link:hover{color:var(--rust);text-decoration:underline;text-underline-offset:3px}
 .header nav a{display:flex;align-items:center;position:relative;padding:0;font-size:12px;text-decoration:none}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #1d2522;
+  --ink: #e8e7d9;
+  --muted: #a7ad9e;
+  --line: #39433d;
+  --green: #9eb29b;
+}
+
+:root[data-theme='dark'] body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+:root[data-theme='dark'] .header,
+:root[data-theme='dark'] .sidebar {
+  background: #1d2522;
+  border-color: var(--line);
+}
+
+:root[data-theme='dark'] .brand-sub,
+:root[data-theme='dark'] .edition,
+:root[data-theme='dark'] .sidebar-top p,
+:root[data-theme='dark'] .site-row small,
+:root[data-theme='dark'] .section-heading,
+:root[data-theme='dark'] .side-tab-label,
+:root[data-theme='dark'] .sidebar-foot,
+:root[data-theme='dark'] .search,
+:root[data-theme='dark'] .search input {
+  color: #a7ad9e;
+}
+
+:root[data-theme='dark'] .search,
+:root[data-theme='dark'] .about-button,
+:root[data-theme='dark'] .header-pill-btn,
+:root[data-theme='dark'] .layers-trigger-btn {
+  background: #27322e;
+  border-color: #506056;
+  color: #e8e7d9;
+}
+
+:root[data-theme='dark'] .header-pill-btn:hover,
+:root[data-theme='dark'] .layers-trigger-btn:hover,
+:root[data-theme='dark'] .layers-trigger-btn.active {
+  background: #34443b;
+  border-color: #b87558;
+  color: #f0c3a9;
+}
+
+:root[data-theme='dark'] .site-row:hover {
+  background: #29362f;
+}
+
+:root[data-theme='dark'] .site-row.active {
+  background: #304137;
+  border-color: #526954;
+}
+
+:root[data-theme='dark'] .count {
+  background: #344338;
+  color: #c4d0b4;
+}
+
+:root[data-theme='dark'] .side-tabs,
+:root[data-theme='dark'] .sidebar-foot,
+:root[data-theme='dark'] .timeline-note {
+  border-color: var(--line);
+}
+
+:root[data-theme='dark'] .timeline,
+:root[data-theme='dark'] .layers-dropdown-card,
+:root[data-theme='dark'] .kingdom-map-note,
+:root[data-theme='dark'] .kingdom-legend,
+:root[data-theme='dark'] .map-controls,
+:root[data-theme='dark'] .about-modal,
+:root[data-theme='dark'] .map-status,
+:root[data-theme='dark'] .map-loading {
+  background: #25302c;
+  border-color: #4a5a50;
+  color: var(--ink);
+}
+
+:root[data-theme='dark'] .timeline-prompt,
+:root[data-theme='dark'] .timeline-header .eyebrow,
+:root[data-theme='dark'] .year-display > span,
+:root[data-theme='dark'] .era-button,
+:root[data-theme='dark'] .year-ticks button,
+:root[data-theme='dark'] .timeline-note,
+:root[data-theme='dark'] .kingdom-map-note > span:last-child,
+:root[data-theme='dark'] .kingdom-legend,
+:root[data-theme='dark'] .kingdom-periods {
+  color: #b7c3b4;
+}
+
+:root[data-theme='dark'] .era-button,
+:root[data-theme='dark'] .kingdom-year-input input,
+:root[data-theme='dark'] .kingdom-periods button {
+  background: #2d3933;
+  border-color: #526258;
+  color: #e8e7d9;
+}
+
+:root[data-theme='dark'] .source-card {
+  background: #2a3730;
+  border-color: #4d6152;
+}
+
+:root[data-theme='dark'] .sources p,
+:root[data-theme='dark'] .about-modal p,
+:root[data-theme='dark'] .site-detail p {
+  color: #b4bcae;
+}
+
+:root[data-theme='dark'] .layers-dropdown-card {
+  box-shadow: 0 8px 20px #0008;
+}
+
+.theme-toggle {
+  width: 34px;
+  height: 28px;
+  padding: 5px;
+}
